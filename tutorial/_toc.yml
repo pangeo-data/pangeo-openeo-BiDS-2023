@@ -1,0 +1,36 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: About
+  chapters:
+  - file: about/timeline
+    title: Workshop timeline
+
+- caption: Before the workshop
+  chapters:
+  - file: before/setup
+
+- caption: Pangeo 101
+  chapters:
+  - file: pangeo101/xarray_introduction
+    title: Handling multi-dimensional arrays with xarray
+  - file: pangeo101/visualization
+    title: Interactive plotting with holoviews
+  - file: pangeo101/data_discovery
+    title: Data access and discovery
+  - file: pangeo101/chunking_introduction
+    title: Chunking
+  - file: pangeo101/dask_introduction
+    title: Parallel computing with dask
+
+- caption: Beyond the workshop
+  chapters:
+  - file: afterword/resources
+    title: Resources
+  - file: afterword/pythia
+    title: Project Pythia
+  - file: afterword/envds-book
+    title: Environmental Data Science Book

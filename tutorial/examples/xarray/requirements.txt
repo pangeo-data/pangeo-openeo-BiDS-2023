@@ -1,0 +1,17 @@
+geopandas
+ipywidgets
+jupyterlab
+lxml
+matplotlib
+netcdf4
+numba
+numpy
+pandas
+rasterio
+rioxarray
+tqdm
+xarray
+bottleneck
+scipy
+geoviews
+cartopy
