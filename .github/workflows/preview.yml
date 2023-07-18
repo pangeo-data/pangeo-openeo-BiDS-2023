@@ -1,0 +1,34 @@
+name: preview
+
+on:
+  # Trigger the workflow only on pull request to preview the book
+  pull_request:
+
+# This job installs dependencies, build the jupyter notebook, and pushes it to `render`, a new `branch`
+jobs:
+  build:
+    name: Setup
+    runs-on: "ubuntu-latest"
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up conda and dependencies
+        uses: mamba-org/provision-with-micromamba@v13
+        with:
+          environment-file: .binder/environment.yml
+          environment-name: bids23
+          extra-specs: |
+            python=3.10
+          channels: conda-forge
+          cache-env: true
+      # Build the book
+      - name: Build the book
+        run: |
+          jupyter-book build tutorial
+      # Upload artifact for preview
+      - uses: actions/upload-artifact@v3
+        with:
+          name: jupyterbook-html
+          path: tutorial/_build/html

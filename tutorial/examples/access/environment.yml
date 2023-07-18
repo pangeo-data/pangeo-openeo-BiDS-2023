@@ -1,0 +1,11 @@
+name: wildfires-foss4g
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python==3.10
+  - odc-stac
+  - xarray
+  - pip
+  - pip:
+        - pystac-client

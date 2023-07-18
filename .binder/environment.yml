@@ -1,0 +1,35 @@
+name: bids23
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.1r10
+  - jupyter-book
+  - jupyterlab
+  - matplotlib
+  - numpy
+  - ghp-import
+  - xarray
+  - rioxarray
+  - cftime
+  - netcdf4
+  - h5netcdf
+  - cartopy
+  - holoviews
+  - hvplot
+  - geoviews
+  - cartopy
+  - geopandas
+  - pooch
+  - dask
+  - fsspec
+  - s3fs
+  - ipycytoscape
+  - datashader
+  - pip
+  - pip:
+    - wget
+    - sphinx-exercise
+    - kerchunk
+    - jupytext
+    - nbgitpuller
