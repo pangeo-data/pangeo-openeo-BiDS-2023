@@ -1,4 +1,5 @@
-# Pangeo 101 Tutorial for FOSS4G 2022 Annual Gathering
+# Scaling Big Data Analysis with Pangeo and OpenEO: Unlocking the Power of Space Data
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -10,15 +11,40 @@ This repository contains the documentation and jupyter notebooks used for delive
 
 <br>
 
-The content of this repository (folder `tutorial`) is rendered as an online document using [Jupyter Book](https://jupyterbook.org/en/stable/intro.html). **You can access it [here](https://pangeo-data.github.io/foss4g-2022)**.
+The content of this repository (folder `tutorial`) is rendered as an online document using [Jupyter Book](https://jupyterbook.org/en/stable/intro.html). **You can access it [here](https://pangeo-data.github.io/pangeo-openeo-BiDS-2023)**.
 
-## FOSS4G Annual International Gathering
+## Agenda
 
-[FOSS4G](https://foss4g.org/) stands for **Free and Open Source Software for Geospatial** and is the annual recurring global event hosted by [OSGeo](https://www.osgeo.org/), the non-profit organization that supports and promotes the collaborative development of free and open source geographic technologies and open geospatial data. 
+- 9:00  Welcome (5 minutes)
+- 9:05 Introduction and Motivation (15 minutes)
 
-## FOSS4G Pangeo 101 workshop
+**Part-1: Pangeo**
 
-An in-person workshop to [introduce the Pangeo ecosystem](https://talks.osgeo.org/foss4g-2022-workshops/talk/NF8BKU/) will be provided at FOSS4G 2022 by the Pangeo Community on **Tuesday 23rd August 2022** from **14:00** to **18:00 CEST**. You will learn how to efficiently access, analyze and visualize geospatial data at scale. The workshop timeline, setup and content of the workshop are accessible via the left menu of [this webpage](https://pangeo-data.github.io/foss4g-2022/before/setup.html).
+- 9:20 Overview of the Pangeo ecosystem (20 minutes)
+- 9:40 Understanding Xarray to avoid common pitfalls (30 minutes)
+- 10:10  Interactive Visualization with Hvplot (20 minutes)
+- 10:30 Break (30 minutes)
+
+**Part-2: OpenEO**
+
+- 11:00 Getting started with OpenEO (15 minutes)
+- 11:15 Accessing data with OpenEO (25 minutes)
+- 11:40 Processing data with OpenEO (30 minutes)
+- 12:10 Working with data cubes with OpenEO (20 minutes)
+- 12:30 Lunch
+
+**Part-3: Unlocking the Power of Space Data with Pangeo & OpenEO**
+
+- 14:00 Understanding what OpenEO does best and how to exploit it to easily streamline your data analysis (25 minutes)
+- 14:25 Scaling with OpenEO (25 minutes)
+- 14:50 Understanding when and how to exploit Pangeo to customise your algorithm and analyse multiple data sources  (20 minutes)
+- 15:10 Introduction to chunking  (20 minutes)
+- 15:30 Break
+- 16:00 Scaling with Dask (30 minutes)
+- 16:30 Cloud-friendly access to archival data with kerchunk (25 minutes)
+- 16:55 Create Analysis Ready Cloud Optimised (ARCO) data (25 minutes)
+- 17:20 Common workflow that combines the best of the two “worlds” (30 minutes)
+- 17:50 Wrap-up and feedback survey (10 minutes)
 
 ## Contributors ✨
 
