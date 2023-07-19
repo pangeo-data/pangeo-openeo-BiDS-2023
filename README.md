@@ -4,7 +4,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-This repository contains the documentation and jupyter notebooks used for delivering [the tutorial on Pangeo](https://talks.osgeo.org/foss4g-2022-workshops/talk/NF8BKU/) during the [FOSS4G 2022 conference](https://2022.foss4g.org/).
+This repository contains the documentation and jupyter notebooks used for delivering tutorial to BiDS'23.
 
 <img src="tutorial/figures/pangeo_logo.png" width="180" align="Left" /></a>
 <img src="tutorial/figures/EGI-ACE_logo.png" width="180" align="Right" /></a>
