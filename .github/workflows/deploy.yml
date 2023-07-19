@@ -27,7 +27,7 @@ jobs:
             channels:
               - conda-forge
       # Build the book
-      - name: Build the book
+      - name: Build the jupyter book
         run: |
           jupyter-book build tutorial
       # Deploy the book's HTML to gh-pages branch
