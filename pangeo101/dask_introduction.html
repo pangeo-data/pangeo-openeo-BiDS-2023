@@ -1,0 +1,1560 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Parallel computing with Dask &#8212; iBiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pangeo101/dask_introduction';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Join the community!" href="../afterword/resources.html" />
+    <link rel="prev" title="Data chunking" href="chunking_introduction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pangeo_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/pangeo_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome 👋
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../about/timeline.html">Workshop timeline</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Before the workshop</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../before/setup.html">TBD</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pangeo 101</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="xarray_introduction.html">Handling multi-dimensional arrays with xarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Interactive plotting with holoviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_discovery.html">Data access and discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chunking_introduction.html">Chunking</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Parallel computing with dask</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the workshop</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../afterword/resources.html">Join the community!</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../afterword/pythia.html">Project Pythia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../afterword/envds-book.html">Environmental Data Science Book</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://notebooks.gesis.org/binder/v2/gh/pangeo-data/pangeo-openeo-BiDS-2023/main?urlpath=lab/tree/tutorial/pangeo101/dask_introduction.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://pangeo-foss4g.vm.fedcloud.eu/jupyterhub/hub/user-redirect/git-pull?repo=https%3A//github.com/pangeo-data/pangeo-openeo-BiDS-2023&urlpath=lab/tree/pangeo-openeo-BiDS-2023/tutorial/pangeo101/dask_introduction.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/issues/new?title=Issue%20on%20page%20%2Fpangeo101/dask_introduction.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/pangeo101/dask_introduction.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Parallel computing with Dask</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authors-contributors">Authors &amp; Contributors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authors">Authors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context">Context</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallelize-with-dask">Parallelize with Dask</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-dask">What is Dask ?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-dask-scale-and-accelerate-your-data-analysis">How does Dask scale and accelerate your data analysis?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-xarray-with-dask-distribute-data-analysis">How does Xarray with Dask distribute data analysis?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#where-can-we-deploy-a-dask-distributed-cluster">Where can we deploy a Dask distributed cluster?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-distributed-client">Dask distributed Client</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-dashboard">Dask Dashboard</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-distributed-computations-on-our-dataset">Dask Distributed computations on our dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-from-online-kerchunked-consolidated-dataset">Read from online kerchunked consolidated dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-the-task-graph">Optimize the task graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-on-the-dask-workers">Compute on the dask workers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#close-client-to-terminate-local-dask-cluster">Close client to terminate local dask cluster</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-your-computation-using-dask-gateway">Scaling your Computation using Dask Gateway.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-new-dask-cluster-with-the-dask-gateway">Create a new Dask cluster with the Dask Gateway</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-a-client-from-the-dask-gateway-cluster">Get a client from the Dask Gateway Cluster</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-lts-computation">Global LTS computation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fix-time-coordinate">Fix time coordinate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clip-lts-over-lombardia">Clip LTS over Lombardia</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-ndvi-for-2022-over-lombardia">Get NDVI for 2022 over Lombardia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-lts-statistics">Visualize LTS statistics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-citation">Packages citation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="parallel-computing-with-dask">
+<h1>Parallel computing with Dask<a class="headerlink" href="#parallel-computing-with-dask" title="Permalink to this headline">#</a></h1>
+<section id="authors-contributors">
+<h2>Authors &amp; Contributors<a class="headerlink" href="#authors-contributors" title="Permalink to this headline">#</a></h2>
+<section id="authors">
+<h3>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Tina Odaka, Ifremer (France), <a class="reference external" href="https://github.com/tinaok">&#64;tinaok</a></p></li>
+<li><p>Pier Lorenzo Marasco, Ispra (Italy), <a class="reference external" href="https://github.com/pl-marasco">&#64;pl-marasco</a></p></li>
+</ul>
+</section>
+<section id="contributors">
+<h3>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Anne Fouilloux, University of Oslo (Norway), <a class="reference external" href="https://github.com/annefou">&#64;annefou</a></p></li>
+<li><p>Guillaume Eynard-Bontemps, CNES (France), <a class="reference external" href="https://github.com/guillaumeeb">&#64;guillaumeeb</a></p></li>
+</ul>
+<div class="alert alert-info">
+<i class="fa-question-circle fa" style="font-size: 22px;color:#666;"></i> Overview
+    <br>
+    <br>
+    <b>Questions</b>
+    <ul>
+        <li>What is Dask?</li>
+        <li>How can I parallelize my data analysis with Dask?</li>
+    </ul>
+    <b>Objectives</b>
+    <ul>
+        <li>Learn about Dask</li>
+        <li>Learn about Dask Gateway, Dask Client, Scheduler, Workers</li>
+        <li>Understand out-of-core and speed-up limitations</li>
+    </ul>
+</div></section>
+</section>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">#</a></h2>
+<p>We will be using <a class="reference external" href="https://docs.dask.org/">Dask</a> with <a class="reference external" href="https://docs.xarray.dev/en/stable/">Xarray</a> to parallelize our data analysis. The analysis is very similar to what we have done in previous episodes but this time we will use data on a global coverage that we read from a shared catalog (stored online in the Pangeo EOSC Openstack Object Storage).</p>
+<section id="data">
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h3>
+<p>In this episode, we will be using Global Long Term Statistics (1999-2019) product provided by the <a class="reference external" href="https://land.copernicus.eu/global/index.html">Copernicus Global Land Service over Lombardia</a> and access them through <a class="reference external" href="https://en.wikipedia.org/wiki/Amazon_S3">S3-comptabile storage</a> (<a class="reference external" href="https://wiki.openstack.org/wiki/Swift">OpenStack Object Storage “Swift”</a>) with a data catalog we have created and made publicly available.</p>
+</section>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
+<p>This episode uses the following Python packages:</p>
+<ul class="simple">
+<li><p>pooch <span id="id1">[<a class="reference internal" href="#id16" title="Leonardo Uieda, Santiago Rubén Soler, Rémi Rampin, Hugo van Kemenade, Matthew Turk, Daniel Shapero, Anderson Banihirwe, and John Leeman. Pooch: a friend to fetch your data files. Journal of Open Source Software, 5(45):1943, 2020. URL: https://doi.org/10.21105/joss.01943, doi:10.21105/joss.01943.">USR+20</a>]</span></p></li>
+<li><p>s3fs <span id="id2">[<a class="reference internal" href="#id27" title="S3Fs Development Team. S3Fs. 2016. URL: https://github.com/fsspec/s3fs/.">S3FsDTeam16</a>]</span></p></li>
+<li><p>xarray <span id="id3">[<a class="reference internal" href="#id15" title="S. Hoyer and J. Hamman. Xarray: N-D labeled arrays and datasets in Python. Journal of Open Research Software, 2017. URL: https://doi.org/10.5334/jors.148, doi:10.5334/jors.148.">HH17</a>]</span> with <a class="reference external" href="https://pypi.org/project/h5netcdf/"><code class="docutils literal notranslate"><span class="pre">netCDF4</span></code></a> and <a class="reference external" href="https://pypi.org/project/h5netcdf/"><code class="docutils literal notranslate"><span class="pre">h5netcdf</span></code></a> engines</p></li>
+<li><p>hvplot <span id="id4">[<a class="reference internal" href="#id21" title="Philipp Rudiger, Jean-Luc Stevens, James A. Bednar, Bas Nijholt, Andrew, Chris B, Achim Randelhoff, Jon Mease, Vasco Tenner, maxalbert, Markus Kaiser, ea42gh, Jordan Samuels, stonebig, Florian LB, Andrew Tolmie, Daniel Stephan, Scott Lowe, John Bampton, henriqueribeiro, Irv Lustig, Julia Signell, Justin Bois, Leopold Talirz, Lukas Barth, Maxime Liquet, Ram Rachum, Yuval Langer, arabidopsis, and kbowen. Holoviz/holoviews: version 1.13.3. June 2020. URL: https://doi.org/10.5281/zenodo.3904606, doi:10.5281/zenodo.3904606.">RSB+20</a>]</span></p></li>
+<li><p>dask <span id="id5">[<a class="reference internal" href="#id23" title="Dask Development Team. Dask: Library for dynamic task scheduling. 2016. URL: https://dask.org.">DaskDTeam16</a>]</span></p></li>
+<li><p>graphviz <span id="id6">[<a class="reference internal" href="#id25" title="John Ellson, Emden R. Gansner, Eleftherios Koutsofios, Stephen C. North, and Gordon Woodhull. Graphviz and dynagraph – static and dynamic graph drawing tools. In GRAPH DRAWING SOFTWARE, 127–148. Springer-Verlag, 2003.">EGK+03</a>]</span></p></li>
+<li><p>numpy <span id="id7">[<a class="reference internal" href="#id17" title="Charles R. Harris, K. Jarrod Millman, Stéfan J. van der Walt, Ralf Gommers, Pauli Virtanen, David Cournapeau, Eric Wieser, Julian Taylor, Sebastian Berg, Nathaniel J. Smith, Robert Kern, Matti Picus, Stephan Hoyer, Marten H. van Kerkwijk, Matthew Brett, Allan Haldane, Jaime Fernández del Río, Mark Wiebe, Pearu Peterson, Pierre Gérard-Marchant, Kevin Sheppard, Tyler Reddy, Warren Weckesser, Hameer Abbasi, Christoph Gohlke, and Travis E. Oliphant. Array programming with NumPy. Nature, 585(7825):357–362, September 2020. URL: https://doi.org/10.1038/s41586-020-2649-2, doi:10.1038/s41586-020-2649-2.">HMvdW+20</a>]</span></p></li>
+<li><p>pandas <span id="id8">[<a class="reference internal" href="#id26" title="The pandas development team. Pandas-dev/pandas: pandas. February 2020. URL: https://doi.org/10.5281/zenodo.3509134, doi:10.5281/zenodo.3509134.">pdt20</a>]</span></p></li>
+<li><p>geopandas <span id="id9">[<a class="reference internal" href="#id22" title="Kelsey Jordahl, Joris Van den Bossche, Martin Fleischmann, Jacob Wasserman, James McBride, Jeffrey Gerard, Jeff Tratner, Matthew Perry, Adrian Garcia Badaracco, Carson Farmer, Geir Arne Hjelle, Alan D. Snow, Micah Cochran, Sean Gillies, Lucas Culbertson, Matt Bartos, Nick Eubank, maxalbert, Aleksey Bilogur, Sergio Rey, Christopher Ren, Dani Arribas-Bel, Leah Wasser, Levi John Wolf, Martin Journois, Joshua Wilson, Adam Greenhall, Chris Holdgraf, Filipe, and François Leblanc. Geopandas/geopandas: v0.8.1. July 2020. URL: https://doi.org/10.5281/zenodo.3946761, doi:10.5281/zenodo.3946761.">JdBF+20</a>]</span></p></li>
+</ul>
+<p>Please install these packages if not already available in your Python environment (you might want to take a look at <a class="reference external" href="https://pangeo-data.github.io/foss4g-2022/before/setup.html">the Setup page of the tutorial</a>).</p>
+<section id="packages">
+<h3>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">#</a></h3>
+<p>In this episode, Python packages are imported when we start to use them. However, for best software practices, we recommend you to install and import all the necessary libraries at the top of your Jupyter notebook.</p>
+</section>
+</section>
+<section id="parallelize-with-dask">
+<h2>Parallelize with Dask<a class="headerlink" href="#parallelize-with-dask" title="Permalink to this headline">#</a></h2>
+<p>We know from previous chapter <a class="reference internal" href="chunking_introduction.html"><span class="doc std std-doc">chunking_introduction</span></a> that chunking is key for analyzing large datasets. In this episode, we will learn to parallelize our data analysis using <a class="reference external" href="https://docs.dask.org/">Dask</a> on our chunked dataset.</p>
+<section id="what-is-dask">
+<h3>What is <a class="reference external" href="https://docs.dask.org/">Dask</a> ?<a class="headerlink" href="#what-is-dask" title="Permalink to this headline">#</a></h3>
+<p><strong>Dask</strong> scales the existing Python ecosystem: with very or no changes in your code, you can speed-up computation using Dask or process bigger than memory datasets.</p>
+<ul class="simple">
+<li><p>Dask is a flexible library for parallel computing in Python.</p></li>
+<li><p>It is widely used for handling large and complex Earth Science datasets and speed up science.</p></li>
+<li><p>Dask is powerful, scalable and flexible. It is the leading platform today for data analytics at scale.</p></li>
+<li><p>It scales natively to clusters, cloud, HPC and bridges prototyping up to production.</p></li>
+<li><p>The strength of Dask is that is scales and accelerates the existing Python ecosystem e.g. Numpy, Pandas and Scikit-learn with few effort from end-users.</p></li>
+</ul>
+<p>It is interesting to note that at first, <a class="reference external" href="https://coiled.io/blog/history-dask/">Dask has been created to handle data that is larger than memory, on a single computer</a>. It then was extended with Distributed to compute data in parallel over clusters of computers.</p>
+<section id="how-does-dask-scale-and-accelerate-your-data-analysis">
+<h4>How does Dask scale and accelerate your data analysis?<a class="headerlink" href="#how-does-dask-scale-and-accelerate-your-data-analysis" title="Permalink to this headline">#</a></h4>
+<p><a class="reference external" href="https://docs.dask.org/en/stable/10-minutes-to-dask.html">Dask proposes different abstractions to distribute your computation</a>. In this <em>Dask Introduction</em> section, we will focus on <a class="reference external" href="https://docs.dask.org/en/stable/array.html">Dask Array</a> which is widely used in pangeo ecosystem as a back end of Xarray.</p>
+<p>As shown in the <a class="reference internal" href="chunking_introduction.html"><span class="doc std std-doc">previous section</span></a> Dask Array is based on chunks.
+Chunks of a Dask Array are well-known Numpy arrays. By transforming our big datasets to Dask Array, making use of chunk, a large array is handled as many smaller Numpy ones and we can compute each of these chunks independently.</p>
+<p><img alt="Dask and Numpy" src="https://examples.dask.org/_images/dask-array-black-text.svg" /></p>
+<div class="alert alert-info">
+    <i class="fa-check-circle fa" style="font-size: 22px;color:#666;"></i> <b>Note</b>
+    <br>
+    <ul>
+        <li>`Xarray` uses Dask Arrays instead of Numpy when chunking is enabled, and thus all Xarray operations are performed through Dask, which enables distributed processing. </li>
+    </ul>
+</div>
+</section>
+<section id="how-does-xarray-with-dask-distribute-data-analysis">
+<h4>How does Xarray with Dask distribute data analysis?<a class="headerlink" href="#how-does-xarray-with-dask-distribute-data-analysis" title="Permalink to this headline">#</a></h4>
+<p>When we use chunks with <code class="docutils literal notranslate"><span class="pre">Xarray</span></code>, the real computation is only done when needed or asked for, usually when invoking <code class="docutils literal notranslate"><span class="pre">compute()</span></code> or <code class="docutils literal notranslate"><span class="pre">load()</span></code> functions. Dask generates a <strong>task graph</strong> describing the computations to be done. When using <a class="reference external" href="https://distributed.dask.org/en/stable/">Dask Distributed</a> a <strong>Scheduler</strong> distributes these tasks across several <strong>Workers</strong>.</p>
+<p><img alt="Xarray with dask" src="../_images/dask-xarray-explained.png" /></p>
+<p>#### What is a Dask Distributed cluster ?</p>
+<p>A Dask Distributed cluster is made of two main components:</p>
+<ul class="simple">
+<li><p>a Scheduler, responsible for handling computations graph and distributing tasks to Workers.</p></li>
+<li><p>One or several (up to 1000s) Workers, computing individual tasks and storing results and data into distributed memory (RAM and/or worker’s local disk).</p></li>
+</ul>
+<p>A user usually needs <strong>Client</strong> and <strong>Cluster</strong> objects as shown below to use Dask Distributed.</p>
+<p><img alt="Dask Distributed Cluster" src="https://user-images.githubusercontent.com/306380/66413985-27111600-e9be-11e9-9995-8f418ff48f8a.png" /></p>
+</section>
+<section id="where-can-we-deploy-a-dask-distributed-cluster">
+<h4>Where can we deploy a Dask distributed cluster?<a class="headerlink" href="#where-can-we-deploy-a-dask-distributed-cluster" title="Permalink to this headline">#</a></h4>
+<p><a class="reference external" href="https://docs.dask.org/en/stable/deploying.html">Dask distributed clusters can be deployed on your laptop or on distributed infrastructures (Cloud, HPC centers, Hadoop, etc.).</a>  Dask distributed <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> object is responsible of deploying and scaling a Dask Cluster on the underlying resources.</p>
+<p><img alt="Dask Cluster deployment" src="https://docs.dask.org/en/stable/_images/dask-cluster-manager.svg" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A Dask <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> can be created on a single machine (for instance your laptop) e.g. there is no need to have dedicated computational resources. However, speedup will only be limited to your single machine resources if you do not have dedicated computational resources!</p>
+</div>
+</section>
+</section>
+<section id="dask-distributed-client">
+<h3>Dask distributed Client<a class="headerlink" href="#dask-distributed-client" title="Permalink to this headline">#</a></h3>
+<p>The Dask distributed <code class="docutils literal notranslate"><span class="pre">Client</span></code> is what allows you to interact with Dask distributed Clusters. When using Dask distributed, you always need to create a <code class="docutils literal notranslate"><span class="pre">Client</span></code> object. Once a <code class="docutils literal notranslate"><span class="pre">Client</span></code> has been created, it will be used by default by each call to a Dask API, even if you do not explicitly use it.</p>
+<p>No matter the Dask API (e.g. Arrays, Dataframes, Delayed, Futures, etc.) that you use, under the hood, Dask will create a Directed Acyclic Graph (DAG) of tasks by analysing the code. Client will be responsible to submit this DAG to the Scheduler along with the final result you want to compute. The Client will also gather results from the Workers, and aggregate it back in its underlying Python process.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">Client()</span></code> function with no argument, you will create a local Dask cluster with a number of workers and threads per worker corresponding to the number of cores in the ‘local’ machine. Here, during the workshop, we are running this notebook in Pangeo EOSC cloud deployment, so the ‘local’ machine is the jupyterlab you are using at the Cloud, and the number of cores is the number of cores on the cloud computing resources you’ve been given (not on your laptop).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>   <span class="c1"># create a local dask cluster on the local machine.</span>
+<span class="n">client</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+    <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
+    <div style="margin-left: 48px;">
+        <h3 style="margin-bottom: 0px;">Client</h3>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-fd984a69-2651-11ee-8d0d-6045bdd8ae9c</p>
+        <table style="width: 100%; text-align: left;">
+
+        <tr>
+        
+            <td style="text-align: left;"><strong>Connection method:</strong> Cluster object</td>
+            <td style="text-align: left;"><strong>Cluster type:</strong> distributed.LocalCluster</td>
+        
+        </tr>
+
+        
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Dashboard: </strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
+                </td>
+                <td style="text-align: left;"></td>
+            </tr>
+        
+
+        </table>
+
+        
+
+        
+            <details>
+            <summary style="margin-bottom: 20px;"><h3 style="display: inline;">Cluster Info</h3></summary>
+            <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-mod-trusted jp-OutputArea-output">
+    <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;">
+    </div>
+    <div style="margin-left: 48px;">
+        <h3 style="margin-bottom: 0px; margin-top: 0px;">LocalCluster</h3>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">ab2f2ee4</p>
+        <table style="width: 100%; text-align: left;">
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Dashboard:</strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
+                </td>
+                <td style="text-align: left;">
+                    <strong>Workers:</strong> 2
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Total threads:</strong> 2
+                </td>
+                <td style="text-align: left;">
+                    <strong>Total memory:</strong> 6.77 GiB
+                </td>
+            </tr>
+            
+            <tr>
+    <td style="text-align: left;"><strong>Status:</strong> running</td>
+    <td style="text-align: left;"><strong>Using processes:</strong> True</td>
+</tr>
+
+            
+        </table>
+
+        <details>
+            <summary style="margin-bottom: 20px;">
+                <h3 style="display: inline;">Scheduler Info</h3>
+            </summary>
+
+            <div style="">
+    <div>
+        <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
+        <div style="margin-left: 48px;">
+            <h3 style="margin-bottom: 0px;">Scheduler</h3>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-69e853ba-1d1d-4c8f-9746-eca0e228250b</p>
+            <table style="width: 100%; text-align: left;">
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Comm:</strong> tcp://127.0.0.1:41989
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Workers:</strong> 2
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Dashboard:</strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Total threads:</strong> 2
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Started:</strong> Just now
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Total memory:</strong> 6.77 GiB
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <details style="margin-left: 48px;">
+        <summary style="margin-bottom: 20px;">
+            <h3 style="display: inline;">Workers</h3>
+        </summary>
+
+        
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 0</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://127.0.0.1:33929
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:37539/status" target="_blank">http://127.0.0.1:37539/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 3.38 GiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:44509
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-u4o4qxil
+                        </td>
+                    </tr>
+
+                    
+
+                    
+
+                </table>
+            </details>
+            </div>
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 1</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://127.0.0.1:36223
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:36793/status" target="_blank">http://127.0.0.1:36793/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 3.38 GiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:43939
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-w5ej2w22
+                        </td>
+                    </tr>
+
+                    
+
+                    
+
+                </table>
+            </details>
+            </div>
+        </div>
+        
+
+    </details>
+</div>
+
+        </details>
+    </div>
+</div>
+            </details>
+        
+
+    </div>
+</div></div></div>
+</div>
+<p>Inspecting the <code class="docutils literal notranslate"><span class="pre">Cluster</span> <span class="pre">Info</span></code> section above gives us information about the created cluster: we have 2 or 4 workers and the same number of threads (e.g. 1 thread per worker).</p>
+<div class="alert alert-warning">
+    <i class="fa-check-circle fa" style="font-size: 22px;color:#666;"></i> <b>Go further</b>
+    <br>
+    <ul>
+        <li> You can also create a local cluster with the `LocalCluster` constructor and use `n_workers` 
+        and `threads_per_worker` to manually specify the number of processes and threads you want to use. 
+        For instance, we could use `n_workers=2` and `threads_per_worker=2`.  </li>
+        <li> This is sometimes preferable (in terms of performance), or when you run this tutorial on your PC, 
+        you can avoid dask to use all your resources you have on your PC!  </li>
+    </ul>
+</div></section>
+<section id="dask-dashboard">
+<h3>Dask Dashboard<a class="headerlink" href="#dask-dashboard" title="Permalink to this headline">#</a></h3>
+<p>Dask comes with a really handy interface: the Dask Dashboard. It is a web interface that you can open in a separated tab of your browser (but not with he link above, you’ve got to use Jupyterlabs proxy: <a class="reference external" href="https://pangeo-foss4g.vm.fedcloud.eu/jupyterhub/user/">https://pangeo-foss4g.vm.fedcloud.eu/jupyterhub/user/</a><em>yourusername</em>/proxy/8787/status).</p>
+<p>We will learn here how to use it through <a class="reference external" href="https://github.com/dask/dask-labextension">dask jupyterlab extension</a>.</p>
+<p>To use Dask Dashboard through jupyterlab extension on Pangeo EOSC FOSS4G infrastructure,
+you will just need too look at the html link you have for your jupyterlab, and Dask dashboard port number, as highlighted in the figure below.</p>
+<img src="../figures/dashboardlink.png" width="50%">
+<img src="../figures/dasklab.png" width="30%">
+<p>Then click the orange icon indicated in the above figure, and type ‘your’ dashboard link (normally, you just need to replace ‘todaka’ to ‘your username’).</p>
+<p>You can click several buttons indicated with blue arrows in above figures, then drag and drop to place them as your convenience.</p>
+<img src="../figures/exampledasklab.png" width="50%">
+<p>It’s really helpfull to understand your computation and how it is distributed.</p>
+</section>
+</section>
+<section id="dask-distributed-computations-on-our-dataset">
+<h2>Dask Distributed computations on our dataset<a class="headerlink" href="#dask-distributed-computations-on-our-dataset" title="Permalink to this headline">#</a></h2>
+<p>Let’s open the virtual dataset we’ve prepared as in previous episode, select a single location over time, visualize the task graph generated by Dask, and observe the Dask Dashboard.</p>
+<section id="read-from-online-kerchunked-consolidated-dataset">
+<h3>Read from online kerchunked consolidated dataset<a class="headerlink" href="#read-from-online-kerchunked-consolidated-dataset" title="Permalink to this headline">#</a></h3>
+<p>We will access Long Term TimeSeries of NDVI statistics from OpenStack Object Storage using the Zarr metadata generated with kerchunk, prepared in <a class="reference internal" href="chunking_introduction.html"><span class="doc std std-doc">previous chunking_introduction</span></a> section.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+<span class="n">catalogue</span><span class="o">=</span><span class="s2">&quot;https://object-store.cloud.muni.cz/swift/v1/foss4g-catalogue/c_gls_NDVI-LTS_1999-2019.json&quot;</span>
+<span class="n">LTS</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span>
+    <span class="s2">&quot;reference://&quot;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;zarr&quot;</span><span class="p">,</span>
+    <span class="n">backend_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;storage_options&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;fo&quot;</span><span class="p">:</span><span class="n">catalogue</span>
+                    <span class="p">},</span>
+        <span class="s2">&quot;consolidated&quot;</span><span class="p">:</span> <span class="kc">False</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">LTS</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">catalogue</span><span class="o">=</span><span class="s2">&quot;https://object-store.cloud.muni.cz/swift/v1/foss4g-catalogue/c_gls_NDVI-LTS_1999-2019.json&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">LTS</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="s2">&quot;reference://&quot;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;zarr&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">backend_kwargs</span><span class="o">=</span><span class="p">{</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>         <span class="s2">&quot;storage_options&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>             <span class="s2">&quot;fo&quot;</span><span class="p">:</span><span class="n">catalogue</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>                     <span class="p">},</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>         <span class="s2">&quot;consolidated&quot;</span><span class="p">:</span> <span class="kc">False</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="p">}</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">LTS</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/api.py:1012,</span> in <span class="ni">open_mfdataset</span><span class="nt">(paths, chunks, concat_dim, compat, preprocess, engine, data_vars, coords, combine, parallel, join, attrs_file, combine_attrs, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1009</span>     <span class="n">open_</span> <span class="o">=</span> <span class="n">open_dataset</span>
+<span class="g g-Whitespace">   </span><span class="mi">1010</span>     <span class="n">getattr_</span> <span class="o">=</span> <span class="nb">getattr</span>
+<span class="ne">-&gt; </span><span class="mi">1012</span> <span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">open_</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="o">**</span><span class="n">open_kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="n">closers</span> <span class="o">=</span> <span class="p">[</span><span class="n">getattr_</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="s2">&quot;_close&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">ds</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span> <span class="k">if</span> <span class="n">preprocess</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/api.py:1012,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1009</span>     <span class="n">open_</span> <span class="o">=</span> <span class="n">open_dataset</span>
+<span class="g g-Whitespace">   </span><span class="mi">1010</span>     <span class="n">getattr_</span> <span class="o">=</span> <span class="nb">getattr</span>
+<span class="ne">-&gt; </span><span class="mi">1012</span> <span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">open_</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="o">**</span><span class="n">open_kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="n">closers</span> <span class="o">=</span> <span class="p">[</span><span class="n">getattr_</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="s2">&quot;_close&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">ds</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span> <span class="k">if</span> <span class="n">preprocess</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/api.py:570,</span> in <span class="ni">open_dataset</span><span class="nt">(filename_or_obj, engine, chunks, cache, decode_cf, mask_and_scale, decode_times, decode_timedelta, use_cftime, concat_characters, decode_coords, drop_variables, inline_array, chunked_array_type, from_array_kwargs, backend_kwargs, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">558</span> <span class="n">decoders</span> <span class="o">=</span> <span class="n">_resolve_decoders_kwargs</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">559</span>     <span class="n">decode_cf</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">560</span>     <span class="n">open_backend_dataset_parameters</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">open_dataset_parameters</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">566</span>     <span class="n">decode_coords</span><span class="o">=</span><span class="n">decode_coords</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">567</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span> <span class="n">overwrite_encoded_chunks</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;overwrite_encoded_chunks&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">570</span> <span class="n">backend_ds</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span>     <span class="n">filename_or_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">572</span>     <span class="n">drop_variables</span><span class="o">=</span><span class="n">drop_variables</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span>     <span class="o">**</span><span class="n">decoders</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">575</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">576</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">_dataset_from_backend_dataset</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">577</span>     <span class="n">backend_ds</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">578</span>     <span class="n">filename_or_obj</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">588</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">589</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">590</span> <span class="k">return</span> <span class="n">ds</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/zarr.py:934,</span> in <span class="ni">ZarrBackendEntrypoint.open_dataset</span><span class="nt">(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, use_cftime, decode_timedelta, group, mode, synchronizer, consolidated, chunk_store, storage_options, stacklevel, zarr_version)</span>
+<span class="g g-Whitespace">    </span><span class="mi">913</span> <span class="k">def</span> <span class="nf">open_dataset</span><span class="p">(</span>  <span class="c1"># type: ignore[override]  # allow LSP violation, not supporting **kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">914</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">915</span>     <span class="n">filename_or_obj</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">BufferedIOBase</span> <span class="o">|</span> <span class="n">AbstractDataStore</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">931</span>     <span class="n">zarr_version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">932</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dataset</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">933</span>     <span class="n">filename_or_obj</span> <span class="o">=</span> <span class="n">_normalize_path</span><span class="p">(</span><span class="n">filename_or_obj</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">934</span>     <span class="n">store</span> <span class="o">=</span> <span class="n">ZarrStore</span><span class="o">.</span><span class="n">open_group</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">935</span>         <span class="n">filename_or_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">936</span>         <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">937</span>         <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">938</span>         <span class="n">synchronizer</span><span class="o">=</span><span class="n">synchronizer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">939</span>         <span class="n">consolidated</span><span class="o">=</span><span class="n">consolidated</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">940</span>         <span class="n">consolidate_on_close</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">941</span>         <span class="n">chunk_store</span><span class="o">=</span><span class="n">chunk_store</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">942</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">943</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">944</span>         <span class="n">zarr_version</span><span class="o">=</span><span class="n">zarr_version</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">945</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">947</span>     <span class="n">store_entrypoint</span> <span class="o">=</span> <span class="n">StoreBackendEntrypoint</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">948</span>     <span class="k">with</span> <span class="n">close_on_error</span><span class="p">(</span><span class="n">store</span><span class="p">):</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/zarr.py:452,</span> in <span class="ni">ZarrStore.open_group</span><span class="nt">(cls, store, mode, synchronizer, group, consolidated, consolidate_on_close, chunk_store, storage_options, append_dim, write_region, safe_chunks, stacklevel, zarr_version)</span>
+<span class="g g-Whitespace">    </span><span class="mi">450</span>     <span class="n">zarr_group</span> <span class="o">=</span> <span class="n">zarr</span><span class="o">.</span><span class="n">open_consolidated</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="o">**</span><span class="n">open_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">452</span>     <span class="n">zarr_group</span> <span class="o">=</span> <span class="n">zarr</span><span class="o">.</span><span class="n">open_group</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="o">**</span><span class="n">open_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span> <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span>     <span class="n">zarr_group</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span>     <span class="n">mode</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span>     <span class="n">safe_chunks</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span> <span class="p">)</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/hierarchy.py:1416,</span> in <span class="ni">open_group</span><span class="nt">(store, mode, cache_attrs, synchronizer, path, chunk_store, storage_options, zarr_version, meta_array)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1365</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Open a group using file-mode-like semantics.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1366</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1367</span><span class="sd"> Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1412</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1413</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1415</span> <span class="c1"># handle polymorphic store arg</span>
+<span class="ne">-&gt; </span><span class="mi">1416</span> <span class="n">store</span> <span class="o">=</span> <span class="n">_normalize_store_arg</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1417</span>     <span class="n">store</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1418</span>     <span class="n">zarr_version</span><span class="o">=</span><span class="n">zarr_version</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1419</span> <span class="k">if</span> <span class="n">zarr_version</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1420</span>     <span class="n">zarr_version</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="s1">&#39;_store_version&#39;</span><span class="p">,</span> <span class="n">DEFAULT_ZARR_VERSION</span><span class="p">)</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/hierarchy.py:1288,</span> in <span class="ni">_normalize_store_arg</span><span class="nt">(store, storage_options, mode, zarr_version)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1286</span> <span class="k">if</span> <span class="n">store</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1287</span>     <span class="k">return</span> <span class="n">MemoryStore</span><span class="p">()</span> <span class="k">if</span> <span class="n">zarr_version</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">MemoryStoreV3</span><span class="p">()</span>
+<span class="ne">-&gt; </span><span class="mi">1288</span> <span class="k">return</span> <span class="n">normalize_store_arg</span><span class="p">(</span><span class="n">store</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1289</span>                            <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1290</span>                            <span class="n">zarr_version</span><span class="o">=</span><span class="n">zarr_version</span><span class="p">)</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/storage.py:182,</span> in <span class="ni">normalize_store_arg</span><span class="nt">(store, storage_options, mode, zarr_version)</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">181</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;zarr_version must be either 2 or 3&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">182</span> <span class="k">return</span> <span class="n">normalize_store</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="n">storage_options</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/storage.py:146,</span> in <span class="ni">_normalize_store_arg_v2</span><span class="nt">(store, storage_options, mode)</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>     <span class="kn">import</span> <span class="nn">fsspec</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">FSMap</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">146</span>         <span class="k">return</span> <span class="n">FSStore</span><span class="p">(</span><span class="n">store</span><span class="o">.</span><span class="n">root</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>                        <span class="n">fs</span><span class="o">=</span><span class="n">store</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>                        <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>                        <span class="n">check</span><span class="o">=</span><span class="n">store</span><span class="o">.</span><span class="n">check</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span>                        <span class="n">create</span><span class="o">=</span><span class="n">store</span><span class="o">.</span><span class="n">create</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span>                        <span class="n">missing_exceptions</span><span class="o">=</span><span class="n">store</span><span class="o">.</span><span class="n">missing_exceptions</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span>                        <span class="o">**</span><span class="p">(</span><span class="n">storage_options</span> <span class="ow">or</span> <span class="p">{}))</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span>     <span class="k">if</span> <span class="s2">&quot;://&quot;</span> <span class="ow">in</span> <span class="n">store</span> <span class="ow">or</span> <span class="s2">&quot;::&quot;</span> <span class="ow">in</span> <span class="n">store</span><span class="p">:</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/storage.py:1351,</span> in <span class="ni">FSStore.__init__</span><span class="nt">(self, url, normalize_keys, key_separator, mode, exceptions, dimension_separator, fs, check, create, missing_exceptions, **storage_options)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1349</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1350</span>     <span class="k">if</span> <span class="n">storage_options</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1351</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot specify both fs and storage_options&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1352</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fs</span> <span class="o">=</span> <span class="n">fs</span>
+<span class="g g-Whitespace">   </span><span class="mi">1353</span>     <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">_strip_protocol</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: Cannot specify both fs and storage_options
+</pre></div>
+</div>
+</div>
+</div>
+<p>By inspecting any of the variables on the representation above, you’ll see that each data array represents <strong>about 85GiB of data</strong>, so much more than the availabe memory on this notebook server, and even on the Dask Cluster we created above. But thanks to chunking, we can still analyze it!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save</span> <span class="o">=</span> <span class="n">LTS</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="mf">45.50</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mf">9.36</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)[</span><span class="s1">&#39;min&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">save</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Did you notice something on the Dask Dashboard when running the two previous cells?</p>
+<p>We didn’t ‘compute’ anything. We just built a Dask task graph with it’s size indicated as count above, but did not ask Dask to return a result.</p>
+<p>But the ‘task Count’ we see above is more than 6000 for just computing a mean on 36 temporal steps. This is too much.  If you have such case, to avoid unecessary operations, you can optimize the task using <code class="docutils literal notranslate"><span class="pre">dask.optimize</span></code>.</p>
+<p>Lets try to plot the dask graph before computation and understand what dask workers will do to compute the value we asked for.</p>
+</section>
+<section id="optimize-the-task-graph">
+<h3>Optimize the task graph<a class="headerlink" href="#optimize-the-task-graph" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask</span>
+<span class="p">(</span><span class="n">save</span><span class="p">,)</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">save</span><span class="p">)</span>
+<span class="n">save</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now our task is reduced to about 100. Lets try to visualise it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compute-on-the-dask-workers">
+<h3>Compute on the dask workers<a class="headerlink" href="#compute-on-the-dask-workers" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calling compute on our Xarray object triggered the execution on Dask Cluster side.</p>
+<p>You should be able to see how Dask is working on Dask Dashboard.</p>
+<div class="alert alert-warning">
+    <i class="fa-check-circle fa" style="font-size: 22px;color:#666;"></i> <b>Go Further</b>
+    <br>
+    <ul>
+        <li>You can re-open the LTS with chunks=({"time":-1}) option, and try to visualize the task graph, size of each chunk, ....  How did it changed?  Do you see the difference of task graph using chunks keyword argument when opening the dataset?  </li>        
+    </ul>
+</div></section>
+<section id="close-client-to-terminate-local-dask-cluster">
+<h3>Close client to terminate local dask cluster<a class="headerlink" href="#close-client-to-terminate-local-dask-cluster" title="Permalink to this headline">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Client</span></code> and associated <code class="docutils literal notranslate"><span class="pre">LocalCluster</span></code> object will be automatically closed when your Python session ends. When using Jupyter notebooks, we recommend to close it explicitely whenever you are done with your local Dask cluster.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="scaling-your-computation-using-dask-gateway">
+<h2>Scaling your Computation using Dask Gateway.<a class="headerlink" href="#scaling-your-computation-using-dask-gateway" title="Permalink to this headline">#</a></h2>
+<p>For this workshop, according to the Pangeo EOSC deployment, you will learn how to use Dask Gateway to manage Dask clusters over Kubernetes, allowing to run our data analysis in parallel e.g. distribute tasks across several workers.</p>
+<p>Lets set up your Dask cluster through Dask Gateway.<br />
+As Dask Gateway is configured by default on this ifnrastructure, you just need to execute the following cells.</p>
+<div class="cell tag_skip-execution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask_gateway</span> <span class="kn">import</span> <span class="n">Gateway</span>
+<span class="n">gateway</span> <span class="o">=</span> <span class="n">Gateway</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_skip-execution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#WARNING In case you already created gateway cluster, you will see list of your clusters. </span>
+<span class="c1">#And this cell will kill all your orphan clusters.</span>
+<span class="c1">#Please clean them before you make a new cluster using following command </span>
+<span class="n">clusters</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">list_clusters</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
+    <span class="n">cluster</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">cluster</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="create-a-new-dask-cluster-with-the-dask-gateway">
+<h3>Create a new Dask cluster with the Dask Gateway<a class="headerlink" href="#create-a-new-dask-cluster-with-the-dask-gateway" title="Permalink to this headline">#</a></h3>
+<div class="cell tag_skip-execution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">new_cluster</span><span class="p">()</span>
+<span class="n">cluster</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">cluster</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s setup the Dask Dashboard with your new cluster.</p>
+<p>This time, copy and past the link above indicated in Dashboard to the dask lab-extension or just click on the link to open the dashboard into another tab.</p>
+</section>
+<section id="get-a-client-from-the-dask-gateway-cluster">
+<h3>Get a client from the Dask Gateway Cluster<a class="headerlink" href="#get-a-client-from-the-dask-gateway-cluster" title="Permalink to this headline">#</a></h3>
+<p>As stated above, creating a Dask <code class="docutils literal notranslate"><span class="pre">Client</span></code> is mandatory in order to perform following Daks computations on your Dask Cluster.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Please don&#39;t execute this cell, it is needed for building the Jupyter Book</span>
+<span class="n">cluster</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">distributed</span> <span class="kn">import</span> <span class="n">Client</span>
+
+<span class="k">if</span> <span class="n">cluster</span><span class="p">:</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span> <span class="c1"># create a dask Gateway cluster</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>   <span class="c1"># create a local dask cluster on the machine.</span>
+<span class="n">client</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="global-lts-computation">
+<h2>Global LTS computation<a class="headerlink" href="#global-lts-computation" title="Permalink to this headline">#</a></h2>
+<p>In the previous episode, we used Long-term Timeseries for the region of Lombardy e.g. a very small area that was extracted upfront for simplicity. Now we will use the original dataset that has a global coverage, and work directly on it to extract our AOI and perform computations.</p>
+<p>Lets check our LTS data we have loaded before.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LTS</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="fix-time-coordinate">
+<h3>Fix time coordinate<a class="headerlink" href="#fix-time-coordinate" title="Permalink to this headline">#</a></h3>
+<p>As observed data are coming with a predefined year. To let xarray automatically align the LTS with the lastest NDVI values, the time dimension needs to be shifted to the NDVI values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">dates_2022</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;20220101&#39;</span><span class="p">,</span> <span class="s1">&#39;20221231&#39;</span><span class="p">)</span>
+<span class="n">time_list</span> <span class="o">=</span> <span class="n">dates_2022</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">dates_2022</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">21</span><span class="p">])]</span>
+<span class="n">LTS</span> <span class="o">=</span> <span class="n">LTS</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time_list</span><span class="p">)</span>
+<span class="n">LTS</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="clip-lts-over-lombardia">
+<h3>Clip LTS over Lombardia<a class="headerlink" href="#clip-lts-over-lombardia" title="Permalink to this headline">#</a></h3>
+<p>As in previous episodes, we use a shapefile over Italy to select data over this Area of Interest (AOI).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">GAUL</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;Italy.geojson&#39;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">GAUL</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;zip+https://mars.jrc.ec.europa.eu/asap/files/gaul1_asap.zip&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AOI_name</span> <span class="o">=</span> <span class="s1">&#39;Lombardia&#39;</span>
+<span class="n">AOI</span> <span class="o">=</span> <span class="n">GAUL</span><span class="p">[</span><span class="n">GAUL</span><span class="o">.</span><span class="n">name1</span> <span class="o">==</span> <span class="n">AOI_name</span><span class="p">]</span>
+<span class="n">AOI_poly</span> <span class="o">=</span> <span class="n">AOI</span><span class="o">.</span><span class="n">geometry</span>
+<span class="n">AOI_poly</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We first select a geographical area that covers Lombardia (so that we have a first reduction from the global coverage) and then clip using the shapefile to avoid useless pixels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LTS_AOI</span> <span class="o">=</span> <span class="n">LTS</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mf">46.5</span><span class="p">,</span><span class="mf">44.5</span><span class="p">),</span> <span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mf">8.5</span><span class="p">,</span><span class="mf">11.5</span><span class="p">))</span>
+<span class="n">LTS_AOI</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">write_crs</span><span class="p">(</span><span class="mi">4326</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We apply a mask using rio.clip</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LTS_AOI</span> <span class="o">=</span> <span class="n">LTS_AOI</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">AOI_poly</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
+<span class="n">LTS_AOI</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lets keep our LTS_Lombardia on the memory of your Dask cluster, distributed on every workers. To do that we will use <code class="docutils literal notranslate"><span class="pre">.persist()</span></code>. Please look at the dashboard during the computation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">LTS_AOI</span><span class="o">.</span><span class="n">persist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="get-ndvi-for-2022-over-lombardia">
+<h2>Get NDVI for 2022 over Lombardia<a class="headerlink" href="#get-ndvi-for-2022-over-lombardia" title="Permalink to this headline">#</a></h2>
+<p>We re-use the file we created during the first episode. If the file is missing it will be downloaded from Zenodo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pooch</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">cgls_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;C_GLS_NDVI_20220101_20220701_Lombardia_S3_2_masked.nc&#39;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">cgls_file</span> <span class="o">=</span> <span class="n">pooch</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
+        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://zenodo.org/record/6969999/files/C_GLS_NDVI_20220101_20220701_Lombardia_S3_2_masked.nc&quot;</span><span class="p">,</span>
+        <span class="n">known_hash</span><span class="o">=</span><span class="s2">&quot;md5:be3f16913ebbdb4e7af227f971007b22&quot;</span><span class="p">,</span>
+        <span class="n">path</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;.&quot;</span><span class="p">,)</span>    
+    <span class="n">cgls_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">cgls_file</span><span class="p">)</span>
+<span class="n">cgls_ds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NDVI_AOI</span> <span class="o">=</span> <span class="n">cgls_ds</span><span class="o">.</span><span class="n">NDVI</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">write_crs</span><span class="p">(</span><span class="mi">4326</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NDVI_AOI</span> <span class="o">=</span> <span class="n">NDVI_AOI</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">AOI_poly</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
+<span class="n">NDVI_AOI</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The nominal spatial resolution of the Long term statistics is 1km. As the current NDVI product has a nominal spatial resolution of 300m a re projection is needed. RioXarray through RasterIO that wraps the GDAL method can take care of this. More info about all the options can be found <a class="reference external" href="https://rasterio.readthedocs.io/en/stable/api/rasterio.warp.html#rasterio.warp.reproject">here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NDVI_1k</span> <span class="o">=</span> <span class="n">NDVI_AOI</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">reproject_match</span><span class="p">(</span><span class="n">LTS_AOI</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NDVI_1k</span> <span class="o">=</span> <span class="n">NDVI_1k</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="s1">&#39;lat&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VCI</span> <span class="o">=</span> <span class="p">((</span><span class="n">NDVI_1k</span> <span class="o">-</span> <span class="n">LTS_AOI</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">LTS_AOI</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">LTS_AOI</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">]))</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">VCI</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;VCI&#39;</span>
+<span class="n">VCI</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span> 
+<span class="kn">from</span> <span class="nn">hvplot</span> <span class="kn">import</span> <span class="n">xarray</span>
+<span class="n">VCI</span><span class="o">.</span><span class="n">hvplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span>
+           <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdYlGn&#39;</span><span class="p">,</span> <span class="n">clim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span><span class="o">+</span><span class="mi">200</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+           <span class="n">geo</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tiles</span><span class="o">=</span> <span class="s1">&#39;CartoLight&#39;</span><span class="p">,</span>
+           <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;CGLS VCI </span><span class="si">{</span><span class="n">AOI_name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">VCI</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+           <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+           <span class="n">widget_location</span><span class="o">=</span><span class="s1">&#39;left_top&#39;</span>
+           <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+    <i class="fa-check-circle fa" style="font-size: 22px;color:#666;"></i> <b>Exercise</b>
+    <br>
+    <ul>
+        <li> Try moving time slider to see how Dask computes and load data on the fly (observe well the dask dashboard!) </li>          
+    </ul>
+</div><section id="visualize-lts-statistics">
+<h3>Visualize LTS statistics<a class="headerlink" href="#visualize-lts-statistics" title="Permalink to this headline">#</a></h3>
+<p>Lets try to scale out the visualisation of LTS statistic datas.  We will set an arbitaly size to see how dask behaves.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">size</span><span class="o">=</span><span class="mi">0</span>  <span class="c1"># You can try later, for example size=10, 50, 100 </span>
+<span class="n">LTS_plot</span><span class="o">=</span><span class="n">LTS</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">30</span><span class="o">+</span><span class="n">size</span><span class="p">))</span><span class="c1">#.min(dim=&#39;time&#39;)</span>
+<span class="n">LTS_plot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">holoviews</span> <span class="k">as</span> <span class="nn">hv</span>
+<span class="kn">import</span> <span class="nn">hvplot.xarray</span>    
+<span class="n">plots</span> <span class="o">=</span> <span class="p">[</span><span class="n">LTS_plot</span><span class="p">[</span><span class="n">z</span><span class="p">]</span><span class="o">.</span><span class="n">hvplot</span><span class="o">.</span><span class="n">image</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span>
+           <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdYlGn&#39;</span><span class="p">,</span> <span class="n">clim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.9</span><span class="p">)</span>
+           <span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">rasterize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+           <span class="n">geo</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tiles</span><span class="o">=</span> <span class="s1">&#39;CartoLight&#39;</span><span class="p">,</span>
+           <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>  <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">]]</span>
+<span class="n">hv</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span><span class="n">plots</span><span class="p">)</span><span class="o">.</span><span class="n">cols</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;LTS NDVI statistics (Minimum and Maximum)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+    <i class="fa-check-circle fa" style="font-size: 22px;color:#666;"></i> <b>Go Further</b>
+    <br>
+    <ul>
+        <li>Compare the data size and 'used' data size for each worker in dask dashboard  </li>   
+        <li>Lets try to zoom.  What happend with your plot? How was the dask dashboard reacted with zooming?   </li>   
+        <li>What is rastersize=True ? (Hint: https://hvplot.holoviz.org/user_guide/Customization.html#datashading-options)   </li>  
+        <li>Lets try to scale out using 'cluster.scale(6)' and use size=10 (or 50, 100...) </li>
+    </ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_skip-execution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="packages-citation">
+<h2>Packages citation<a class="headerlink" href="#packages-citation" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id10">
+<dl class="citation">
+<dt class="label" id="id25"><span class="brackets"><a class="fn-backref" href="#id6">EGK+03</a></span></dt>
+<dd><p>John Ellson, Emden R. Gansner, Eleftherios Koutsofios, Stephen C. North, and Gordon Woodhull. Graphviz and dynagraph – static and dynamic graph drawing tools. In <em>GRAPH DRAWING SOFTWARE</em>, 127–148. Springer-Verlag, 2003.</p>
+</dd>
+<dt class="label" id="id17"><span class="brackets"><a class="fn-backref" href="#id7">HMvdW+20</a></span></dt>
+<dd><p>Charles R. Harris, K. Jarrod Millman, Stéfan J. van der Walt, Ralf Gommers, Pauli Virtanen, David Cournapeau, Eric Wieser, Julian Taylor, Sebastian Berg, Nathaniel J. Smith, Robert Kern, Matti Picus, Stephan Hoyer, Marten H. van Kerkwijk, Matthew Brett, Allan Haldane, Jaime Fernández del Río, Mark Wiebe, Pearu Peterson, Pierre Gérard-Marchant, Kevin Sheppard, Tyler Reddy, Warren Weckesser, Hameer Abbasi, Christoph Gohlke, and Travis E. Oliphant. Array programming with NumPy. <em>Nature</em>, 585(7825):357–362, September 2020. URL: <a class="reference external" href="https://doi.org/10.1038/s41586-020-2649-2">https://doi.org/10.1038/s41586-020-2649-2</a>, <a class="reference external" href="https://doi.org/10.1038/s41586-020-2649-2">doi:10.1038/s41586-020-2649-2</a>.</p>
+</dd>
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id3">HH17</a></span></dt>
+<dd><p>S. Hoyer and J. Hamman. Xarray: N-D labeled arrays and datasets in Python. <em>Journal of Open Research Software</em>, 2017. URL: <a class="reference external" href="https://doi.org/10.5334/jors.148">https://doi.org/10.5334/jors.148</a>, <a class="reference external" href="https://doi.org/10.5334/jors.148">doi:10.5334/jors.148</a>.</p>
+</dd>
+<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id9">JdBF+20</a></span></dt>
+<dd><p>Kelsey Jordahl, Joris Van den Bossche, Martin Fleischmann, Jacob Wasserman, James McBride, Jeffrey Gerard, Jeff Tratner, Matthew Perry, Adrian Garcia Badaracco, Carson Farmer, Geir Arne Hjelle, Alan D. Snow, Micah Cochran, Sean Gillies, Lucas Culbertson, Matt Bartos, Nick Eubank, maxalbert, Aleksey Bilogur, Sergio Rey, Christopher Ren, Dani Arribas-Bel, Leah Wasser, Levi John Wolf, Martin Journois, Joshua Wilson, Adam Greenhall, Chris Holdgraf, Filipe, and François Leblanc. Geopandas/geopandas: v0.8.1. July 2020. URL: <a class="reference external" href="https://doi.org/10.5281/zenodo.3946761">https://doi.org/10.5281/zenodo.3946761</a>, <a class="reference external" href="https://doi.org/10.5281/zenodo.3946761">doi:10.5281/zenodo.3946761</a>.</p>
+</dd>
+<dt class="label" id="id26"><span class="brackets"><a class="fn-backref" href="#id8">pdt20</a></span></dt>
+<dd><p>The pandas development team. Pandas-dev/pandas: pandas. February 2020. URL: <a class="reference external" href="https://doi.org/10.5281/zenodo.3509134">https://doi.org/10.5281/zenodo.3509134</a>, <a class="reference external" href="https://doi.org/10.5281/zenodo.3509134">doi:10.5281/zenodo.3509134</a>.</p>
+</dd>
+<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id4">RSB+20</a></span></dt>
+<dd><p>Philipp Rudiger, Jean-Luc Stevens, James A. Bednar, Bas Nijholt, Andrew, Chris B, Achim Randelhoff, Jon Mease, Vasco Tenner, maxalbert, Markus Kaiser, ea42gh, Jordan Samuels, stonebig, Florian LB, Andrew Tolmie, Daniel Stephan, Scott Lowe, John Bampton, henriqueribeiro, Irv Lustig, Julia Signell, Justin Bois, Leopold Talirz, Lukas Barth, Maxime Liquet, Ram Rachum, Yuval Langer, arabidopsis, and kbowen. Holoviz/holoviews: version 1.13.3. June 2020. URL: <a class="reference external" href="https://doi.org/10.5281/zenodo.3904606">https://doi.org/10.5281/zenodo.3904606</a>, <a class="reference external" href="https://doi.org/10.5281/zenodo.3904606">doi:10.5281/zenodo.3904606</a>.</p>
+</dd>
+<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id1">USR+20</a></span></dt>
+<dd><p>Leonardo Uieda, Santiago Rubén Soler, Rémi Rampin, Hugo van Kemenade, Matthew Turk, Daniel Shapero, Anderson Banihirwe, and John Leeman. Pooch: a friend to fetch your data files. <em>Journal of Open Source Software</em>, 5(45):1943, 2020. URL: <a class="reference external" href="https://doi.org/10.21105/joss.01943">https://doi.org/10.21105/joss.01943</a>, <a class="reference external" href="https://doi.org/10.21105/joss.01943">doi:10.21105/joss.01943</a>.</p>
+</dd>
+<dt class="label" id="id23"><span class="brackets"><a class="fn-backref" href="#id5">DaskDTeam16</a></span></dt>
+<dd><p>Dask Development Team. <em>Dask: Library for dynamic task scheduling</em>. 2016. URL: <a class="reference external" href="https://dask.org">https://dask.org</a>.</p>
+</dd>
+<dt class="label" id="id27"><span class="brackets"><a class="fn-backref" href="#id2">S3FsDTeam16</a></span></dt>
+<dd><p>S3Fs Development Team. <em>S3Fs</em>. 2016. URL: <a class="github reference external" href="https://github.com/fsspec/s3fs/">fsspec/s3fs</a>.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./pangeo101"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chunking_introduction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data chunking</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../afterword/resources.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Join the community!</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authors-contributors">Authors &amp; Contributors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authors">Authors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context">Context</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallelize-with-dask">Parallelize with Dask</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-dask">What is Dask ?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-dask-scale-and-accelerate-your-data-analysis">How does Dask scale and accelerate your data analysis?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-xarray-with-dask-distribute-data-analysis">How does Xarray with Dask distribute data analysis?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#where-can-we-deploy-a-dask-distributed-cluster">Where can we deploy a Dask distributed cluster?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-distributed-client">Dask distributed Client</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-dashboard">Dask Dashboard</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dask-distributed-computations-on-our-dataset">Dask Distributed computations on our dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-from-online-kerchunked-consolidated-dataset">Read from online kerchunked consolidated dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-the-task-graph">Optimize the task graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-on-the-dask-workers">Compute on the dask workers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#close-client-to-terminate-local-dask-cluster">Close client to terminate local dask cluster</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-your-computation-using-dask-gateway">Scaling your Computation using Dask Gateway.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-new-dask-cluster-with-the-dask-gateway">Create a new Dask cluster with the Dask Gateway</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-a-client-from-the-dask-gateway-cluster">Get a client from the Dask Gateway Cluster</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-lts-computation">Global LTS computation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fix-time-coordinate">Fix time coordinate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clip-lts-over-lombardia">Clip LTS over Lombardia</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-ndvi-for-2022-over-lombardia">Get NDVI for 2022 over Lombardia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-lts-statistics">Visualize LTS statistics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-citation">Packages citation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pangeo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
