@@ -19,14 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up conda and dependencies
-        uses: mamba-org/provision-with-micromamba@v13
+        uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: .binder/environment.yml
           environment-name: bids23
-          extra-specs: |
-            python=3.10
-          channels: conda-forge
-          cache-env: true
+          condarc: |
+            channels:
+              - conda-forge
       # Build the book
       - name: Build the book
         run: |
