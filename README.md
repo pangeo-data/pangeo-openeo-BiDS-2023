@@ -15,11 +15,10 @@ The content of this repository (folder `tutorial`) is rendered as an online docu
 
 ## Agenda
 
-- 9:00  Welcome (5 minutes)
-- 9:05 Introduction and Motivation (15 minutes)
-
 **Part-1: Pangeo**
 
+- 9:00  Welcome (5 minutes)
+- 9:05 Introduction and Motivation (15 minutes)
 - 9:20 Overview of the Pangeo ecosystem (20 minutes)
 - 9:40 Understanding Xarray to avoid common pitfalls (30 minutes)
 - 10:10  Interactive Visualization with Hvplot (20 minutes)
