@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -45,6 +45,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -68,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Join the community!" href="../afterword/resources.html" />
     <link rel="prev" title="Data chunking" href="chunking_introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -485,18 +486,18 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="parallel-computing-with-dask">
-<h1>Parallel computing with Dask<a class="headerlink" href="#parallel-computing-with-dask" title="Permalink to this headline">#</a></h1>
+<h1>Parallel computing with Dask<a class="headerlink" href="#parallel-computing-with-dask" title="Permalink to this heading">#</a></h1>
 <section id="authors-contributors">
-<h2>Authors &amp; Contributors<a class="headerlink" href="#authors-contributors" title="Permalink to this headline">#</a></h2>
+<h2>Authors &amp; Contributors<a class="headerlink" href="#authors-contributors" title="Permalink to this heading">#</a></h2>
 <section id="authors">
-<h3>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">#</a></h3>
+<h3>Authors<a class="headerlink" href="#authors" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Tina Odaka, Ifremer (France), <a class="reference external" href="https://github.com/tinaok">&#64;tinaok</a></p></li>
 <li><p>Pier Lorenzo Marasco, Ispra (Italy), <a class="reference external" href="https://github.com/pl-marasco">&#64;pl-marasco</a></p></li>
 </ul>
 </section>
 <section id="contributors">
-<h3>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">#</a></h3>
+<h3>Contributors<a class="headerlink" href="#contributors" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Anne Fouilloux, University of Oslo (Norway), <a class="reference external" href="https://github.com/annefou">&#64;annefou</a></p></li>
 <li><p>Guillaume Eynard-Bontemps, CNES (France), <a class="reference external" href="https://github.com/guillaumeeb">&#64;guillaumeeb</a></p></li>
@@ -519,15 +520,15 @@ document.write(`
 </div></section>
 </section>
 <section id="context">
-<h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">#</a></h2>
+<h2>Context<a class="headerlink" href="#context" title="Permalink to this heading">#</a></h2>
 <p>We will be using <a class="reference external" href="https://docs.dask.org/">Dask</a> with <a class="reference external" href="https://docs.xarray.dev/en/stable/">Xarray</a> to parallelize our data analysis. The analysis is very similar to what we have done in previous episodes but this time we will use data on a global coverage that we read from a shared catalog (stored online in the Pangeo EOSC Openstack Object Storage).</p>
 <section id="data">
-<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h3>
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h3>
 <p>In this episode, we will be using Global Long Term Statistics (1999-2019) product provided by the <a class="reference external" href="https://land.copernicus.eu/global/index.html">Copernicus Global Land Service over Lombardia</a> and access them through <a class="reference external" href="https://en.wikipedia.org/wiki/Amazon_S3">S3-comptabile storage</a> (<a class="reference external" href="https://wiki.openstack.org/wiki/Swift">OpenStack Object Storage “Swift”</a>) with a data catalog we have created and made publicly available.</p>
 </section>
 </section>
 <section id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
 <p>This episode uses the following Python packages:</p>
 <ul class="simple">
 <li><p>pooch <span id="id1">[<a class="reference internal" href="#id16" title="Leonardo Uieda, Santiago Rubén Soler, Rémi Rampin, Hugo van Kemenade, Matthew Turk, Daniel Shapero, Anderson Banihirwe, and John Leeman. Pooch: a friend to fetch your data files. Journal of Open Source Software, 5(45):1943, 2020. URL: https://doi.org/10.21105/joss.01943, doi:10.21105/joss.01943.">USR+20</a>]</span></p></li>
@@ -542,15 +543,15 @@ document.write(`
 </ul>
 <p>Please install these packages if not already available in your Python environment (you might want to take a look at <a class="reference external" href="https://pangeo-data.github.io/foss4g-2022/before/setup.html">the Setup page of the tutorial</a>).</p>
 <section id="packages">
-<h3>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">#</a></h3>
+<h3>Packages<a class="headerlink" href="#packages" title="Permalink to this heading">#</a></h3>
 <p>In this episode, Python packages are imported when we start to use them. However, for best software practices, we recommend you to install and import all the necessary libraries at the top of your Jupyter notebook.</p>
 </section>
 </section>
 <section id="parallelize-with-dask">
-<h2>Parallelize with Dask<a class="headerlink" href="#parallelize-with-dask" title="Permalink to this headline">#</a></h2>
+<h2>Parallelize with Dask<a class="headerlink" href="#parallelize-with-dask" title="Permalink to this heading">#</a></h2>
 <p>We know from previous chapter <a class="reference internal" href="chunking_introduction.html"><span class="doc std std-doc">chunking_introduction</span></a> that chunking is key for analyzing large datasets. In this episode, we will learn to parallelize our data analysis using <a class="reference external" href="https://docs.dask.org/">Dask</a> on our chunked dataset.</p>
 <section id="what-is-dask">
-<h3>What is <a class="reference external" href="https://docs.dask.org/">Dask</a> ?<a class="headerlink" href="#what-is-dask" title="Permalink to this headline">#</a></h3>
+<h3>What is <a class="reference external" href="https://docs.dask.org/">Dask</a> ?<a class="headerlink" href="#what-is-dask" title="Permalink to this heading">#</a></h3>
 <p><strong>Dask</strong> scales the existing Python ecosystem: with very or no changes in your code, you can speed-up computation using Dask or process bigger than memory datasets.</p>
 <ul class="simple">
 <li><p>Dask is a flexible library for parallel computing in Python.</p></li>
@@ -561,7 +562,7 @@ document.write(`
 </ul>
 <p>It is interesting to note that at first, <a class="reference external" href="https://coiled.io/blog/history-dask/">Dask has been created to handle data that is larger than memory, on a single computer</a>. It then was extended with Distributed to compute data in parallel over clusters of computers.</p>
 <section id="how-does-dask-scale-and-accelerate-your-data-analysis">
-<h4>How does Dask scale and accelerate your data analysis?<a class="headerlink" href="#how-does-dask-scale-and-accelerate-your-data-analysis" title="Permalink to this headline">#</a></h4>
+<h4>How does Dask scale and accelerate your data analysis?<a class="headerlink" href="#how-does-dask-scale-and-accelerate-your-data-analysis" title="Permalink to this heading">#</a></h4>
 <p><a class="reference external" href="https://docs.dask.org/en/stable/10-minutes-to-dask.html">Dask proposes different abstractions to distribute your computation</a>. In this <em>Dask Introduction</em> section, we will focus on <a class="reference external" href="https://docs.dask.org/en/stable/array.html">Dask Array</a> which is widely used in pangeo ecosystem as a back end of Xarray.</p>
 <p>As shown in the <a class="reference internal" href="chunking_introduction.html"><span class="doc std std-doc">previous section</span></a> Dask Array is based on chunks.
 Chunks of a Dask Array are well-known Numpy arrays. By transforming our big datasets to Dask Array, making use of chunk, a large array is handled as many smaller Numpy ones and we can compute each of these chunks independently.</p>
@@ -575,7 +576,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
 </div>
 </section>
 <section id="how-does-xarray-with-dask-distribute-data-analysis">
-<h4>How does Xarray with Dask distribute data analysis?<a class="headerlink" href="#how-does-xarray-with-dask-distribute-data-analysis" title="Permalink to this headline">#</a></h4>
+<h4>How does Xarray with Dask distribute data analysis?<a class="headerlink" href="#how-does-xarray-with-dask-distribute-data-analysis" title="Permalink to this heading">#</a></h4>
 <p>When we use chunks with <code class="docutils literal notranslate"><span class="pre">Xarray</span></code>, the real computation is only done when needed or asked for, usually when invoking <code class="docutils literal notranslate"><span class="pre">compute()</span></code> or <code class="docutils literal notranslate"><span class="pre">load()</span></code> functions. Dask generates a <strong>task graph</strong> describing the computations to be done. When using <a class="reference external" href="https://distributed.dask.org/en/stable/">Dask Distributed</a> a <strong>Scheduler</strong> distributes these tasks across several <strong>Workers</strong>.</p>
 <p><img alt="Xarray with dask" src="../_images/dask-xarray-explained.png" /></p>
 <p>#### What is a Dask Distributed cluster ?</p>
@@ -588,7 +589,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
 <p><img alt="Dask Distributed Cluster" src="https://user-images.githubusercontent.com/306380/66413985-27111600-e9be-11e9-9995-8f418ff48f8a.png" /></p>
 </section>
 <section id="where-can-we-deploy-a-dask-distributed-cluster">
-<h4>Where can we deploy a Dask distributed cluster?<a class="headerlink" href="#where-can-we-deploy-a-dask-distributed-cluster" title="Permalink to this headline">#</a></h4>
+<h4>Where can we deploy a Dask distributed cluster?<a class="headerlink" href="#where-can-we-deploy-a-dask-distributed-cluster" title="Permalink to this heading">#</a></h4>
 <p><a class="reference external" href="https://docs.dask.org/en/stable/deploying.html">Dask distributed clusters can be deployed on your laptop or on distributed infrastructures (Cloud, HPC centers, Hadoop, etc.).</a>  Dask distributed <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> object is responsible of deploying and scaling a Dask Cluster on the underlying resources.</p>
 <p><img alt="Dask Cluster deployment" src="https://docs.dask.org/en/stable/_images/dask-cluster-manager.svg" /></p>
 <div class="admonition tip">
@@ -598,7 +599,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
 </section>
 </section>
 <section id="dask-distributed-client">
-<h3>Dask distributed Client<a class="headerlink" href="#dask-distributed-client" title="Permalink to this headline">#</a></h3>
+<h3>Dask distributed Client<a class="headerlink" href="#dask-distributed-client" title="Permalink to this heading">#</a></h3>
 <p>The Dask distributed <code class="docutils literal notranslate"><span class="pre">Client</span></code> is what allows you to interact with Dask distributed Clusters. When using Dask distributed, you always need to create a <code class="docutils literal notranslate"><span class="pre">Client</span></code> object. Once a <code class="docutils literal notranslate"><span class="pre">Client</span></code> has been created, it will be used by default by each call to a Dask API, even if you do not explicitly use it.</p>
 <p>No matter the Dask API (e.g. Arrays, Dataframes, Delayed, Futures, etc.) that you use, under the hood, Dask will create a Directed Acyclic Graph (DAG) of tasks by analysing the code. Client will be responsible to submit this DAG to the Scheduler along with the final result you want to compute. The Client will also gather results from the Workers, and aggregate it back in its underlying Python process.</p>
 <p>Using <code class="docutils literal notranslate"><span class="pre">Client()</span></code> function with no argument, you will create a local Dask cluster with a number of workers and threads per worker corresponding to the number of cores in the ‘local’ machine. Here, during the workshop, we are running this notebook in Pangeo EOSC cloud deployment, so the ‘local’ machine is the jupyterlab you are using at the Cloud, and the number of cores is the number of cores on the cloud computing resources you’ve been given (not on your laptop).</p>
@@ -616,7 +617,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
     <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px;">Client</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-fd984a69-2651-11ee-8d0d-6045bdd8ae9c</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-189e9204-4bbf-11ee-8d03-002248ab6d42</p>
         <table style="width: 100%; text-align: left;">
 
         <tr>
@@ -647,7 +648,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
     </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px; margin-top: 0px;">LocalCluster</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">ab2f2ee4</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">51c35446</p>
         <table style="width: 100%; text-align: left;">
             <tr>
                 <td style="text-align: left;">
@@ -684,11 +685,11 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
         <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
         <div style="margin-left: 48px;">
             <h3 style="margin-bottom: 0px;">Scheduler</h3>
-            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-69e853ba-1d1d-4c8f-9746-eca0e228250b</p>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-9eb973cc-d0d9-4412-8404-66d44cd42d75</p>
             <table style="width: 100%; text-align: left;">
                 <tr>
                     <td style="text-align: left;">
-                        <strong>Comm:</strong> tcp://127.0.0.1:41989
+                        <strong>Comm:</strong> tcp://127.0.0.1:42891
                     </td>
                     <td style="text-align: left;">
                         <strong>Workers:</strong> 2
@@ -730,7 +731,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:33929
+                            <strong>Comm: </strong> tcp://127.0.0.1:41533
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -738,7 +739,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:37539/status" target="_blank">http://127.0.0.1:37539/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:42163/status" target="_blank">http://127.0.0.1:42163/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.38 GiB
@@ -746,13 +747,13 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:44509
+                            <strong>Nanny: </strong> tcp://127.0.0.1:33113
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-u4o4qxil
+                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-jwvq1yrv
                         </td>
                     </tr>
 
@@ -775,7 +776,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:36223
+                            <strong>Comm: </strong> tcp://127.0.0.1:36611
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -783,7 +784,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:36793/status" target="_blank">http://127.0.0.1:36793/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:40405/status" target="_blank">http://127.0.0.1:40405/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.38 GiB
@@ -791,13 +792,13 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:43939
+                            <strong>Nanny: </strong> tcp://127.0.0.1:40801
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-w5ej2w22
+                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-lb5f_9hm
                         </td>
                     </tr>
 
@@ -836,7 +837,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
     </ul>
 </div></section>
 <section id="dask-dashboard">
-<h3>Dask Dashboard<a class="headerlink" href="#dask-dashboard" title="Permalink to this headline">#</a></h3>
+<h3>Dask Dashboard<a class="headerlink" href="#dask-dashboard" title="Permalink to this heading">#</a></h3>
 <p>Dask comes with a really handy interface: the Dask Dashboard. It is a web interface that you can open in a separated tab of your browser (but not with he link above, you’ve got to use Jupyterlabs proxy: <a class="reference external" href="https://pangeo-foss4g.vm.fedcloud.eu/jupyterhub/user/">https://pangeo-foss4g.vm.fedcloud.eu/jupyterhub/user/</a><em>yourusername</em>/proxy/8787/status).</p>
 <p>We will learn here how to use it through <a class="reference external" href="https://github.com/dask/dask-labextension">dask jupyterlab extension</a>.</p>
 <p>To use Dask Dashboard through jupyterlab extension on Pangeo EOSC FOSS4G infrastructure,
@@ -850,10 +851,10 @@ you will just need too look at the html link you have for your jupyterlab, and D
 </section>
 </section>
 <section id="dask-distributed-computations-on-our-dataset">
-<h2>Dask Distributed computations on our dataset<a class="headerlink" href="#dask-distributed-computations-on-our-dataset" title="Permalink to this headline">#</a></h2>
+<h2>Dask Distributed computations on our dataset<a class="headerlink" href="#dask-distributed-computations-on-our-dataset" title="Permalink to this heading">#</a></h2>
 <p>Let’s open the virtual dataset we’ve prepared as in previous episode, select a single location over time, visualize the task graph generated by Dask, and observe the Dask Dashboard.</p>
 <section id="read-from-online-kerchunked-consolidated-dataset">
-<h3>Read from online kerchunked consolidated dataset<a class="headerlink" href="#read-from-online-kerchunked-consolidated-dataset" title="Permalink to this headline">#</a></h3>
+<h3>Read from online kerchunked consolidated dataset<a class="headerlink" href="#read-from-online-kerchunked-consolidated-dataset" title="Permalink to this heading">#</a></h3>
 <p>We will access Long Term TimeSeries of NDVI statistics from OpenStack Object Storage using the Zarr metadata generated with kerchunk, prepared in <a class="reference internal" href="chunking_introduction.html"><span class="doc std std-doc">previous chunking_introduction</span></a> section.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -926,85 +927,87 @@ you will just need too look at the html link you have for your jupyterlab, and D
 <span class="g g-Whitespace">    </span><span class="mi">589</span> <span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">590</span> <span class="k">return</span> <span class="n">ds</span>
 
-<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/zarr.py:934,</span> in <span class="ni">ZarrBackendEntrypoint.open_dataset</span><span class="nt">(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, use_cftime, decode_timedelta, group, mode, synchronizer, consolidated, chunk_store, storage_options, stacklevel, zarr_version)</span>
-<span class="g g-Whitespace">    </span><span class="mi">913</span> <span class="k">def</span> <span class="nf">open_dataset</span><span class="p">(</span>  <span class="c1"># type: ignore[override]  # allow LSP violation, not supporting **kwargs</span>
-<span class="g g-Whitespace">    </span><span class="mi">914</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">915</span>     <span class="n">filename_or_obj</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">BufferedIOBase</span> <span class="o">|</span> <span class="n">AbstractDataStore</span><span class="p">,</span>
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/zarr.py:965,</span> in <span class="ni">ZarrBackendEntrypoint.open_dataset</span><span class="nt">(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, use_cftime, decode_timedelta, group, mode, synchronizer, consolidated, chunk_store, storage_options, stacklevel, zarr_version)</span>
+<span class="g g-Whitespace">    </span><span class="mi">944</span> <span class="k">def</span> <span class="nf">open_dataset</span><span class="p">(</span>  <span class="c1"># type: ignore[override]  # allow LSP violation, not supporting **kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">945</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">946</span>     <span class="n">filename_or_obj</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">BufferedIOBase</span> <span class="o">|</span> <span class="n">AbstractDataStore</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">931</span>     <span class="n">zarr_version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">932</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dataset</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">933</span>     <span class="n">filename_or_obj</span> <span class="o">=</span> <span class="n">_normalize_path</span><span class="p">(</span><span class="n">filename_or_obj</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">934</span>     <span class="n">store</span> <span class="o">=</span> <span class="n">ZarrStore</span><span class="o">.</span><span class="n">open_group</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">935</span>         <span class="n">filename_or_obj</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">936</span>         <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">937</span>         <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">938</span>         <span class="n">synchronizer</span><span class="o">=</span><span class="n">synchronizer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">939</span>         <span class="n">consolidated</span><span class="o">=</span><span class="n">consolidated</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">940</span>         <span class="n">consolidate_on_close</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">941</span>         <span class="n">chunk_store</span><span class="o">=</span><span class="n">chunk_store</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">942</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">943</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">944</span>         <span class="n">zarr_version</span><span class="o">=</span><span class="n">zarr_version</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">945</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">947</span>     <span class="n">store_entrypoint</span> <span class="o">=</span> <span class="n">StoreBackendEntrypoint</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">948</span>     <span class="k">with</span> <span class="n">close_on_error</span><span class="p">(</span><span class="n">store</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">962</span>     <span class="n">zarr_version</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">963</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dataset</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">964</span>     <span class="n">filename_or_obj</span> <span class="o">=</span> <span class="n">_normalize_path</span><span class="p">(</span><span class="n">filename_or_obj</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">965</span>     <span class="n">store</span> <span class="o">=</span> <span class="n">ZarrStore</span><span class="o">.</span><span class="n">open_group</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">966</span>         <span class="n">filename_or_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">967</span>         <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">968</span>         <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">969</span>         <span class="n">synchronizer</span><span class="o">=</span><span class="n">synchronizer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">970</span>         <span class="n">consolidated</span><span class="o">=</span><span class="n">consolidated</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">971</span>         <span class="n">consolidate_on_close</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">972</span>         <span class="n">chunk_store</span><span class="o">=</span><span class="n">chunk_store</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">973</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">974</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">975</span>         <span class="n">zarr_version</span><span class="o">=</span><span class="n">zarr_version</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">976</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">978</span>     <span class="n">store_entrypoint</span> <span class="o">=</span> <span class="n">StoreBackendEntrypoint</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">979</span>     <span class="k">with</span> <span class="n">close_on_error</span><span class="p">(</span><span class="n">store</span><span class="p">):</span>
 
-<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/zarr.py:452,</span> in <span class="ni">ZarrStore.open_group</span><span class="nt">(cls, store, mode, synchronizer, group, consolidated, consolidate_on_close, chunk_store, storage_options, append_dim, write_region, safe_chunks, stacklevel, zarr_version)</span>
-<span class="g g-Whitespace">    </span><span class="mi">450</span>     <span class="n">zarr_group</span> <span class="o">=</span> <span class="n">zarr</span><span class="o">.</span><span class="n">open_consolidated</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="o">**</span><span class="n">open_kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">451</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">452</span>     <span class="n">zarr_group</span> <span class="o">=</span> <span class="n">zarr</span><span class="o">.</span><span class="n">open_group</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="o">**</span><span class="n">open_kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">453</span> <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">454</span>     <span class="n">zarr_group</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">455</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/zarr.py:454,</span> in <span class="ni">ZarrStore.open_group</span><span class="nt">(cls, store, mode, synchronizer, group, consolidated, consolidate_on_close, chunk_store, storage_options, append_dim, write_region, safe_chunks, stacklevel, zarr_version, write_empty)</span>
+<span class="g g-Whitespace">    </span><span class="mi">452</span>     <span class="n">zarr_group</span> <span class="o">=</span> <span class="n">zarr</span><span class="o">.</span><span class="n">open_consolidated</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="o">**</span><span class="n">open_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">454</span>     <span class="n">zarr_group</span> <span class="o">=</span> <span class="n">zarr</span><span class="o">.</span><span class="n">open_group</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="o">**</span><span class="n">open_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span> <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">456</span>     <span class="n">zarr_group</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">457</span>     <span class="n">mode</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">459</span>     <span class="n">safe_chunks</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">460</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">462</span>     <span class="n">write_empty</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span> <span class="p">)</span>
 
-<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/hierarchy.py:1416,</span> in <span class="ni">open_group</span><span class="nt">(store, mode, cache_attrs, synchronizer, path, chunk_store, storage_options, zarr_version, meta_array)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1365</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Open a group using file-mode-like semantics.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1366</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1367</span><span class="sd"> Parameters</span>
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/hierarchy.py:1508,</span> in <span class="ni">open_group</span><span class="nt">(store, mode, cache_attrs, synchronizer, path, chunk_store, storage_options, zarr_version, meta_array)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1457</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Open a group using file-mode-like semantics.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1458</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1459</span><span class="sd"> Parameters</span>
 <span class="sd">   (...)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1412</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1413</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1415</span> <span class="c1"># handle polymorphic store arg</span>
-<span class="ne">-&gt; </span><span class="mi">1416</span> <span class="n">store</span> <span class="o">=</span> <span class="n">_normalize_store_arg</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1417</span>     <span class="n">store</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1418</span>     <span class="n">zarr_version</span><span class="o">=</span><span class="n">zarr_version</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1419</span> <span class="k">if</span> <span class="n">zarr_version</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1420</span>     <span class="n">zarr_version</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="s1">&#39;_store_version&#39;</span><span class="p">,</span> <span class="n">DEFAULT_ZARR_VERSION</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1504</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1505</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1507</span> <span class="c1"># handle polymorphic store arg</span>
+<span class="ne">-&gt; </span><span class="mi">1508</span> <span class="n">store</span> <span class="o">=</span> <span class="n">_normalize_store_arg</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1509</span>     <span class="n">store</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">zarr_version</span><span class="o">=</span><span class="n">zarr_version</span>
+<span class="g g-Whitespace">   </span><span class="mi">1510</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1511</span> <span class="k">if</span> <span class="n">zarr_version</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1512</span>     <span class="n">zarr_version</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="s2">&quot;_store_version&quot;</span><span class="p">,</span> <span class="n">DEFAULT_ZARR_VERSION</span><span class="p">)</span>
 
-<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/hierarchy.py:1288,</span> in <span class="ni">_normalize_store_arg</span><span class="nt">(store, storage_options, mode, zarr_version)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1286</span> <span class="k">if</span> <span class="n">store</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1287</span>     <span class="k">return</span> <span class="n">MemoryStore</span><span class="p">()</span> <span class="k">if</span> <span class="n">zarr_version</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">MemoryStoreV3</span><span class="p">()</span>
-<span class="ne">-&gt; </span><span class="mi">1288</span> <span class="k">return</span> <span class="n">normalize_store_arg</span><span class="p">(</span><span class="n">store</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1289</span>                            <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1290</span>                            <span class="n">zarr_version</span><span class="o">=</span><span class="n">zarr_version</span><span class="p">)</span>
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/hierarchy.py:1350,</span> in <span class="ni">_normalize_store_arg</span><span class="nt">(store, storage_options, mode, zarr_version)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1348</span> <span class="k">if</span> <span class="n">store</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1349</span>     <span class="k">return</span> <span class="n">MemoryStore</span><span class="p">()</span> <span class="k">if</span> <span class="n">zarr_version</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">MemoryStoreV3</span><span class="p">()</span>
+<span class="ne">-&gt; </span><span class="mi">1350</span> <span class="k">return</span> <span class="n">normalize_store_arg</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1351</span>     <span class="n">store</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">zarr_version</span><span class="o">=</span><span class="n">zarr_version</span>
+<span class="g g-Whitespace">   </span><span class="mi">1352</span> <span class="p">)</span>
 
-<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/storage.py:182,</span> in <span class="ni">normalize_store_arg</span><span class="nt">(store, storage_options, mode, zarr_version)</span>
-<span class="g g-Whitespace">    </span><span class="mi">180</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">181</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;zarr_version must be either 2 or 3&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">182</span> <span class="k">return</span> <span class="n">normalize_store</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="n">storage_options</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/storage.py:197,</span> in <span class="ni">normalize_store_arg</span><span class="nt">(store, storage_options, mode, zarr_version)</span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">196</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;zarr_version must be either 2 or 3&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">197</span> <span class="k">return</span> <span class="n">normalize_store</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="n">storage_options</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
 
-<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/storage.py:146,</span> in <span class="ni">_normalize_store_arg_v2</span><span class="nt">(store, storage_options, mode)</span>
-<span class="g g-Whitespace">    </span><span class="mi">144</span>     <span class="kn">import</span> <span class="nn">fsspec</span>
-<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">FSMap</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">146</span>         <span class="k">return</span> <span class="n">FSStore</span><span class="p">(</span><span class="n">store</span><span class="o">.</span><span class="n">root</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>                        <span class="n">fs</span><span class="o">=</span><span class="n">store</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>                        <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span>                        <span class="n">check</span><span class="o">=</span><span class="n">store</span><span class="o">.</span><span class="n">check</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span>                        <span class="n">create</span><span class="o">=</span><span class="n">store</span><span class="o">.</span><span class="n">create</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span>                        <span class="n">missing_exceptions</span><span class="o">=</span><span class="n">store</span><span class="o">.</span><span class="n">missing_exceptions</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">152</span>                        <span class="o">**</span><span class="p">(</span><span class="n">storage_options</span> <span class="ow">or</span> <span class="p">{}))</span>
-<span class="g g-Whitespace">    </span><span class="mi">153</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">154</span>     <span class="k">if</span> <span class="s2">&quot;://&quot;</span> <span class="ow">in</span> <span class="n">store</span> <span class="ow">or</span> <span class="s2">&quot;::&quot;</span> <span class="ow">in</span> <span class="n">store</span><span class="p">:</span>
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/storage.py:156,</span> in <span class="ni">_normalize_store_arg_v2</span><span class="nt">(store, storage_options, mode)</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span>     <span class="kn">import</span> <span class="nn">fsspec</span>
+<span class="g g-Whitespace">    </span><span class="mi">155</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">FSMap</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">156</span>         <span class="k">return</span> <span class="n">FSStore</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span>             <span class="n">store</span><span class="o">.</span><span class="n">root</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">158</span>             <span class="n">fs</span><span class="o">=</span><span class="n">store</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span>             <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span>             <span class="n">check</span><span class="o">=</span><span class="n">store</span><span class="o">.</span><span class="n">check</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span>             <span class="n">create</span><span class="o">=</span><span class="n">store</span><span class="o">.</span><span class="n">create</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span>             <span class="n">missing_exceptions</span><span class="o">=</span><span class="n">store</span><span class="o">.</span><span class="n">missing_exceptions</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span>             <span class="o">**</span><span class="p">(</span><span class="n">storage_options</span> <span class="ow">or</span> <span class="p">{}),</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>     <span class="k">if</span> <span class="s2">&quot;://&quot;</span> <span class="ow">in</span> <span class="n">store</span> <span class="ow">or</span> <span class="s2">&quot;::&quot;</span> <span class="ow">in</span> <span class="n">store</span><span class="p">:</span>
 
-<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/storage.py:1351,</span> in <span class="ni">FSStore.__init__</span><span class="nt">(self, url, normalize_keys, key_separator, mode, exceptions, dimension_separator, fs, check, create, missing_exceptions, **storage_options)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1349</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1350</span>     <span class="k">if</span> <span class="n">storage_options</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1351</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot specify both fs and storage_options&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1352</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fs</span> <span class="o">=</span> <span class="n">fs</span>
-<span class="g g-Whitespace">   </span><span class="mi">1353</span>     <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">_strip_protocol</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/storage.py:1382,</span> in <span class="ni">FSStore.__init__</span><span class="nt">(self, url, normalize_keys, key_separator, mode, exceptions, dimension_separator, fs, check, create, missing_exceptions, **storage_options)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1380</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1381</span>     <span class="k">if</span> <span class="n">storage_options</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1382</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot specify both fs and storage_options&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1383</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fs</span> <span class="o">=</span> <span class="n">fs</span>
+<span class="g g-Whitespace">   </span><span class="mi">1384</span>     <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">_strip_protocol</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
 <span class="ne">ValueError</span>: Cannot specify both fs and storage_options
 </pre></div>
@@ -1026,7 +1029,7 @@ you will just need too look at the html link you have for your jupyterlab, and D
 <p>Lets try to plot the dask graph before computation and understand what dask workers will do to compute the value we asked for.</p>
 </section>
 <section id="optimize-the-task-graph">
-<h3>Optimize the task graph<a class="headerlink" href="#optimize-the-task-graph" title="Permalink to this headline">#</a></h3>
+<h3>Optimize the task graph<a class="headerlink" href="#optimize-the-task-graph" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask</span>
@@ -1046,7 +1049,7 @@ you will just need too look at the html link you have for your jupyterlab, and D
 </div>
 </section>
 <section id="compute-on-the-dask-workers">
-<h3>Compute on the dask workers<a class="headerlink" href="#compute-on-the-dask-workers" title="Permalink to this headline">#</a></h3>
+<h3>Compute on the dask workers<a class="headerlink" href="#compute-on-the-dask-workers" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
@@ -1064,7 +1067,7 @@ you will just need too look at the html link you have for your jupyterlab, and D
     </ul>
 </div></section>
 <section id="close-client-to-terminate-local-dask-cluster">
-<h3>Close client to terminate local dask cluster<a class="headerlink" href="#close-client-to-terminate-local-dask-cluster" title="Permalink to this headline">#</a></h3>
+<h3>Close client to terminate local dask cluster<a class="headerlink" href="#close-client-to-terminate-local-dask-cluster" title="Permalink to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">Client</span></code> and associated <code class="docutils literal notranslate"><span class="pre">LocalCluster</span></code> object will be automatically closed when your Python session ends. When using Jupyter notebooks, we recommend to close it explicitely whenever you are done with your local Dask cluster.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1076,7 +1079,7 @@ you will just need too look at the html link you have for your jupyterlab, and D
 </section>
 </section>
 <section id="scaling-your-computation-using-dask-gateway">
-<h2>Scaling your Computation using Dask Gateway.<a class="headerlink" href="#scaling-your-computation-using-dask-gateway" title="Permalink to this headline">#</a></h2>
+<h2>Scaling your Computation using Dask Gateway.<a class="headerlink" href="#scaling-your-computation-using-dask-gateway" title="Permalink to this heading">#</a></h2>
 <p>For this workshop, according to the Pangeo EOSC deployment, you will learn how to use Dask Gateway to manage Dask clusters over Kubernetes, allowing to run our data analysis in parallel e.g. distribute tasks across several workers.</p>
 <p>Lets set up your Dask cluster through Dask Gateway.<br />
 As Dask Gateway is configured by default on this ifnrastructure, you just need to execute the following cells.</p>
@@ -1104,7 +1107,7 @@ As Dask Gateway is configured by default on this ifnrastructure, you just need t
 </div>
 </div>
 <section id="create-a-new-dask-cluster-with-the-dask-gateway">
-<h3>Create a new Dask cluster with the Dask Gateway<a class="headerlink" href="#create-a-new-dask-cluster-with-the-dask-gateway" title="Permalink to this headline">#</a></h3>
+<h3>Create a new Dask cluster with the Dask Gateway<a class="headerlink" href="#create-a-new-dask-cluster-with-the-dask-gateway" title="Permalink to this heading">#</a></h3>
 <div class="cell tag_skip-execution docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">new_cluster</span><span class="p">()</span>
@@ -1118,7 +1121,7 @@ As Dask Gateway is configured by default on this ifnrastructure, you just need t
 <p>This time, copy and past the link above indicated in Dashboard to the dask lab-extension or just click on the link to open the dashboard into another tab.</p>
 </section>
 <section id="get-a-client-from-the-dask-gateway-cluster">
-<h3>Get a client from the Dask Gateway Cluster<a class="headerlink" href="#get-a-client-from-the-dask-gateway-cluster" title="Permalink to this headline">#</a></h3>
+<h3>Get a client from the Dask Gateway Cluster<a class="headerlink" href="#get-a-client-from-the-dask-gateway-cluster" title="Permalink to this heading">#</a></h3>
 <p>As stated above, creating a Dask <code class="docutils literal notranslate"><span class="pre">Client</span></code> is mandatory in order to perform following Daks computations on your Dask Cluster.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1144,7 +1147,7 @@ As Dask Gateway is configured by default on this ifnrastructure, you just need t
 </section>
 </section>
 <section id="global-lts-computation">
-<h2>Global LTS computation<a class="headerlink" href="#global-lts-computation" title="Permalink to this headline">#</a></h2>
+<h2>Global LTS computation<a class="headerlink" href="#global-lts-computation" title="Permalink to this heading">#</a></h2>
 <p>In the previous episode, we used Long-term Timeseries for the region of Lombardy e.g. a very small area that was extracted upfront for simplicity. Now we will use the original dataset that has a global coverage, and work directly on it to extract our AOI and perform computations.</p>
 <p>Lets check our LTS data we have loaded before.</p>
 <div class="cell docutils container">
@@ -1155,7 +1158,7 @@ As Dask Gateway is configured by default on this ifnrastructure, you just need t
 </div>
 </div>
 <section id="fix-time-coordinate">
-<h3>Fix time coordinate<a class="headerlink" href="#fix-time-coordinate" title="Permalink to this headline">#</a></h3>
+<h3>Fix time coordinate<a class="headerlink" href="#fix-time-coordinate" title="Permalink to this heading">#</a></h3>
 <p>As observed data are coming with a predefined year. To let xarray automatically align the LTS with the lastest NDVI values, the time dimension needs to be shifted to the NDVI values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1172,7 +1175,7 @@ As Dask Gateway is configured by default on this ifnrastructure, you just need t
 </div>
 </section>
 <section id="clip-lts-over-lombardia">
-<h3>Clip LTS over Lombardia<a class="headerlink" href="#clip-lts-over-lombardia" title="Permalink to this headline">#</a></h3>
+<h3>Clip LTS over Lombardia<a class="headerlink" href="#clip-lts-over-lombardia" title="Permalink to this heading">#</a></h3>
 <p>As in previous episodes, we use a shapefile over Italy to select data over this Area of Interest (AOI).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1225,7 +1228,7 @@ As Dask Gateway is configured by default on this ifnrastructure, you just need t
 </section>
 </section>
 <section id="get-ndvi-for-2022-over-lombardia">
-<h2>Get NDVI for 2022 over Lombardia<a class="headerlink" href="#get-ndvi-for-2022-over-lombardia" title="Permalink to this headline">#</a></h2>
+<h2>Get NDVI for 2022 over Lombardia<a class="headerlink" href="#get-ndvi-for-2022-over-lombardia" title="Permalink to this heading">#</a></h2>
 <p>We re-use the file we created during the first episode. If the file is missing it will be downloaded from Zenodo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1304,7 +1307,7 @@ As Dask Gateway is configured by default on this ifnrastructure, you just need t
         <li> Try moving time slider to see how Dask computes and load data on the fly (observe well the dask dashboard!) </li>          
     </ul>
 </div><section id="visualize-lts-statistics">
-<h3>Visualize LTS statistics<a class="headerlink" href="#visualize-lts-statistics" title="Permalink to this headline">#</a></h3>
+<h3>Visualize LTS statistics<a class="headerlink" href="#visualize-lts-statistics" title="Permalink to this heading">#</a></h3>
 <p>Lets try to scale out the visualisation of LTS statistic datas.  We will set an arbitaly size to see how dask behaves.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1356,7 +1359,7 @@ As Dask Gateway is configured by default on this ifnrastructure, you just need t
 </section>
 </section>
 <section id="packages-citation">
-<h2>Packages citation<a class="headerlink" href="#packages-citation" title="Permalink to this headline">#</a></h2>
+<h2>Packages citation<a class="headerlink" href="#packages-citation" title="Permalink to this heading">#</a></h2>
 <div class="docutils container" id="id10">
 <dl class="citation">
 <dt class="label" id="id25"><span class="brackets"><a class="fn-backref" href="#id6">EGK+03</a></span></dt>

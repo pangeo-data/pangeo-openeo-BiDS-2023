@@ -14,7 +14,7 @@
 | **News** | [![Medium - Blog](https://img.shields.io/badge/Medium-Blog-2ea44f?logo=medium)](https://medium.com/pangeo) [![Fllo](https://img.shields.io/twitter/follow/pangeo_data?style=social)](https://twitter.com/pangeo_data)                                                                    |
 
 ### Meetings
-- [General](https://pangeo.io/meeting-notes.html#community-meeting): Pangeo holds community meetings meetings every Wednesday. The meetings alternate between 12PM and 4PM US Eastern Time to encourage participants from a wider range of time zones. 
+- [General](https://pangeo.io/meeting-notes.html#community-meeting): Pangeo holds community meetings every Wednesday. The meetings alternate between 12PM and 4PM US Eastern Time to encourage participants from a wider range of time zones. 
 - [Continental meetings](https://pangeo.io/meeting-notes.html#continental-community-meetings): to adress different time zones among the globe continental meetings have been organized in Europe/Africa and Oceania.
 - [Showcases](https://pangeo.io/pangeo-showcase.html#pangeo-showcase): 15 minutes talks which are an opportunity for anyone to meet other members of the Pangeo community and let them know what you are working on. The talks are recorded, given a DOI, and made available on the [Pangeo YouTube Channel](https://youtube.com/playlist?list=PLuQQBBQFfpgq0OvjKbjcYgTDzDxTqtwua). If you are interested in giving a talk, [fill out this short form](https://forms.gle/QwxKusVvrvDakSNs8).
 
