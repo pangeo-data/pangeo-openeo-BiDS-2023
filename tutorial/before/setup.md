@@ -1,4 +1,6 @@
-# TBD
+# Setup
+
+The setup for the tutorials will be described below. 
 
 # Setup: how to run the tutorial
 
