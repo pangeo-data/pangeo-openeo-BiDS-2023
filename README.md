@@ -6,9 +6,7 @@
 
 This repository contains the documentation and jupyter notebooks used for delivering tutorial to BiDS'23.
 
-<img src="tutorial/figures/pangeo_logo.png" width="180" align="Left" /></a>
-<img src="tutorial/figures/EGI-ACE_logo.png" width="180" align="Right" /></a>
-
+<img src="tutorial/figures/pangeo_openeo.png" /></a>
 <br>
 
 The content of this repository (folder `tutorial`) is rendered as an online document using [Jupyter Book](https://jupyterbook.org/en/stable/intro.html). **You can access it [here](https://pangeo-data.github.io/pangeo-openeo-BiDS-2023)**.
