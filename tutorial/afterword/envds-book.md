@@ -1,7 +1,7 @@
 # Environmental Data Science Book 
 
 ## About
-The Environmental Data Science Book (or EDS book in short), https://the-environmental-ds-book.netlify.app/, is a living, open and community-driven online resource to showcase and support the publication of data, research and open-source tools for collaborative, reproducible and transparent Environmental Science.
+The Environmental Data Science Book (or EDS book in short), https://edsbook.org, is a living, open and community-driven online resource to showcase and support the publication of data, research and open-source tools for collaborative, reproducible and transparent Environmental Science.
 
 ## Who is the book for?
 While the scientific community is broad, the target audience of the EDS book is:
@@ -12,7 +12,7 @@ While the scientific community is broad, the target audience of the EDS book is:
 # How to contribute?
 The EDS book welcomes contributions from anyone, not only those listed in the target audience.
 The core GitHub repository is public and open source licensed (see [here](https://github.com/alan-turing-institute/environmental-ds-book)). 
-The executable notebooks are hosted in the [EDS book organization](https://github.com/Environmental-DS-Book). 
+The executable notebooks are hosted in the [EDS book Gallery organization](https://github.com/eds-book-gallery). 
 Please see the EDS [contributor’s guide](https://github.com/alan-turing-institute/environmental-ds-book/blob/master/CONTRIBUTING.md) for details on how you can get involved.
 
 <style>
