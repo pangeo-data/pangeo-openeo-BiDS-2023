@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,8 +39,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -78,6 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -390,10 +400,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -401,7 +411,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -617,7 +627,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
     <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px;">Client</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-8dda402a-4cad-11ee-8d07-6045bd844e23</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-89317777-5b83-11ee-8d55-000d3a5b286a</p>
         <table style="width: 100%; text-align: left;">
 
         <tr>
@@ -648,7 +658,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
     </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px; margin-top: 0px;">LocalCluster</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">684e9ca8</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">1e42eaf8</p>
         <table style="width: 100%; text-align: left;">
             <tr>
                 <td style="text-align: left;">
@@ -663,7 +673,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                     <strong>Total threads:</strong> 2
                 </td>
                 <td style="text-align: left;">
-                    <strong>Total memory:</strong> 6.77 GiB
+                    <strong>Total memory:</strong> 6.76 GiB
                 </td>
             </tr>
             
@@ -685,11 +695,11 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
         <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
         <div style="margin-left: 48px;">
             <h3 style="margin-bottom: 0px;">Scheduler</h3>
-            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-1ac4198e-3e1e-46b6-b8cc-a63742292ce5</p>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-524b0777-81b8-4e2f-95c9-0a4294623694</p>
             <table style="width: 100%; text-align: left;">
                 <tr>
                     <td style="text-align: left;">
-                        <strong>Comm:</strong> tcp://127.0.0.1:45061
+                        <strong>Comm:</strong> tcp://127.0.0.1:45607
                     </td>
                     <td style="text-align: left;">
                         <strong>Workers:</strong> 2
@@ -708,7 +718,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                         <strong>Started:</strong> Just now
                     </td>
                     <td style="text-align: left;">
-                        <strong>Total memory:</strong> 6.77 GiB
+                        <strong>Total memory:</strong> 6.76 GiB
                     </td>
                 </tr>
             </table>
@@ -731,7 +741,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:34409
+                            <strong>Comm: </strong> tcp://127.0.0.1:38145
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -739,7 +749,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:34207/status" target="_blank">http://127.0.0.1:34207/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:32929/status" target="_blank">http://127.0.0.1:32929/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.38 GiB
@@ -747,13 +757,13 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:36027
+                            <strong>Nanny: </strong> tcp://127.0.0.1:46351
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-nqou6kt8
+                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-o722z50p
                         </td>
                     </tr>
 
@@ -776,7 +786,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:40061
+                            <strong>Comm: </strong> tcp://127.0.0.1:35339
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -784,7 +794,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:38241/status" target="_blank">http://127.0.0.1:38241/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:38837/status" target="_blank">http://127.0.0.1:38837/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.38 GiB
@@ -792,13 +802,13 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:35711
+                            <strong>Nanny: </strong> tcp://127.0.0.1:36863
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-e0wqcahj
+                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-zx68w4rb
                         </td>
                     </tr>
 
@@ -1419,11 +1429,10 @@ As Dask Gateway is configured by default on this ifnrastructure, you just need t
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="chunking_introduction.html"
@@ -1443,10 +1452,7 @@ As Dask Gateway is configured by default on this ifnrastructure, you just need t
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1554,8 +1560,8 @@ By Pangeo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>
