@@ -12,6 +12,7 @@ parts:
 - caption: Before the workshop
   chapters:
   - file: before/setup
+  - file: before/free_trial
 
 - caption: Pangeo 101
   chapters:
