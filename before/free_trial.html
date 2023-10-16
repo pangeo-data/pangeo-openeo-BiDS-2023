@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Setup &#8212; iBiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
+    <title>Registration &#8212; iBiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
   
   
   
@@ -64,11 +64,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'before/setup';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'before/free_trial';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Registration" href="free_trial.html" />
-    <link rel="prev" title="Timeline of the workshops" href="../about/timeline.html" />
+    <link rel="next" title="Handling multi-dimensional arrays with xarray" href="../pangeo101/xarray_introduction.html" />
+    <link rel="prev" title="Setup" href="setup.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,9 +174,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Before the workshop</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="free_trial.html">Registration</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Registration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pangeo 101</span></p>
 <ul class="nav bd-sidenav">
@@ -268,7 +268,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/issues/new?title=Issue%20on%20page%20%2Fbefore/setup.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/issues/new?title=Issue%20on%20page%20%2Fbefore/free_trial.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -298,7 +298,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/before/setup.md" target="_blank"
+      <li><a href="../_sources/before/free_trial.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -380,7 +380,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Setup</h1>
+    <h1>Registration</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -390,15 +390,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Setup</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-how-to-run-the-tutorial">Setup: how to run the tutorial</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-tutorial-on-the-european-open-science-cloud-eosc">Running the tutorial on the European Open Science Cloud (EOSC)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-on-your-own-computer">Running on your own computer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-using-a-binderhub-deployment">Running using a Binderhub deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-with-egi-check-in">Connect with EGI Check-in</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eoplaza">EOPlaza</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-openeo-platform">Working with openEO Platform</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -409,91 +404,107 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="setup">
-<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h1>
-<p>The setup for the tutorials will be described below.</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="setup-how-to-run-the-tutorial">
-<h1>Setup: how to run the tutorial<a class="headerlink" href="#setup-how-to-run-the-tutorial" title="Permalink to this heading">#</a></h1>
-<p>This tutorial’s goal is to provide a wide introduction to the Pangeo ecosystem.
-While participants will see all the core libraries and possibilities offered by the Pangeo software ecosystem, it is also important that they get some insights about what a Pangeo platform is and how to use it.
-This is why we put in place such a platform on top of EOSC federation thanks to provider CESNET.
-We recommend running this tutorial using the EOSC/CESNET infrastructure, which is mainly a Dask-gateway enabled Jupyterhub offering some pre-cooked software environment.
-For more details on this deployment, you may want to take a look at <a class="reference external" href="https://github.com/dask/helm-chart/tree/main/daskhub">Daskhub helm chart</a>.</p>
-<p>This page will describe three ways of running the tutorial:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="registration">
+<h1>Registration<a class="headerlink" href="#registration" title="Permalink to this heading">#</a></h1>
+<figure>
+    <img src="https://raw.githubusercontent.com/openEOPlatform/documentation/main/join/Registration_Flow.png" alt="Registration Flow">
+    <figcaption>Figure 1: Registration Flow</figcaption>
+</figure>
+<p>Register for openEO Platform and immediately start a 30 day free trial:</p>
+<p><a href="https://sso.terrascope.be/auth/realms/terrascope/protocol/openid-connect/auth?client_id=openeoplatform&redirect_uri=https://openeo.cloud/welcome-to-openeo-platform/&state=0%2F95954a95-1968-4a64-8b88-fef0f47936fb&response_type=code&scope=openid" class="action-button" style="display: inline-block; font-size:1.2rem; color: #fff; background-color: #335e6f; padding: 0.8rem 1.6rem; border-radius: 4px; border-bottom: 1px solid #2e5564;">→ Register for openEO Platform</a></p>
+<p>Free trial users receive <strong>1000 free credits</strong> upon registration. openEO Platform is a federation of services which include:</p>
 <ul class="simple">
-<li><p>Through EOSC resources (recommended)</p></li>
-<li><p>Locally on your personal computer</p></li>
-<li><p>Using other available Binderhubs solutions</p></li>
+<li><p>EGI for Authentification &amp; Authorization via <a class="reference external" href="https://www.egi.eu/services/check-in/">EGI Check-in</a></p></li>
+<li><p>Terrascope EOPlaza for Account management</p></li>
+<li><p>EODC for provisioning of JupyterLab</p></li>
+<li><p>Terrascope including Sentinel Hub connection via the EuroDataCube, EODC and Sentinel Hub backends</p></li>
 </ul>
-<section id="running-the-tutorial-on-the-european-open-science-cloud-eosc">
-<h2>Running the tutorial on the European Open Science Cloud (EOSC)<a class="headerlink" href="#running-the-tutorial-on-the-european-open-science-cloud-eosc" title="Permalink to this heading">#</a></h2>
-<p>First, before the FOSS4G workshop, all the participants will have to create an EGI account and enroll to the the Virtual Organisations to have access to EOSC Pangeo JupyterHub and/or EOSC EGI BinderHub.
-There are several steps to follow:</p>
-<ol class="arabic simple">
-<li><p>Sign up for an EGI account:  <a class="reference external" href="https://aai.egi.eu/signup">https://aai.egi.eu/signup</a>. Use your <a class="reference external" href="https://orcid.org/">ORCID</a> account to authenticate or social media account e.g. <a class="reference external" href="https://github.com/">GitHub</a>.</p></li>
-<li><p>Enroll to the <strong><a class="reference external" href="http://vo.notebooks.egi.eu">vo.notebooks.egi.eu</a></strong> VO by clicking on <a class="reference external" href="https://aai.egi.eu/registry/co_petitions/start/coef:111">https://aai.egi.eu/registry/co_petitions/start/coef:111</a>. This will take you to the website shown on the Figure <img alt="EGI account" src="../_images/EGI-VO.png" /> and then to <img alt="EGI join VO notebook" src="../_images/EGI-join-VO.png" />. For the latter e.g. when asking to join the EGI VO notebook,  in the “statement for purpose” simply write “<strong>To execute Jupyter notebooks at the Pangeo 101 workshop in the frame of the FOSS4G-2022 conference</strong>”. Review and agree on the policy and click on “Submit”. Once your enrollment has been validated you will have access to <a class="reference external" href="https://binder.notebooks.egi.eu/">https://binder.notebooks.egi.eu/</a> (it requires you to authenticate using EGI Check-in credentials), a service building on BinderHub but with more compute resources than <a class="reference external" href="https://mybinder.org/">https://mybinder.org/</a>.</p></li>
-<li><p>Similarly create another account on the <strong>development instance</strong> of EGI Check-In, clicking on: <a class="reference external" href="https://aai-dev.egi.eu/registry/co_petitions/start/coef:2">https://aai-dev.egi.eu/registry/co_petitions/start/coef:2</a>.</p></li>
-<li><p><strong>Enroll</strong> in the “<a class="reference external" href="http://vo.pangeo.eu">vo.pangeo.eu</a>” Virtual Organisation by clicking on: <a class="reference external" href="https://aai-dev.egi.eu/registry/co_petitions/start/coef:290">https://aai-dev.egi.eu/registry/co_petitions/start/coef:290</a> (no statement of purpose required).</p></li>
-</ol>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It is <strong>important</strong> to perform all these steps <strong>as early as possible</strong> in order for managers of the Virtual Organisations to approve your petitions to join (which may <strong>take several days</strong>).</p>
+<p>The Network of Resources a ESA sponsoring initiative to facilitate the use of cloud environments.
+The registration link above will lead you automatically through a couple of phases,
+which are explained in the graphic below.</p>
+<section id="connect-with-egi-check-in">
+<h2>Connect with EGI Check-in<a class="headerlink" href="#connect-with-egi-check-in" title="Permalink to this heading">#</a></h2>
+<p>The first step is to become member of the <em>EGI User Community</em>,
+by creating an account there,
+preferably by just connecting with an <strong>existing account</strong>
+and filling in some additional information.</p>
+<div class="highlight-tip notranslate"><div class="highlight"><pre><span></span>OpenEO Platform relies on
+[EGI Check-in](https://www.egi.eu/services/check-in/)
+(provided by the [EGI Foundation](https://egi.eu))
+for authentication and authorization services,
+which offers several benefits:
+
+- Register and log in through an **existing account**
+  from either your academic/scientific institution,
+  or other social platforms such as Google, GitHub, Facebook or LinkedIn.
+- No need to set up and remember yet another username-password combo.
+- Neither openEO Platform nor the EGI Foundation see, handle or store your password.
+- openEO Platform and EOPlaza only keep minimal user information (e.g. email address).
+  Check the privacy policy of [openEO Platform](https://openeo.cloud/privacy-policy)
+  and [EOPlaza](https://vito.be/en/privacy-policy) for further details.
+- Use the same EGI account accross multiple scientific services
+</pre></div>
 </div>
-<p>Once your enrollments have been validated, you may need to log out from EGI Check-in to refresh your account. If you have any trouble, request help by <a class="reference external" href="https://github.com/pangeo-data/foss4g-2022/issues/new">filling an issue</a> before the workshop. Someone will assist you with the setup.</p>
-<p>To access the Pangeo EOSC JupyterHub, you need to click on <a class="reference external" href="https://pangeo-foss4g.vm.fedcloud.eu/jupyterhub/hub/user-redirect/git-pull?repo=https%3A//github.com/pangeo-data/foss4g-2022&amp;urlpath=lab/tree/foss4g-2022/tutorial/pangeo101/&amp;branch=main">this link</a> to open a Jupyterlab on the correct folder for the tutorial.</p>
-<p>Under the hood, this will clone the <a class="github reference external" href="https://github.com/pangeo-data/foss4g-2022">pangeo-data/foss4g-2022</a> repository and put you in the correct folder for executing our tutorial.</p>
-<p>From there, you can open and execute any notebooks used during the workshop, enjoy!</p>
-<p>Alternatively, you can also open notebooks one by one from the PANGEO 101 section of this Jupyterbook by clicking on the rocket icon 🚀 on top of the notebook and choosing Jupyterhub option.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>After the FOSS4G workshop, you can continue to use the resources, but note that we would probably modify the service and things might not work from time to time.
-We would appreciate you get in touch with us to give us some feedback and be informed of the platform evolution. You can do this through <a class="reference external" href="https://github.com/pangeo-data/foss4g-2022/discussions">Github Discussions</a>.</p>
-<p>You can also contribute to “the Pangeo show and tell” online meetups.</p>
+<div class="highlight-warning notranslate"><div class="highlight"><pre><span></span>We recommend using your **institutional account** whenever possible.
+Nevertheless, if you are the first member of your institution to work with EGI Check-in, 
+problems may occur and sometimes require your institution&#39;s IT team to properly
+support EGI Check-in through EduGain.
+[Contact EGI](https://www.egi.eu/service-contact/) for further support.
+</pre></div>
 </div>
+<div class="highlight-tip notranslate"><div class="highlight"><pre><span></span>Did you already connect an existing account with EGI Check-in in the past,
+or you are unsure about that?
+Just follow the procedure discussed here:
+previously completed steps will be skipped automatically.
+</pre></div>
+</div>
+<p>To get an idea of how the EGI sign up flow works and what it will require from you,
+you can consult an <a class="reference external" href="https://docs.egi.eu/users/aai/check-in/signup/">illustrated step-by-step guide in the EGI Documentation</a>.
+If problems occur during this process, feel free to send a support request to <code class="docutils literal notranslate"><span class="pre">check-in</span> <span class="pre">&lt;at&gt;</span> <span class="pre">egi.eu</span></code>.</p>
+<p>If you didn’t see the list of institutions and (social) platforms, you are likely already logged in.
+In this case you can simply select <em>‘SIGN UP’</em>.</p>
+<p>Afterward, you will have to complete a small registration procedure to connect your account.
+You may have to fill any missing personal information: <em>Name</em>, <em>Email</em>, <em>Affiliation</em> and/or <em>Organisation</em>.</p>
+<div class="highlight-danger notranslate"><div class="highlight"><pre><span></span>Please Wait until your registration is processed and you see the following Banner on top of your screen:
+&lt;figure&gt;
+    &lt;img src=&quot;https://raw.githubusercontent.com/openEOPlatform/documentation/main/join/join0.png&quot; alt=&quot;Join EGI user community - process end&quot;&gt;
+    &lt;figcaption&gt;Figure 2: Join EGI user community - Screen when the process is finished&lt;/figcaption&gt;
+&lt;/figure&gt;
+</pre></div>
+</div>
+<p>After submitting the registration form, you will receive a verification e-mail.
+The e-mail verification needs to be completed before you can contine with the next steps.</p>
 </section>
-<section id="running-on-your-own-computer">
-<h2>Running on your own computer<a class="headerlink" href="#running-on-your-own-computer" title="Permalink to this heading">#</a></h2>
-<p>Most parts of this tutorial were designed to run with limited computer resources, so it is possible to run on your laptop.
-It is a bit more complicated as you will have to install the software environment yourself. Also you will not be able to test real cloud distributed processing with Dask gateway.</p>
-<p>Steps to run this tutorial on your own computer are listed below and demonstrated <em>through Linux commands only</em>:</p>
-<ol class="arabic simple">
-<li><p>git clone the foss4g-2022 repository.</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pangeo-data/foss4g-2022.git
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Install the required software environment with Conda. If you do not have Conda, install it by following these instructions (see <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">here</a>). Then create the environment, this can take a few minutes.</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>pangeo-foss4g<span class="w"> </span>-f<span class="w"> </span>foss4g-2022/.binder/environment.yml
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>Launch a Jupyterlab notebook server from this environment.</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>pangeo-foss4g
-jupyter<span class="w"> </span>lab
-</pre></div>
-</div>
-<ol class="arabic simple" start="4">
-<li><p>Open a web browser and connect to the Jupyterlab provided URL (you should see it in the jupyter lab command outputs), something like: <a class="reference external" href="http://localhost:8888/lab?token=42fac6733c6854578b981bca3abf5152">http://localhost:8888/lab?token=42fac6733c6854578b981bca3abf5152</a>.</p></li>
-<li><p>Navigate to foss4g-2022/tutorial/pangeo101/ using the file browser on the left side of the Jupyterlab screen.</p></li>
-</ol>
+<section id="eoplaza">
+<h2>EOPlaza<a class="headerlink" href="#eoplaza" title="Permalink to this heading">#</a></h2>
+<p>Once you finished the registration flow at EGI Check-in,
+you will be forwarded to EOPlaza for further set up of your openEO Platform account.</p>
+<p>For example, on the <a class="reference external" href="https://portal.terrascope.be/dashboard">EOPlaza Dashboard</a>
+you can consult your balance of credits.
+Whenever you consume processing resources on openEO Platform, credits will be deducted.
+You can increase the number of credits by a <a class="reference external" href="https://openeo.cloud/esa-network-of-resources-funding/">Network of Resources</a> request,
+or acquiring them directly on EOPlaza.</p>
+<p>If you have any questions about the enrollment to openEO Platform or the free trial period,
+please <a class="reference external" href="https://openeo.cloud/contact/">contact us</a>.</p>
 </section>
-<section id="running-using-a-binderhub-deployment">
-<h2>Running using a Binderhub deployment<a class="headerlink" href="#running-using-a-binderhub-deployment" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="https://binderhub.readthedocs.io/en/latest/">Binderhub</a> is a cloud service that allows users to share reproducible interactive computing environments from code repositories. It is generally used to enable other users to easily run your own code through Jupyter notebooks.
-It is a really cool service offered for free by several organisations (MyBinder through Jupyter, GESIS, etc.).</p>
-<p>It is probably the easiest way to execute notebooks in this repository, as you only have to do one click to arrive in a Jupyterlab with all the necessary libraries.
-However, the hardware resources of the public BinderHub are quite small, so you will not be able to grasp the full potential of the Pangeo software stack, and parts of the notebooks will be unavailable.</p>
-<p>All the notebooks on the PANGEO 101 section, for example <a class="reference internal" href="../pangeo101/xarray_introduction.html"><span class="doc std std-doc">“Handling multi-dimensional arrays with xarray”</span></a> have a rocket icon 🚀 at the top, from which you can select the Binder button to just run this notebook on the <a class="reference external" href="https://notebooks.gesis.org/binder/">GESIS Binder service</a>.</p>
-<p>Alternatively, you can also directly click on the below buttons:</p>
-<p>GESIS:</p>
-<p><a class="reference external" href="https://notebooks.gesis.org/binder/v2/gh/pangeo-data/foss4g-2022/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>MyBinder:</p>
-<p><a class="reference external" href="https://mybinder.org/v2/gh/pangeo-data/foss4g-2022/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>You will then have to navigate to the foss4g-2022/tutorial/pangeo101/ folder using the file browser on the left side of the Jupyterlab screen.</p>
+<section id="working-with-openeo-platform">
+<h2>Working with openEO Platform<a class="headerlink" href="#working-with-openeo-platform" title="Permalink to this heading">#</a></h2>
+<p>After you’ve been registered on openEO Platform, you can start working with
+the platform through any of the clients. With all clients you will need to connect to
+<code class="docutils literal notranslate"><span class="pre">https://openeo.cloud</span></code> and then authenticate through EGI Check-in with the
+account used above.</p>
+<div class="highlight-tip notranslate"><div class="highlight"><pre><span></span>For your own convenience, we advise you to always log in with the same identity provider you originally registered with. Otherwise, you run the risk of creating a separate new EGI account, which in turn will have to go through the openEO Platform virtual organization acceptance process again.
+It is possible to link multiple accounts from multiple identity providers to the same EGI account. However, this must be done before you use these accounts to log in, as explained in the [EGI documentation](https://docs.egi.eu/users/aai/check-in/linking/).
+</pre></div>
+</div>
+<p>See the getting started guides to find out more about how to use the clients for this:</p>
+<ul class="simple">
+<li><p><span class="xref myst">Editor</span></p></li>
+<li><p><span class="xref myst">JavaScript</span></p></li>
+<li><p><span class="xref myst">JupyterLab</span></p></li>
+<li><p><span class="xref myst">Python</span></p></li>
+<li><p><span class="xref myst">R</span></p></li>
+</ul>
 </section>
 </section>
 
@@ -528,20 +539,20 @@ However, the hardware resources of the public BinderHub are quite small, so you 
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../about/timeline.html"
+       href="setup.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Timeline of the workshops</p>
+        <p class="prev-next-title">Setup</p>
       </div>
     </a>
     <a class="right-next"
-       href="free_trial.html"
+       href="../pangeo101/xarray_introduction.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Registration</p>
+        <p class="prev-next-title">Handling multi-dimensional arrays with xarray</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -560,15 +571,10 @@ However, the hardware resources of the public BinderHub are quite small, so you 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Setup</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-how-to-run-the-tutorial">Setup: how to run the tutorial</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-tutorial-on-the-european-open-science-cloud-eosc">Running the tutorial on the European Open Science Cloud (EOSC)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-on-your-own-computer">Running on your own computer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-using-a-binderhub-deployment">Running using a Binderhub deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-with-egi-check-in">Connect with EGI Check-in</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eoplaza">EOPlaza</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-openeo-platform">Working with openEO Platform</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>

@@ -4,7 +4,7 @@ Traceback (most recent call last):
   File "/home/runner/micromamba/envs/bids23/lib/python3.11/site-packages/nbclient/client.py", line 1305, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/micromamba/envs/bids23/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+  File "/home/runner/micromamba/envs/bids23/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
     return loop.run_until_complete(inner)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/runner/micromamba/envs/bids23/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
@@ -50,41 +50,41 @@ Cell [0;32mIn[2], line 4[0m
 [1;32m     12[0m [43m)[49m
 [1;32m     13[0m LTS
 
-File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/api.py:1012[0m, in [0;36mopen_mfdataset[0;34m(paths, chunks, concat_dim, compat, preprocess, engine, data_vars, coords, combine, parallel, join, attrs_file, combine_attrs, **kwargs)[0m
-[1;32m   1009[0m     open_ [38;5;241m=[39m open_dataset
-[1;32m   1010[0m     getattr_ [38;5;241m=[39m [38;5;28mgetattr[39m
-[0;32m-> 1012[0m datasets [38;5;241m=[39m [43m[[49m[43mopen_[49m[43m([49m[43mp[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mopen_kwargs[49m[43m)[49m[43m [49m[38;5;28;43;01mfor[39;49;00m[43m [49m[43mp[49m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[43mpaths[49m[43m][49m
-[1;32m   1013[0m closers [38;5;241m=[39m [getattr_(ds, [38;5;124m"[39m[38;5;124m_close[39m[38;5;124m"[39m) [38;5;28;01mfor[39;00m ds [38;5;129;01min[39;00m datasets]
-[1;32m   1014[0m [38;5;28;01mif[39;00m preprocess [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/api.py:1027[0m, in [0;36mopen_mfdataset[0;34m(paths, chunks, concat_dim, compat, preprocess, engine, data_vars, coords, combine, parallel, join, attrs_file, combine_attrs, **kwargs)[0m
+[1;32m   1024[0m     open_ [38;5;241m=[39m open_dataset
+[1;32m   1025[0m     getattr_ [38;5;241m=[39m [38;5;28mgetattr[39m
+[0;32m-> 1027[0m datasets [38;5;241m=[39m [43m[[49m[43mopen_[49m[43m([49m[43mp[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mopen_kwargs[49m[43m)[49m[43m [49m[38;5;28;43;01mfor[39;49;00m[43m [49m[43mp[49m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[43mpaths[49m[43m][49m
+[1;32m   1028[0m closers [38;5;241m=[39m [getattr_(ds, [38;5;124m"[39m[38;5;124m_close[39m[38;5;124m"[39m) [38;5;28;01mfor[39;00m ds [38;5;129;01min[39;00m datasets]
+[1;32m   1029[0m [38;5;28;01mif[39;00m preprocess [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
 
-File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/api.py:1012[0m, in [0;36m<listcomp>[0;34m(.0)[0m
-[1;32m   1009[0m     open_ [38;5;241m=[39m open_dataset
-[1;32m   1010[0m     getattr_ [38;5;241m=[39m [38;5;28mgetattr[39m
-[0;32m-> 1012[0m datasets [38;5;241m=[39m [[43mopen_[49m[43m([49m[43mp[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mopen_kwargs[49m[43m)[49m [38;5;28;01mfor[39;00m p [38;5;129;01min[39;00m paths]
-[1;32m   1013[0m closers [38;5;241m=[39m [getattr_(ds, [38;5;124m"[39m[38;5;124m_close[39m[38;5;124m"[39m) [38;5;28;01mfor[39;00m ds [38;5;129;01min[39;00m datasets]
-[1;32m   1014[0m [38;5;28;01mif[39;00m preprocess [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/api.py:1027[0m, in [0;36m<listcomp>[0;34m(.0)[0m
+[1;32m   1024[0m     open_ [38;5;241m=[39m open_dataset
+[1;32m   1025[0m     getattr_ [38;5;241m=[39m [38;5;28mgetattr[39m
+[0;32m-> 1027[0m datasets [38;5;241m=[39m [[43mopen_[49m[43m([49m[43mp[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mopen_kwargs[49m[43m)[49m [38;5;28;01mfor[39;00m p [38;5;129;01min[39;00m paths]
+[1;32m   1028[0m closers [38;5;241m=[39m [getattr_(ds, [38;5;124m"[39m[38;5;124m_close[39m[38;5;124m"[39m) [38;5;28;01mfor[39;00m ds [38;5;129;01min[39;00m datasets]
+[1;32m   1029[0m [38;5;28;01mif[39;00m preprocess [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
 
-File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/api.py:570[0m, in [0;36mopen_dataset[0;34m(filename_or_obj, engine, chunks, cache, decode_cf, mask_and_scale, decode_times, decode_timedelta, use_cftime, concat_characters, decode_coords, drop_variables, inline_array, chunked_array_type, from_array_kwargs, backend_kwargs, **kwargs)[0m
-[1;32m    558[0m decoders [38;5;241m=[39m _resolve_decoders_kwargs(
-[1;32m    559[0m     decode_cf,
-[1;32m    560[0m     open_backend_dataset_parameters[38;5;241m=[39mbackend[38;5;241m.[39mopen_dataset_parameters,
+File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/api.py:573[0m, in [0;36mopen_dataset[0;34m(filename_or_obj, engine, chunks, cache, decode_cf, mask_and_scale, decode_times, decode_timedelta, use_cftime, concat_characters, decode_coords, drop_variables, inline_array, chunked_array_type, from_array_kwargs, backend_kwargs, **kwargs)[0m
+[1;32m    561[0m decoders [38;5;241m=[39m _resolve_decoders_kwargs(
+[1;32m    562[0m     decode_cf,
+[1;32m    563[0m     open_backend_dataset_parameters[38;5;241m=[39mbackend[38;5;241m.[39mopen_dataset_parameters,
 [0;32m   (...)[0m
-[1;32m    566[0m     decode_coords[38;5;241m=[39mdecode_coords,
-[1;32m    567[0m )
-[1;32m    569[0m overwrite_encoded_chunks [38;5;241m=[39m kwargs[38;5;241m.[39mpop([38;5;124m"[39m[38;5;124moverwrite_encoded_chunks[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m)
-[0;32m--> 570[0m backend_ds [38;5;241m=[39m [43mbackend[49m[38;5;241;43m.[39;49m[43mopen_dataset[49m[43m([49m
-[1;32m    571[0m [43m    [49m[43mfilename_or_obj[49m[43m,[49m
-[1;32m    572[0m [43m    [49m[43mdrop_variables[49m[38;5;241;43m=[39;49m[43mdrop_variables[49m[43m,[49m
-[1;32m    573[0m [43m    [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mdecoders[49m[43m,[49m
-[1;32m    574[0m [43m    [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m,[49m
-[1;32m    575[0m [43m[49m[43m)[49m
-[1;32m    576[0m ds [38;5;241m=[39m _dataset_from_backend_dataset(
-[1;32m    577[0m     backend_ds,
-[1;32m    578[0m     filename_or_obj,
+[1;32m    569[0m     decode_coords[38;5;241m=[39mdecode_coords,
+[1;32m    570[0m )
+[1;32m    572[0m overwrite_encoded_chunks [38;5;241m=[39m kwargs[38;5;241m.[39mpop([38;5;124m"[39m[38;5;124moverwrite_encoded_chunks[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m)
+[0;32m--> 573[0m backend_ds [38;5;241m=[39m [43mbackend[49m[38;5;241;43m.[39;49m[43mopen_dataset[49m[43m([49m
+[1;32m    574[0m [43m    [49m[43mfilename_or_obj[49m[43m,[49m
+[1;32m    575[0m [43m    [49m[43mdrop_variables[49m[38;5;241;43m=[39;49m[43mdrop_variables[49m[43m,[49m
+[1;32m    576[0m [43m    [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mdecoders[49m[43m,[49m
+[1;32m    577[0m [43m    [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m,[49m
+[1;32m    578[0m [43m[49m[43m)[49m
+[1;32m    579[0m ds [38;5;241m=[39m _dataset_from_backend_dataset(
+[1;32m    580[0m     backend_ds,
+[1;32m    581[0m     filename_or_obj,
 [0;32m   (...)[0m
-[1;32m    588[0m     [38;5;241m*[39m[38;5;241m*[39mkwargs,
-[1;32m    589[0m )
-[1;32m    590[0m [38;5;28;01mreturn[39;00m ds
+[1;32m    591[0m     [38;5;241m*[39m[38;5;241m*[39mkwargs,
+[1;32m    592[0m )
+[1;32m    593[0m [38;5;28;01mreturn[39;00m ds
 
 File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/zarr.py:965[0m, in [0;36mZarrBackendEntrypoint.open_dataset[0;34m(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, use_cftime, decode_timedelta, group, mode, synchronizer, consolidated, chunk_store, storage_options, stacklevel, zarr_version)[0m
 [1;32m    944[0m [38;5;28;01mdef[39;00m [38;5;21mopen_dataset[39m(  [38;5;66;03m# type: ignore[override]  # allow LSP violation, not supporting **kwargs[39;00m

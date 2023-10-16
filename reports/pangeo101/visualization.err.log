@@ -1,0 +1,75 @@
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/bids23/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/runner/micromamba/envs/bids23/lib/python3.11/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/bids23/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/bids23/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/bids23/lib/python3.11/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/home/runner/micromamba/envs/bids23/lib/python3.11/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/runner/micromamba/envs/bids23/lib/python3.11/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pooch
+
+cgls_file = pooch.retrieve(
+    url="https://zenodo.org/record/6969999/files/C_GLS_NDVI_20220101_20220701_Lombardia_S3_2_masked.nc",
+    known_hash="md5:be3f16913ebbdb4e7af227f971007b22",
+    path=f".",
+)
+------------------
+
+----- stderr -----
+Downloading data from 'https://zenodo.org/record/6969999/files/C_GLS_NDVI_20220101_20220701_Lombardia_S3_2_masked.nc' to file '/home/runner/work/pangeo-openeo-BiDS-2023/pangeo-openeo-BiDS-2023/tutorial/pangeo101/3bcb6b0879f7f1f3eebff65b142241cf-C_GLS_NDVI_20220101_20220701_Lombardia_S3_2_masked.nc'.
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+Cell [0;32mIn[1], line 3[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mpooch[39;00m
+[0;32m----> 3[0m cgls_file [38;5;241m=[39m [43mpooch[49m[38;5;241;43m.[39;49m[43mretrieve[49m[43m([49m
+[1;32m      4[0m [43m    [49m[43murl[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mhttps://zenodo.org/record/6969999/files/C_GLS_NDVI_20220101_20220701_Lombardia_S3_2_masked.nc[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m      5[0m [43m    [49m[43mknown_hash[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mmd5:be3f16913ebbdb4e7af227f971007b22[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m      6[0m [43m    [49m[43mpath[49m[38;5;241;43m=[39;49m[38;5;124;43mf[39;49m[38;5;124;43m"[39;49m[38;5;124;43m.[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m      7[0m [43m)[49m
+
+File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/pooch/core.py:239[0m, in [0;36mretrieve[0;34m(url, known_hash, fname, path, processor, downloader, progressbar)[0m
+[1;32m    236[0m [38;5;28;01mif[39;00m downloader [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    237[0m     downloader [38;5;241m=[39m choose_downloader(url, progressbar[38;5;241m=[39mprogressbar)
+[0;32m--> 239[0m [43mstream_download[49m[43m([49m[43murl[49m[43m,[49m[43m [49m[43mfull_path[49m[43m,[49m[43m [49m[43mknown_hash[49m[43m,[49m[43m [49m[43mdownloader[49m[43m,[49m[43m [49m[43mpooch[49m[38;5;241;43m=[39;49m[38;5;28;43;01mNone[39;49;00m[43m)[49m
+[1;32m    241[0m [38;5;28;01mif[39;00m known_hash [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    242[0m     get_logger()[38;5;241m.[39minfo(
+[1;32m    243[0m         [38;5;124m"[39m[38;5;124mSHA256 hash of downloaded file: [39m[38;5;132;01m%s[39;00m[38;5;130;01m\n[39;00m[38;5;124m"[39m
+[1;32m    244[0m         [38;5;124m"[39m[38;5;124mUse this value as the [39m[38;5;124m'[39m[38;5;124mknown_hash[39m[38;5;124m'[39m[38;5;124m argument of [39m[38;5;124m'[39m[38;5;124mpooch.retrieve[39m[38;5;124m'[39m[38;5;124m"[39m
+[0;32m   (...)[0m
+[1;32m    247[0m         file_hash([38;5;28mstr[39m(full_path)),
+[1;32m    248[0m     )
+
+File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/pooch/core.py:804[0m, in [0;36mstream_download[0;34m(url, fname, known_hash, downloader, pooch, retry_if_failed)[0m
+[1;32m    802[0m [38;5;28;01mwith[39;00m temporary_file(path[38;5;241m=[39m[38;5;28mstr[39m(fname[38;5;241m.[39mparent)) [38;5;28;01mas[39;00m tmp:
+[1;32m    803[0m     downloader(url, tmp, pooch)
+[0;32m--> 804[0m     [43mhash_matches[49m[43m([49m[43mtmp[49m[43m,[49m[43m [49m[43mknown_hash[49m[43m,[49m[43m [49m[43mstrict[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[43msource[49m[38;5;241;43m=[39;49m[38;5;28;43mstr[39;49m[43m([49m[43mfname[49m[38;5;241;43m.[39;49m[43mname[49m[43m)[49m[43m)[49m
+[1;32m    805[0m     shutil[38;5;241m.[39mmove(tmp, [38;5;28mstr[39m(fname))
+[1;32m    806[0m [38;5;28;01mbreak[39;00m
+
+File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/pooch/hashes.py:176[0m, in [0;36mhash_matches[0;34m(fname, known_hash, strict, source)[0m
+[1;32m    174[0m     [38;5;28;01mif[39;00m source [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    175[0m         source [38;5;241m=[39m [38;5;28mstr[39m(fname)
+[0;32m--> 176[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[1;32m    177[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00malgorithm[38;5;241m.[39mupper()[38;5;132;01m}[39;00m[38;5;124m hash of downloaded file ([39m[38;5;132;01m{[39;00msource[38;5;132;01m}[39;00m[38;5;124m) does not match[39m[38;5;124m"[39m
+[1;32m    178[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124m the known hash: expected [39m[38;5;132;01m{[39;00mknown_hash[38;5;132;01m}[39;00m[38;5;124m but got [39m[38;5;132;01m{[39;00mnew_hash[38;5;132;01m}[39;00m[38;5;124m. Deleted[39m[38;5;124m"[39m
+[1;32m    179[0m         [38;5;124m"[39m[38;5;124m download for safety. The downloaded file may have been corrupted or[39m[38;5;124m"[39m
+[1;32m    180[0m         [38;5;124m"[39m[38;5;124m the known hash may be outdated.[39m[38;5;124m"[39m
+[1;32m    181[0m     )
+[1;32m    182[0m [38;5;28;01mreturn[39;00m matches
+
+[0;31mValueError[0m: MD5 hash of downloaded file (3bcb6b0879f7f1f3eebff65b142241cf-C_GLS_NDVI_20220101_20220701_Lombardia_S3_2_masked.nc) does not match the known hash: expected md5:be3f16913ebbdb4e7af227f971007b22 but got 39e6eb038d7a02147a800080cd0ccdc9. Deleted download for safety. The downloaded file may have been corrupted or the known hash may be outdated.
+
