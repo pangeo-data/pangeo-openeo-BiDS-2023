@@ -49,7 +49,7 @@ parts:
   - file: part3/advanced_ufunc
     title: Advanced OpenEO (Ufunc)
   - file: part3/advanced_worflow
-    title: Advanced OpenEO (Worflow)
+    title: Advanced OpenEO (Workflow)
 
 - caption: Part 3
   chapters:
