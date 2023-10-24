@@ -18,11 +18,12 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
+import xarray as xr
 LTS = xr.open_mfdataset(
     "reference://", engine="zarr",
     backend_kwargs={
         "storage_options": {
-            "fo": chunk_info,
+            "fo":'./test.json',
         },
         "consolidated": False
     }
@@ -33,17 +34,18 @@ LTS
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mValueError[0m                                Traceback (most recent call last)
-Cell [0;32mIn[16], line 1[0m
-[0;32m----> 1[0m LTS [38;5;241m=[39m [43mxr[49m[38;5;241;43m.[39;49m[43mopen_mfdataset[49m[43m([49m
-[1;32m      2[0m [43m    [49m[38;5;124;43m"[39;49m[38;5;124;43mreference://[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[43mengine[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mzarr[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m      3[0m [43m    [49m[43mbackend_kwargs[49m[38;5;241;43m=[39;49m[43m{[49m
-[1;32m      4[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43mstorage_options[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[43m{[49m
-[1;32m      5[0m [43m            [49m[38;5;124;43m"[39;49m[38;5;124;43mfo[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[43mchunk_info[49m[43m,[49m
-[1;32m      6[0m [43m        [49m[43m}[49m[43m,[49m
-[1;32m      7[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43mconsolidated[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;28;43;01mFalse[39;49;00m
-[1;32m      8[0m [43m    [49m[43m}[49m
-[1;32m      9[0m [43m)[49m
-[1;32m     10[0m LTS
+Cell [0;32mIn[24], line 2[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mxarray[39;00m [38;5;28;01mas[39;00m [38;5;21;01mxr[39;00m
+[0;32m----> 2[0m LTS [38;5;241m=[39m [43mxr[49m[38;5;241;43m.[39;49m[43mopen_mfdataset[49m[43m([49m
+[1;32m      3[0m [43m    [49m[38;5;124;43m"[39;49m[38;5;124;43mreference://[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[43mengine[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mzarr[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m      4[0m [43m    [49m[43mbackend_kwargs[49m[38;5;241;43m=[39;49m[43m{[49m
+[1;32m      5[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43mstorage_options[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[43m{[49m
+[1;32m      6[0m [43m            [49m[38;5;124;43m"[39;49m[38;5;124;43mfo[39;49m[38;5;124;43m"[39;49m[43m:[49m[38;5;124;43m'[39;49m[38;5;124;43m./test.json[39;49m[38;5;124;43m'[39;49m[43m,[49m
+[1;32m      7[0m [43m        [49m[43m}[49m[43m,[49m
+[1;32m      8[0m [43m        [49m[38;5;124;43m"[39;49m[38;5;124;43mconsolidated[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[38;5;28;43;01mFalse[39;49;00m
+[1;32m      9[0m [43m    [49m[43m}[49m
+[1;32m     10[0m [43m)[49m
+[1;32m     11[0m LTS
 
 File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/api.py:1027[0m, in [0;36mopen_mfdataset[0;34m(paths, chunks, concat_dim, compat, preprocess, engine, data_vars, coords, combine, parallel, join, attrs_file, combine_attrs, **kwargs)[0m
 [1;32m   1024[0m     open_ [38;5;241m=[39m open_dataset
@@ -81,39 +83,39 @@ File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backend
 [1;32m    592[0m )
 [1;32m    593[0m [38;5;28;01mreturn[39;00m ds
 
-File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/zarr.py:965[0m, in [0;36mZarrBackendEntrypoint.open_dataset[0;34m(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, use_cftime, decode_timedelta, group, mode, synchronizer, consolidated, chunk_store, storage_options, stacklevel, zarr_version)[0m
-[1;32m    944[0m [38;5;28;01mdef[39;00m [38;5;21mopen_dataset[39m(  [38;5;66;03m# type: ignore[override]  # allow LSP violation, not supporting **kwargs[39;00m
-[1;32m    945[0m     [38;5;28mself[39m,
-[1;32m    946[0m     filename_or_obj: [38;5;28mstr[39m [38;5;241m|[39m os[38;5;241m.[39mPathLike[Any] [38;5;241m|[39m BufferedIOBase [38;5;241m|[39m AbstractDataStore,
+File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/zarr.py:967[0m, in [0;36mZarrBackendEntrypoint.open_dataset[0;34m(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, use_cftime, decode_timedelta, group, mode, synchronizer, consolidated, chunk_store, storage_options, stacklevel, zarr_version)[0m
+[1;32m    946[0m [38;5;28;01mdef[39;00m [38;5;21mopen_dataset[39m(  [38;5;66;03m# type: ignore[override]  # allow LSP violation, not supporting **kwargs[39;00m
+[1;32m    947[0m     [38;5;28mself[39m,
+[1;32m    948[0m     filename_or_obj: [38;5;28mstr[39m [38;5;241m|[39m os[38;5;241m.[39mPathLike[Any] [38;5;241m|[39m BufferedIOBase [38;5;241m|[39m AbstractDataStore,
 [0;32m   (...)[0m
-[1;32m    962[0m     zarr_version[38;5;241m=[39m[38;5;28;01mNone[39;00m,
-[1;32m    963[0m ) [38;5;241m-[39m[38;5;241m>[39m Dataset:
-[1;32m    964[0m     filename_or_obj [38;5;241m=[39m _normalize_path(filename_or_obj)
-[0;32m--> 965[0m     store [38;5;241m=[39m [43mZarrStore[49m[38;5;241;43m.[39;49m[43mopen_group[49m[43m([49m
-[1;32m    966[0m [43m        [49m[43mfilename_or_obj[49m[43m,[49m
-[1;32m    967[0m [43m        [49m[43mgroup[49m[38;5;241;43m=[39;49m[43mgroup[49m[43m,[49m
-[1;32m    968[0m [43m        [49m[43mmode[49m[38;5;241;43m=[39;49m[43mmode[49m[43m,[49m
-[1;32m    969[0m [43m        [49m[43msynchronizer[49m[38;5;241;43m=[39;49m[43msynchronizer[49m[43m,[49m
-[1;32m    970[0m [43m        [49m[43mconsolidated[49m[38;5;241;43m=[39;49m[43mconsolidated[49m[43m,[49m
-[1;32m    971[0m [43m        [49m[43mconsolidate_on_close[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
-[1;32m    972[0m [43m        [49m[43mchunk_store[49m[38;5;241;43m=[39;49m[43mchunk_store[49m[43m,[49m
-[1;32m    973[0m [43m        [49m[43mstorage_options[49m[38;5;241;43m=[39;49m[43mstorage_options[49m[43m,[49m
-[1;32m    974[0m [43m        [49m[43mstacklevel[49m[38;5;241;43m=[39;49m[43mstacklevel[49m[43m [49m[38;5;241;43m+[39;49m[43m [49m[38;5;241;43m1[39;49m[43m,[49m
-[1;32m    975[0m [43m        [49m[43mzarr_version[49m[38;5;241;43m=[39;49m[43mzarr_version[49m[43m,[49m
-[1;32m    976[0m [43m    [49m[43m)[49m
-[1;32m    978[0m     store_entrypoint [38;5;241m=[39m StoreBackendEntrypoint()
-[1;32m    979[0m     [38;5;28;01mwith[39;00m close_on_error(store):
+[1;32m    964[0m     zarr_version[38;5;241m=[39m[38;5;28;01mNone[39;00m,
+[1;32m    965[0m ) [38;5;241m-[39m[38;5;241m>[39m Dataset:
+[1;32m    966[0m     filename_or_obj [38;5;241m=[39m _normalize_path(filename_or_obj)
+[0;32m--> 967[0m     store [38;5;241m=[39m [43mZarrStore[49m[38;5;241;43m.[39;49m[43mopen_group[49m[43m([49m
+[1;32m    968[0m [43m        [49m[43mfilename_or_obj[49m[43m,[49m
+[1;32m    969[0m [43m        [49m[43mgroup[49m[38;5;241;43m=[39;49m[43mgroup[49m[43m,[49m
+[1;32m    970[0m [43m        [49m[43mmode[49m[38;5;241;43m=[39;49m[43mmode[49m[43m,[49m
+[1;32m    971[0m [43m        [49m[43msynchronizer[49m[38;5;241;43m=[39;49m[43msynchronizer[49m[43m,[49m
+[1;32m    972[0m [43m        [49m[43mconsolidated[49m[38;5;241;43m=[39;49m[43mconsolidated[49m[43m,[49m
+[1;32m    973[0m [43m        [49m[43mconsolidate_on_close[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[1;32m    974[0m [43m        [49m[43mchunk_store[49m[38;5;241;43m=[39;49m[43mchunk_store[49m[43m,[49m
+[1;32m    975[0m [43m        [49m[43mstorage_options[49m[38;5;241;43m=[39;49m[43mstorage_options[49m[43m,[49m
+[1;32m    976[0m [43m        [49m[43mstacklevel[49m[38;5;241;43m=[39;49m[43mstacklevel[49m[43m [49m[38;5;241;43m+[39;49m[43m [49m[38;5;241;43m1[39;49m[43m,[49m
+[1;32m    977[0m [43m        [49m[43mzarr_version[49m[38;5;241;43m=[39;49m[43mzarr_version[49m[43m,[49m
+[1;32m    978[0m [43m    [49m[43m)[49m
+[1;32m    980[0m     store_entrypoint [38;5;241m=[39m StoreBackendEntrypoint()
+[1;32m    981[0m     [38;5;28;01mwith[39;00m close_on_error(store):
 
-File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/zarr.py:454[0m, in [0;36mZarrStore.open_group[0;34m(cls, store, mode, synchronizer, group, consolidated, consolidate_on_close, chunk_store, storage_options, append_dim, write_region, safe_chunks, stacklevel, zarr_version, write_empty)[0m
-[1;32m    452[0m     zarr_group [38;5;241m=[39m zarr[38;5;241m.[39mopen_consolidated(store, [38;5;241m*[39m[38;5;241m*[39mopen_kwargs)
-[1;32m    453[0m [38;5;28;01melse[39;00m:
-[0;32m--> 454[0m     zarr_group [38;5;241m=[39m [43mzarr[49m[38;5;241;43m.[39;49m[43mopen_group[49m[43m([49m[43mstore[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mopen_kwargs[49m[43m)[49m
-[1;32m    455[0m [38;5;28;01mreturn[39;00m [38;5;28mcls[39m(
-[1;32m    456[0m     zarr_group,
-[1;32m    457[0m     mode,
+File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/xarray/backends/zarr.py:456[0m, in [0;36mZarrStore.open_group[0;34m(cls, store, mode, synchronizer, group, consolidated, consolidate_on_close, chunk_store, storage_options, append_dim, write_region, safe_chunks, stacklevel, zarr_version, write_empty)[0m
+[1;32m    454[0m     zarr_group [38;5;241m=[39m zarr[38;5;241m.[39mopen_consolidated(store, [38;5;241m*[39m[38;5;241m*[39mopen_kwargs)
+[1;32m    455[0m [38;5;28;01melse[39;00m:
+[0;32m--> 456[0m     zarr_group [38;5;241m=[39m [43mzarr[49m[38;5;241;43m.[39;49m[43mopen_group[49m[43m([49m[43mstore[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mopen_kwargs[49m[43m)[49m
+[1;32m    457[0m [38;5;28;01mreturn[39;00m [38;5;28mcls[39m(
+[1;32m    458[0m     zarr_group,
+[1;32m    459[0m     mode,
 [0;32m   (...)[0m
-[1;32m    462[0m     write_empty,
-[1;32m    463[0m )
+[1;32m    464[0m     write_empty,
+[1;32m    465[0m )
 
 File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/zarr/hierarchy.py:1508[0m, in [0;36mopen_group[0;34m(store, mode, cache_attrs, synchronizer, path, chunk_store, storage_options, zarr_version, meta_array)[0m
 [1;32m   1457[0m [38;5;250m[39m[38;5;124;03m"""Open a group using file-mode-like semantics.[39;00m
