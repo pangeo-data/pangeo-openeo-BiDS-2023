@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Environmental Data Science Book &#8212; iBiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
+    <title>OpenEO - User Defined Functions &#8212; iBiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
   
   
   
@@ -64,10 +64,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'afterword/envds-book';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'part3/advanced_udf';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Project Pythia" href="pythia.html" />
+    <link rel="next" title="OpenEO - User Functions" href="advanced_ufunc.html" />
+    <link rel="prev" title="Parallel computing with Dask" href="scaling_dask.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -189,25 +190,25 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../part2/placeholder.html">Placeholder</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../part3/data_discovery.html">Data discoverability and searchability</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_openEO.html">The Easy-peasy life with OpenEO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_pangeo.html">How to exploit data on Pangeo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../part3/chunking_introduction.html">Data and pre-processing general knowledge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../part3/scaling_dask.html">Scaling with Dask</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../part3/advanced_udf.html">Advanced OpenEO (UDF)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../part3/advanced_ufunc.html">Advanced OpenEO (Ufunc)</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data_discovery.html">Data discoverability and searchability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_exploitability_openEO.html">The Easy-peasy life with OpenEO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_exploitability_pangeo.html">How to exploit data on Pangeo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chunking_introduction.html">Data and pre-processing general knowledge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaling_dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Advanced OpenEO (UDF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_ufunc.html">Advanced OpenEO (Ufunc)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the workshop</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="resources.html">Join the community!</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../afterword/resources.html">Join the community!</a></li>
 
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="pythia.html">Project Pythia</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Environmental Data Science Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../afterword/pythia.html">Project Pythia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../afterword/envds-book.html">Environmental Data Science Book</a></li>
 
 </ul>
 
@@ -255,6 +256,55 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://notebooks.gesis.org/binder/v2/gh/pangeo-data/pangeo-openeo-BiDS-2023/main?urlpath=lab/tree/tutorial/part3/advanced_udf.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://pangeo-foss4g.vm.fedcloud.eu/jupyterhub/hub/user-redirect/git-pull?repo=https%3A//github.com/pangeo-data/pangeo-openeo-BiDS-2023&urlpath=lab/tree/pangeo-openeo-BiDS-2023/tutorial/part3/advanced_udf.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -280,7 +330,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/issues/new?title=Issue%20on%20page%20%2Fafterword/envds-book.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/issues/new?title=Issue%20on%20page%20%2Fpart3/advanced_udf.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -310,7 +360,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/afterword/envds-book.md" target="_blank"
+      <li><a href="../_sources/part3/advanced_udf.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -320,7 +370,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -379,9 +429,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -392,25 +440,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Environmental Data Science Book</h1>
+    <h1>OpenEO - User Defined Functions</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Environmental Data Science Book</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about">About</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-is-the-book-for">Who is the book for?</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-contribute">How to contribute?</a></li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -420,36 +454,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="environmental-data-science-book">
-<h1>Environmental Data Science Book<a class="headerlink" href="#environmental-data-science-book" title="Permalink to this heading">#</a></h1>
-<section id="about">
-<h2>About<a class="headerlink" href="#about" title="Permalink to this heading">#</a></h2>
-<p>The Environmental Data Science Book (or EDS book in short), <a class="reference external" href="https://edsbook.org">https://edsbook.org</a>, is a living, open and community-driven online resource to showcase and support the publication of data, research and open-source tools for collaborative, reproducible and transparent Environmental Science.</p>
-</section>
-<section id="who-is-the-book-for">
-<h2>Who is the book for?<a class="headerlink" href="#who-is-the-book-for" title="Permalink to this heading">#</a></h2>
-<p>While the scientific community is broad, the target audience of the EDS book is:</p>
-<ul class="simple">
-<li><p>Researchers with some background in environmental science interested in AI and data science methods.</p></li>
-<li><p>Researchers with some background in computer science interested in environmental data science.</p></li>
-<li><p>Anyone else interested in reproducibility, inclusive, shareable and collaborative AI and data science for environmental applications.</p></li>
-</ul>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="how-to-contribute">
-<h1>How to contribute?<a class="headerlink" href="#how-to-contribute" title="Permalink to this heading">#</a></h1>
-<p>The EDS book welcomes contributions from anyone, not only those listed in the target audience.
-The core GitHub repository is public and open source licensed (see <a class="reference external" href="https://github.com/alan-turing-institute/environmental-ds-book">here</a>).
-The executable notebooks are hosted in the <a class="reference external" href="https://github.com/eds-book-gallery">EDS book Gallery organization</a>.
-Please see the EDS <a class="reference external" href="https://github.com/alan-turing-institute/environmental-ds-book/blob/master/CONTRIBUTING.md">contributor’s guide</a> for details on how you can get involved.</p>
-<style>
-.responsive-wrap iframe{ max-width: 100%;}
-</style>
-<div class="responsive-wrap">
-<!-- this is the embed code provided by Google -->
-  <iframe src="https://docs.google.com/presentation/d/1IdKnE5jRPR3rPaKkzUtw-5YaUhpsgjsonRlt05d8SgQ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<!-- Google embed ends -->
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="openeo-user-defined-functions">
+<h1>OpenEO - User Defined Functions<a class="headerlink" href="#openeo-user-defined-functions" title="Permalink to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -465,7 +471,7 @@ Please see the EDS <a class="reference external" href="https://github.com/alan-t
         },
         kernelOptions: {
             name: "python3",
-            path: "./afterword"
+            path: "./part3"
         },
         predefinedOutput: true
     }
@@ -483,13 +489,22 @@ Please see the EDS <a class="reference external" href="https://github.com/alan-t
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="pythia.html"
+       href="scaling_dask.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Project Pythia</p>
+        <p class="prev-next-title">Parallel computing with Dask</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="advanced_ufunc.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">OpenEO - User Functions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -497,26 +512,6 @@ Please see the EDS <a class="reference external" href="https://github.com/alan-t
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Environmental Data Science Book</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about">About</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-is-the-book-for">Who is the book for?</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-contribute">How to contribute?</a></li>
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>

@@ -67,8 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'part3/scaling_dask';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Join the community!" href="../afterword/resources.html" />
-    <link rel="prev" title="How to exploit data on Pangeo" href="data_exploitability_pangeo.html" />
+    <link rel="next" title="OpenEO - User Defined Functions" href="advanced_udf.html" />
+    <link rel="prev" title="Data chunking" href="chunking_introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,15 +180,24 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 1 - Pangeo</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../part1/motivation.html">Introduction and Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/overview.html">Overview of the Pangeo ecosystem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part1/xarray_pitfalls.html">Common pitfalls with xarray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part1/visualization.html">Interactive Visualization with Hvplot</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2 - OpenEO</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../part2/placeholder.html">Placeholder</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="data_discovery.html">Data discoverability and searchability</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_exploitability_openEO.html">The Easy-peasy life with OpenEO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_exploitability_pangeo.html">How to exploit data on Pangeo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chunking_introduction.html">Data and pre-processing general knowledge</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Scaling with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_udf.html">Advanced OpenEO (UDF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_ufunc.html">Advanced OpenEO (Ufunc)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the workshop</span></p>
 <ul class="nav bd-sidenav">
@@ -564,7 +573,7 @@ document.write(`
 </section>
 <section id="parallelize-with-dask">
 <h2>Parallelize with Dask<a class="headerlink" href="#parallelize-with-dask" title="Permalink to this heading">#</a></h2>
-<p>We know from previous chapter <span class="xref myst">chunking_introduction</span> that chunking is key for analyzing large datasets. In this episode, we will learn to parallelize our data analysis using <a class="reference external" href="https://docs.dask.org/">Dask</a> on our chunked dataset.</p>
+<p>We know from previous chapter <a class="reference internal" href="chunking_introduction.html"><span class="doc std std-doc">chunking_introduction</span></a> that chunking is key for analyzing large datasets. In this episode, we will learn to parallelize our data analysis using <a class="reference external" href="https://docs.dask.org/">Dask</a> on our chunked dataset.</p>
 <section id="what-is-dask">
 <h3>What is <a class="reference external" href="https://docs.dask.org/">Dask</a> ?<a class="headerlink" href="#what-is-dask" title="Permalink to this heading">#</a></h3>
 <p><strong>Dask</strong> scales the existing Python ecosystem: with very or no changes in your code, you can speed-up computation using Dask or process bigger than memory datasets.</p>
@@ -579,7 +588,7 @@ document.write(`
 <section id="how-does-dask-scale-and-accelerate-your-data-analysis">
 <h4>How does Dask scale and accelerate your data analysis?<a class="headerlink" href="#how-does-dask-scale-and-accelerate-your-data-analysis" title="Permalink to this heading">#</a></h4>
 <p><a class="reference external" href="https://docs.dask.org/en/stable/10-minutes-to-dask.html">Dask proposes different abstractions to distribute your computation</a>. In this <em>Dask Introduction</em> section, we will focus on <a class="reference external" href="https://docs.dask.org/en/stable/array.html">Dask Array</a> which is widely used in pangeo ecosystem as a back end of Xarray.</p>
-<p>As shown in the <span class="xref myst">previous section</span> Dask Array is based on chunks.
+<p>As shown in the <a class="reference internal" href="chunking_introduction.html"><span class="doc std std-doc">previous section</span></a> Dask Array is based on chunks.
 Chunks of a Dask Array are well-known Numpy arrays. By transforming our big datasets to Dask Array, making use of chunk, a large array is handled as many smaller Numpy ones and we can compute each of these chunks independently.</p>
 <p><img alt="Dask and Numpy" src="https://examples.dask.org/_images/dask-array-black-text.svg" /></p>
 <div class="alert alert-info">
@@ -632,7 +641,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
     <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px;">Client</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-d7614a81-7314-11ee-8d69-6045bd6f3da0</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-a07c702f-7317-11ee-8e18-6045bdbdcb50</p>
         <table style="width: 100%; text-align: left;">
 
         <tr>
@@ -663,7 +672,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
     </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px; margin-top: 0px;">LocalCluster</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">af8a4940</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">50c37c5e</p>
         <table style="width: 100%; text-align: left;">
             <tr>
                 <td style="text-align: left;">
@@ -700,11 +709,11 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
         <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
         <div style="margin-left: 48px;">
             <h3 style="margin-bottom: 0px;">Scheduler</h3>
-            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-6dedf3cf-4dd4-4532-aeb1-a381639862a5</p>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-c1d7937e-1085-4db7-9021-b5a5d4eeaeab</p>
             <table style="width: 100%; text-align: left;">
                 <tr>
                     <td style="text-align: left;">
-                        <strong>Comm:</strong> tcp://127.0.0.1:37481
+                        <strong>Comm:</strong> tcp://127.0.0.1:33263
                     </td>
                     <td style="text-align: left;">
                         <strong>Workers:</strong> 2
@@ -746,7 +755,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:46635
+                            <strong>Comm: </strong> tcp://127.0.0.1:34643
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -754,7 +763,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:41815/status" target="_blank">http://127.0.0.1:41815/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:41385/status" target="_blank">http://127.0.0.1:41385/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.38 GiB
@@ -762,13 +771,13 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:41725
+                            <strong>Nanny: </strong> tcp://127.0.0.1:33627
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-b7j91cz3
+                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-jmm_bf2x
                         </td>
                     </tr>
 
@@ -791,7 +800,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:41747
+                            <strong>Comm: </strong> tcp://127.0.0.1:45543
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -799,7 +808,7 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:37449/status" target="_blank">http://127.0.0.1:37449/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:36441/status" target="_blank">http://127.0.0.1:36441/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.38 GiB
@@ -807,13 +816,13 @@ Chunks of a Dask Array are well-known Numpy arrays. By transforming our big data
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:34169
+                            <strong>Nanny: </strong> tcp://127.0.0.1:33331
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-c6xquki5
+                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-zuwfoxrh
                         </td>
                     </tr>
 
@@ -870,7 +879,7 @@ you will just need too look at the html link you have for your jupyterlab, and D
 <p>Let’s open the virtual dataset we’ve prepared as in previous episode, select a single location over time, visualize the task graph generated by Dask, and observe the Dask Dashboard.</p>
 <section id="read-from-online-kerchunked-consolidated-dataset">
 <h3>Read from online kerchunked consolidated dataset<a class="headerlink" href="#read-from-online-kerchunked-consolidated-dataset" title="Permalink to this heading">#</a></h3>
-<p>We will access Long Term TimeSeries of NDVI statistics from OpenStack Object Storage using the Zarr metadata generated with kerchunk, prepared in <span class="xref myst">previous chunking_introduction</span> section.</p>
+<p>We will access Long Term TimeSeries of NDVI statistics from OpenStack Object Storage using the Zarr metadata generated with kerchunk, prepared in <a class="reference internal" href="chunking_introduction.html"><span class="doc std std-doc">previous chunking_introduction</span></a> section.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
@@ -1440,20 +1449,20 @@ As Dask Gateway is configured by default on this ifnrastructure, you just need t
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="data_exploitability_pangeo.html"
+       href="chunking_introduction.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">How to exploit data on Pangeo</p>
+        <p class="prev-next-title">Data chunking</p>
       </div>
     </a>
     <a class="right-next"
-       href="../afterword/resources.html"
+       href="advanced_udf.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Join the community!</p>
+        <p class="prev-next-title">OpenEO - User Defined Functions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
