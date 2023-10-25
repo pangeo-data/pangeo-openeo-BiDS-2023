@@ -14,18 +14,42 @@ parts:
   - file: before/setup
   - file: before/free_trial
 
-- caption: Pangeo 101
+- caption: Part 1 - Pangeo
   chapters:
-  - file: pangeo101/xarray_introduction
-    title: Handling multi-dimensional arrays with xarray
-  - file: pangeo101/visualization
-    title: Interactive plotting with holoviews
-  - file: pangeo101/data_discovery
-    title: Data access and discovery
-  - file: pangeo101/chunking_introduction
-    title: Chunking
-  - file: pangeo101/dask_introduction
-    title: Parallel computing with dask
+  - file: part1/motivation
+    title: Introduction and Motivation
+  - file: part1/overview
+    title: Overview of the Pangeo ecosystem
+  - file: part1/xarray_pitfalls
+    title: Common pitfalls with xarray
+  - file: part1/visualization
+    title: Interactive Visualization with Hvplot
+
+- caption: Part 2 - OpenEO
+  chapters:
+  - file: part2/placeholder
+    title: Placeholder
+
+- caption: Part 3
+  chapters:
+  - file: part3/data_discovery
+    title: Data discoverability and searchability
+  - file: part3/data_exploitability_openEO
+    title: The Easy-peasy life with OpenEO
+  - file: part3/data_exploitability_pangeo
+    title: How to exploit data on Pangeo
+  - file: part/chunking_introduction
+    title: Data and pre-processing general knowledge
+  - file: part3/scaling_dask
+    title: Scaling with Dask
+  - file: part3/scaling_openEO
+    title: Scaling with OpenEO
+  - file: part3/advanced_udf
+    title: Advanced OpenEO (UDF)
+  - file: part3/advanced_ufunc
+    title: Advanced OpenEO (Ufunc)
+  - file: part3/advanced_worflow
+    title: Advanced OpenEO (Workflow)
 
 - caption: Beyond the workshop
   chapters:
