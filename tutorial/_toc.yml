@@ -27,8 +27,10 @@ parts:
 
 - caption: Part 2 - OpenEO
   chapters:
-  - file: part2/placeholder
-    title: Placeholder
+  - file: part2/agenda_and_links
+    title: Agenda
+  - file: part2/advanced_workflows
+    title: Advanced workflows
 
 - caption: Part 3
   chapters:
