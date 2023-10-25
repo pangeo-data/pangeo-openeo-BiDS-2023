@@ -30,7 +30,12 @@ Jeroen (VITO)
  
 - Take over logged-in people showing them workflow creation and custom code introduction into their workflow 
 - complex workflows with predefined functions (worldwater, rank composites)
-- complex workflows with UDF, machine learning or what FuseTS does with running Python libraries such as Whittaker algorithm
+- FAIR metadata generation
+- Short note on costs: https://docs.openeo.cloud/federation/accounting.html#platform-credit-rates
+- Storing results and loading them again with load_stac
+
+This will be in part 3:
+- complex workflows with UDF, machine learning or what FuseTS does with running Python libraries such as Whittaker algorithm 
 
 
 ## 12:15 Feedback Block
