@@ -38,7 +38,7 @@ parts:
     title: The Easy-peasy life with OpenEO
   - file: part3/data_exploitability_pangeo
     title: How to exploit data on Pangeo
-  - file: part/chunking_introduction
+  - file: part3/chunking_introduction
     title: Data and pre-processing general knowledge
   - file: part3/scaling_dask
     title: Scaling with Dask
