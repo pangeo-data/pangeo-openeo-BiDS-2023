@@ -48,7 +48,7 @@ parts:
     title: Advanced OpenEO (UDF)
   - file: part3/advanced_ufunc
     title: Advanced OpenEO (Ufunc)
-  - file: part3/advanced_worflow
+  - file: part3/advanced_workflow
     title: Advanced OpenEO (Workflow)
 
 - caption: Beyond the workshop
