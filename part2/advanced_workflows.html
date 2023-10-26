@@ -191,6 +191,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="agenda_and_links.html">Agenda</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Case 1 Rank composites</a></li>
 
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3</span></p>
 <ul class="nav bd-sidenav">
@@ -201,7 +204,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../part3/scaling_dask.html">Scaling with Dask</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part3/advanced_udf.html">Advanced OpenEO (UDF)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part3/advanced_ufunc.html">Advanced OpenEO (Ufunc)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../part3/advanced_workflow.html">Advanced OpenEO (Workflow)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/advanced_workflow.html">OpenEO - Advanced Workflows</a></li>
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the workshop</span></p>
 <ul class="nav bd-sidenav">
@@ -408,7 +413,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Case 1 Rank composites</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-udf-with-machine-learning">Case 2 UDF with machine learning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-machine-learning-training-and-inference">Case 2 Machine learning training and inference</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3-esa-worldwater">Case 3 ESA WorldWater</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#accounting-in-openeo-platform">Accounting in openEO platform</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fair-metadata-generation">FAIR metadata generation</a></li>
 </ul>
 
             </nav>
@@ -423,11 +431,38 @@ document.write(`
                   
   <section id="case-1-rank-composites">
 <h1>Case 1 Rank composites<a class="headerlink" href="#case-1-rank-composites" title="Permalink to this heading">#</a></h1>
+<p>Scientifically correct compositing is the foundation of many EO processing workflows.
+This case shows a max-NDVI composite, which is also a template for more advanced composites.</p>
 <p><a class="github reference external" href="https://github.com/Open-EO/openeo-community-examples/blob/main/python/RankComposites/rank_composites.ipynb">Open-EO/openeo-community-examples</a></p>
 </section>
-<section id="case-2-udf-with-machine-learning">
-<h1>Case 2 UDF with machine learning<a class="headerlink" href="#case-2-udf-with-machine-learning" title="Permalink to this heading">#</a></h1>
-<p><a class="reference external" href="https://github.com/openEOPlatform/parcel-delineation/blob/main/Parcel%20delineation.ipynb">https://github.com/openEOPlatform/parcel-delineation/blob/main/Parcel delineation.ipynb</a></p>
+<section id="case-2-machine-learning-training-and-inference">
+<h1>Case 2 Machine learning training and inference<a class="headerlink" href="#case-2-machine-learning-training-and-inference" title="Permalink to this heading">#</a></h1>
+<p>Timeseries based classification of pixels to assign categorical labels is another base-technique in the EO
+toolbox. This example uses Random Forest, which is superseded by more advanced AI models, but is still
+regarded by many as a baseline against which more complex approaches can be compared.</p>
+<p>Operational products, like <a class="reference external" href="https://land.copernicus.eu/global/products/lc">Copernicus landcover 3.0</a> are
+also based on random forest.</p>
+<p>Dynamic landcover: <a class="reference external" href="https://docs.openeo.cloud/usecases/landcover/">https://docs.openeo.cloud/usecases/landcover/</a></p>
+</section>
+<section id="case-3-esa-worldwater">
+<h1>Case 3 ESA WorldWater<a class="headerlink" href="#case-3-esa-worldwater" title="Permalink to this heading">#</a></h1>
+<p>ESA WorldWater is an example of rule based classification, using Sentinel-2 and Sentinel-1, it was developed
+by DHI-GRAS.
+<a class="github reference external" href="https://github.com/DHI-GRAS/worldwater-toolbox">DHI-GRAS/worldwater-toolbox</a></p>
+<p>A similar water detection example is the AquaMonitor, developed by Deltares:
+<a class="github reference external" href="https://github.com/c-scale-community/use-case-aquamonitor">c-scale-community/use-case-aquamonitor</a></p>
+</section>
+<section id="accounting-in-openeo-platform">
+<h1>Accounting in openEO platform<a class="headerlink" href="#accounting-in-openeo-platform" title="Permalink to this heading">#</a></h1>
+<p>When running openEO scripts on small scale locally, you use your own resources. When running at larger
+scale in the cloud, this generates a small cost per run.</p>
+<p>While these costs are often relatively small compared to the time savings, it is important to keep track of.
+Here we explain how to do exactly that.</p>
+<p><a class="reference external" href="https://docs.openeo.cloud/federation/accounting.html">https://docs.openeo.cloud/federation/accounting.html</a></p>
+</section>
+<section id="fair-metadata-generation">
+<h1>FAIR metadata generation<a class="headerlink" href="#fair-metadata-generation" title="Permalink to this heading">#</a></h1>
+<p>A short demo on STAC metadata that is generated by these examples.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -494,7 +529,10 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Case 1 Rank composites</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-udf-with-machine-learning">Case 2 UDF with machine learning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-machine-learning-training-and-inference">Case 2 Machine learning training and inference</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3-esa-worldwater">Case 3 ESA WorldWater</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#accounting-in-openeo-platform">Accounting in openEO platform</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fair-metadata-generation">FAIR metadata generation</a></li>
 </ul>
 
   </nav></div>
