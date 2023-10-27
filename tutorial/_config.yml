@@ -5,10 +5,10 @@
 
 #######################################################################################
 # Book settings
-title                       : iBiDS'23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data  # The title of the book. Will be placed in the left navbar.
+title                       : BiDS'23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data  # The title of the book. Will be placed in the left navbar.
 author                      : Pangeo # The author of the book
 copyright                   : "2023"  # Copyright year to be placed in the footer
-logo                        : "./figures/pangeo_logo.png"  # A path to the book logo
+logo                        : "./figures/pangeo_openeo.png"  # A path to the book logo
 only_build_toc_files        : true
 
 # Force re-execution of notebooks on each build.
