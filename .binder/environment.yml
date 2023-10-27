@@ -30,6 +30,7 @@ dependencies:
   - stackstac
   - pystac-client
   - jupyterlab-git
+  - dask-labextension
   - pip
   - pip:
     - wget
