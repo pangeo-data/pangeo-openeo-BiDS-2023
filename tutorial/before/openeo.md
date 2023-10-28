@@ -1,5 +1,7 @@
 
-# Registration
+# OpenEO
+
+## Registration
 
 <figure>
     <img src="https://raw.githubusercontent.com/openEOPlatform/documentation/main/join/Registration_Flow.png" alt="Registration Flow">
@@ -20,7 +22,7 @@ The Network of Resources a ESA sponsoring initiative to facilitate the use of cl
 The registration link above will lead you automatically through a couple of phases,
 which are explained in the graphic below.
 
-## Connect with EGI Check-in
+### Connect with EGI Check-in
 
 The first step is to become member of the *EGI User Community*, 
 by creating an account there,
@@ -88,7 +90,7 @@ After submitting the registration form, you will receive a verification e-mail.
 The e-mail verification needs to be completed before you can contine with the next steps.
 
 
-## EOPlaza
+### EOPlaza
 
 Once you finished the registration flow at EGI Check-in, 
 you will be forwarded to EOPlaza for further set up of your openEO Platform account.
@@ -104,7 +106,7 @@ If you have any questions about the enrollment to openEO Platform or the free tr
 please [contact us](https://openeo.cloud/contact/).
 
 
-## Working with openEO Platform
+### Working with openEO Platform
 
 After you've been registered on openEO Platform, you can start working with
 the platform through any of the clients. With all clients you will need to connect to
