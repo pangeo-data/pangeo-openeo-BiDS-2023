@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'before/setup';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Registration" href="free_trial.html" />
+    <link rel="next" title="Introduction and Motivation" href="../part1/motivation.html" />
     <link rel="prev" title="Timeline of the workshops" href="../about/timeline.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -177,7 +177,6 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Setup</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="free_trial.html">Registration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 1 - Pangeo</span></p>
 <ul class="nav bd-sidenav">
@@ -414,7 +413,6 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Setup</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-how-to-run-the-tutorial">Setup: how to run the tutorial</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-tutorial-on-the-european-open-science-cloud-eosc">Running the tutorial on the European Open Science Cloud (EOSC)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-on-your-own-computer">Running on your own computer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-using-a-binderhub-deployment">Running using a Binderhub deployment</a></li>
 </ul>
@@ -437,70 +435,42 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="setup-how-to-run-the-tutorial">
 <h1>Setup: how to run the tutorial<a class="headerlink" href="#setup-how-to-run-the-tutorial" title="Permalink to this heading">#</a></h1>
-<p>This tutorial’s goal is to provide a wide introduction to the Pangeo ecosystem.
-While participants will see all the core libraries and possibilities offered by the Pangeo software ecosystem, it is also important that they get some insights about what a Pangeo platform is and how to use it.
-This is why we put in place such a platform on top of EOSC federation thanks to provider CESNET.
-We recommend running this tutorial using the EOSC/CESNET infrastructure, which is mainly a Dask-gateway enabled Jupyterhub offering some pre-cooked software environment.
-For more details on this deployment, you may want to take a look at <a class="reference external" href="https://github.com/dask/helm-chart/tree/main/daskhub">Daskhub helm chart</a>.</p>
-<p>This page will describe three ways of running the tutorial:</p>
+<p>This tutorial’s goal is to provide a wide introduction to the Open EO and Pangeo ecosystem.
+While participants will see all the core libraries and possibilities offered by the OpenEO and Pangeo software ecosystem, it is also important that they get some insights about what a OpenEO and Pangeo platform is and how to use it.</p>
+<p>We recommend running this tutorial using the OpenEO, CDEC and Pangeo-EOSC infrastructure.  We recommend users to create logins and try to connect them before the tutorial.<br />
+Creating account and how to run the turorial no these infrastructure are detailed in next pages.</p>
+<p>This page will describe the ways of running the tutorial:</p>
 <ul class="simple">
-<li><p>Through EOSC resources (recommended)</p></li>
 <li><p>Locally on your personal computer</p></li>
-<li><p>Using other available Binderhubs solutions</p></li>
+<li><p>Using Binder services</p></li>
 </ul>
-<section id="running-the-tutorial-on-the-european-open-science-cloud-eosc">
-<h2>Running the tutorial on the European Open Science Cloud (EOSC)<a class="headerlink" href="#running-the-tutorial-on-the-european-open-science-cloud-eosc" title="Permalink to this heading">#</a></h2>
-<p>First, before the FOSS4G workshop, all the participants will have to create an EGI account and enroll to the the Virtual Organisations to have access to EOSC Pangeo JupyterHub and/or EOSC EGI BinderHub.
-There are several steps to follow:</p>
-<ol class="arabic simple">
-<li><p>Sign up for an EGI account:  <a class="reference external" href="https://aai.egi.eu/signup">https://aai.egi.eu/signup</a>. Use your <a class="reference external" href="https://orcid.org/">ORCID</a> account to authenticate or social media account e.g. <a class="reference external" href="https://github.com/">GitHub</a>.</p></li>
-<li><p>Enroll to the <strong><a class="reference external" href="http://vo.notebooks.egi.eu">vo.notebooks.egi.eu</a></strong> VO by clicking on <a class="reference external" href="https://aai.egi.eu/registry/co_petitions/start/coef:111">https://aai.egi.eu/registry/co_petitions/start/coef:111</a>. This will take you to the website shown on the Figure <img alt="EGI account" src="../_images/EGI-VO.png" /> and then to <img alt="EGI join VO notebook" src="../_images/EGI-join-VO.png" />. For the latter e.g. when asking to join the EGI VO notebook,  in the “statement for purpose” simply write “<strong>To execute Jupyter notebooks at the Pangeo 101 workshop in the frame of the FOSS4G-2022 conference</strong>”. Review and agree on the policy and click on “Submit”. Once your enrollment has been validated you will have access to <a class="reference external" href="https://binder.notebooks.egi.eu/">https://binder.notebooks.egi.eu/</a> (it requires you to authenticate using EGI Check-in credentials), a service building on BinderHub but with more compute resources than <a class="reference external" href="https://mybinder.org/">https://mybinder.org/</a>.</p></li>
-<li><p>Similarly create another account on the <strong>development instance</strong> of EGI Check-In, clicking on: <a class="reference external" href="https://aai-dev.egi.eu/registry/co_petitions/start/coef:2">https://aai-dev.egi.eu/registry/co_petitions/start/coef:2</a>.</p></li>
-<li><p><strong>Enroll</strong> in the “<a class="reference external" href="http://vo.pangeo.eu">vo.pangeo.eu</a>” Virtual Organisation by clicking on: <a class="reference external" href="https://aai-dev.egi.eu/registry/co_petitions/start/coef:290">https://aai-dev.egi.eu/registry/co_petitions/start/coef:290</a> (no statement of purpose required).</p></li>
-</ol>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It is <strong>important</strong> to perform all these steps <strong>as early as possible</strong> in order for managers of the Virtual Organisations to approve your petitions to join (which may <strong>take several days</strong>).</p>
-</div>
-<p>Once your enrollments have been validated, you may need to log out from EGI Check-in to refresh your account. If you have any trouble, request help by <a class="reference external" href="https://github.com/pangeo-data/foss4g-2022/issues/new">filling an issue</a> before the workshop. Someone will assist you with the setup.</p>
-<p>To access the Pangeo EOSC JupyterHub, you need to click on <a class="reference external" href="https://pangeo-foss4g.vm.fedcloud.eu/jupyterhub/hub/user-redirect/git-pull?repo=https%3A//github.com/pangeo-data/foss4g-2022&amp;urlpath=lab/tree/foss4g-2022/tutorial/pangeo101/&amp;branch=main">this link</a> to open a Jupyterlab on the correct folder for the tutorial.</p>
-<p>Under the hood, this will clone the <a class="github reference external" href="https://github.com/pangeo-data/foss4g-2022">pangeo-data/foss4g-2022</a> repository and put you in the correct folder for executing our tutorial.</p>
-<p>From there, you can open and execute any notebooks used during the workshop, enjoy!</p>
-<p>Alternatively, you can also open notebooks one by one from the PANGEO 101 section of this Jupyterbook by clicking on the rocket icon 🚀 on top of the notebook and choosing Jupyterhub option.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>After the FOSS4G workshop, you can continue to use the resources, but note that we would probably modify the service and things might not work from time to time.
-We would appreciate you get in touch with us to give us some feedback and be informed of the platform evolution. You can do this through <a class="reference external" href="https://github.com/pangeo-data/foss4g-2022/discussions">Github Discussions</a>.</p>
-<p>You can also contribute to “the Pangeo show and tell” online meetups.</p>
-</div>
-</section>
 <section id="running-on-your-own-computer">
 <h2>Running on your own computer<a class="headerlink" href="#running-on-your-own-computer" title="Permalink to this heading">#</a></h2>
 <p>Most parts of this tutorial were designed to run with limited computer resources, so it is possible to run on your laptop.
 It is a bit more complicated as you will have to install the software environment yourself. Also you will not be able to test real cloud distributed processing with Dask gateway.</p>
 <p>Steps to run this tutorial on your own computer are listed below and demonstrated <em>through Linux commands only</em>:</p>
 <ol class="arabic simple">
-<li><p>git clone the foss4g-2022 repository.</p></li>
+<li><p>git clone the pangeo-openeo-BiDS-2023 repository.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pangeo-data/foss4g-2022.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pangeo-data/pangeo-openeo-BiDS-2023.git
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li><p>Install the required software environment with Conda. If you do not have Conda, install it by following these instructions (see <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">here</a>). Then create the environment, this can take a few minutes.</p></li>
+<li><p>Install the required software environment with micromamba. If you do not have micromamba, install it by following these instructions (see <a class="reference external" href="https://mamba.readthedocs.io/en/latest/micromamba-installation.html">https://docs.conda.io/en/latest/miniconda.html</a>). Then create the environment, this can take a few minutes.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>pangeo-foss4g<span class="w"> </span>-f<span class="w"> </span>foss4g-2022/.binder/environment.yml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>micromamba<span class="w">  </span>create<span class="w"> </span>-n<span class="w"> </span>pangeo-openeo-BiDS-2023<span class="w"> </span>-f<span class="w"> </span>pangeo-openeo-BiDS-2023/.binder/environment.yml
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
 <li><p>Launch a Jupyterlab notebook server from this environment.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>pangeo-foss4g
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>pangeo-openeo-BiDS-2023
 jupyter<span class="w"> </span>lab
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
 <li><p>Open a web browser and connect to the Jupyterlab provided URL (you should see it in the jupyter lab command outputs), something like: <a class="reference external" href="http://localhost:8888/lab?token=42fac6733c6854578b981bca3abf5152">http://localhost:8888/lab?token=42fac6733c6854578b981bca3abf5152</a>.</p></li>
-<li><p>Navigate to foss4g-2022/tutorial/pangeo101/ using the file browser on the left side of the Jupyterlab screen.</p></li>
+<li><p>Navigate to pangeo-openeo-BiDS-2023/tutorial/ using the file browser on the left side of the Jupyterlab screen.</p></li>
 </ol>
 </section>
 <section id="running-using-a-binderhub-deployment">
@@ -509,13 +479,13 @@ jupyter<span class="w"> </span>lab
 It is a really cool service offered for free by several organisations (MyBinder through Jupyter, GESIS, etc.).</p>
 <p>It is probably the easiest way to execute notebooks in this repository, as you only have to do one click to arrive in a Jupyterlab with all the necessary libraries.
 However, the hardware resources of the public BinderHub are quite small, so you will not be able to grasp the full potential of the Pangeo software stack, and parts of the notebooks will be unavailable.</p>
-<p>All the notebooks on the PANGEO 101 section, for example <span class="xref myst">“Handling multi-dimensional arrays with xarray”</span> have a rocket icon 🚀 at the top, from which you can select the Binder button to just run this notebook on the <a class="reference external" href="https://notebooks.gesis.org/binder/">GESIS Binder service</a>.</p>
+<p>All the notebooks on the part1 section, for example <span class="xref myst">“Handling multi-dimensional arrays with xarray”</span> have a rocket icon 🚀 at the top, from which you can select the Binder button to just run this notebook on the <a class="reference external" href="https://notebooks.gesis.org/binder/">GESIS Binder service</a>.</p>
 <p>Alternatively, you can also directly click on the below buttons:</p>
 <p>GESIS:</p>
-<p><a class="reference external" href="https://notebooks.gesis.org/binder/v2/gh/pangeo-data/foss4g-2022/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p><a class="reference external" href="https://notebooks.gesis.org/binder/v2/gh/pangeo-data/pangeo-openeo-BiDS-2023/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>MyBinder:</p>
-<p><a class="reference external" href="https://mybinder.org/v2/gh/pangeo-data/foss4g-2022/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>You will then have to navigate to the foss4g-2022/tutorial/pangeo101/ folder using the file browser on the left side of the Jupyterlab screen.</p>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/pangeo-data/pangeo-openeo-BiDS-2023/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>You will then have to navigate to the pangeo-openeo-BiDS-2023/tutorial/ folder using the file browser on the left side of the Jupyterlab screen.</p>
 </section>
 </section>
 
@@ -559,11 +529,11 @@ However, the hardware resources of the public BinderHub are quite small, so you 
       </div>
     </a>
     <a class="right-next"
-       href="free_trial.html"
+       href="../part1/motivation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Registration</p>
+        <p class="prev-next-title">Introduction and Motivation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -584,7 +554,6 @@ However, the hardware resources of the public BinderHub are quite small, so you 
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Setup</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-how-to-run-the-tutorial">Setup: how to run the tutorial</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-tutorial-on-the-european-open-science-cloud-eosc">Running the tutorial on the European Open Science Cloud (EOSC)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-on-your-own-computer">Running on your own computer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-using-a-binderhub-deployment">Running using a Binderhub deployment</a></li>
 </ul>
