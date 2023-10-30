@@ -5,7 +5,7 @@ channels:
 dependencies:
   - python=3.11
   - jupyter-book
-  - jupyterlab
+  - jupyterlab=3.*
   - matplotlib
   - numpy
   - ghp-import
@@ -29,9 +29,11 @@ dependencies:
   - kerchunk
   - stackstac
   - pystac-client
+  - git
   - jupyterlab-git
   - dask-labextension
-  - pip
+  - leafmap
+  - openeo
   - pip:
     - wget
     - sphinx-exercise
