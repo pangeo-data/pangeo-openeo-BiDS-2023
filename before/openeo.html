@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Part-2: OpenEO (Comment: Intro Session) &#8212; BiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
+    <title>OpenEO &#8212; BiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
   
   
   
@@ -64,11 +64,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'part2/agenda_and_links';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'before/openeo';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Case 1 Rank composites" href="advanced_workflows.html" />
-    <link rel="prev" title="Interactive plotting with HoloViews" href="../part1/visualization.html" />
+    <link rel="next" title="Pangeo@EOSC" href="EOSC.html" />
+    <link rel="prev" title="Setup" href="setup.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,12 +174,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../about/timeline.html">Workshop timeline</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Before the workshop</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../before/setup.html">Setup</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="../before/openeo.html">OpenEO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../before/EOSC.html">Pangeo@EOSC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../before/copernicus.html">Copernicus Data Space Ecosystem</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">OpenEO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EOSC.html">Pangeo@EOSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copernicus.html">Copernicus Data Space Ecosystem</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 1 - Pangeo</span></p>
 <ul class="nav bd-sidenav">
@@ -189,9 +189,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../part1/visualization.html">Interactive Visualization with Hvplot</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2 - OpenEO</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Agenda</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced_workflows.html">Case 1 Rank composites</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../part2/agenda_and_links.html">Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/advanced_workflows.html">Case 1 Rank composites</a></li>
 
 
 
@@ -292,7 +292,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/issues/new?title=Issue%20on%20page%20%2Fpart2/agenda_and_links.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/issues/new?title=Issue%20on%20page%20%2Fbefore/openeo.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -322,7 +322,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/part2/agenda_and_links.md" target="_blank"
+      <li><a href="../_sources/before/openeo.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -404,7 +404,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Part-2: OpenEO (Comment: Intro Session)</h1>
+    <h1>OpenEO</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -414,10 +414,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-openeo-15-minutes">11:00 Getting started with OpenEO (15 minutes)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-data-running-first-graphs-difference-to-client-side-processing">11:15 Finding Data, Running first graphs, difference to client-side processing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrate-custom-code-into-your-workflow-using-user-defined-functions">11:45 Integrate custom code into your workflow using User Defined Functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feedback-block">12:15 Feedback Block</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registration">Registration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-with-egi-check-in">Connect with EGI Check-in</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eoplaza">EOPlaza</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-openeo-platform">Working with openEO Platform</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -429,54 +431,121 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="part-2-openeo-comment-intro-session">
-<h1>Part-2: OpenEO (Comment: Intro Session)<a class="headerlink" href="#part-2-openeo-comment-intro-session" title="Permalink to this heading">#</a></h1>
-<p>This Part is going to introduce participants to openEO Platform. Attendees will learn what openEO Platform is, how to find data and run first process graphs.
-We will also show attendees how to integrate custom code into your workflow using User Defined Functions.</p>
-<section id="getting-started-with-openeo-15-minutes">
-<h2>11:00 Getting started with OpenEO (15 minutes)<a class="headerlink" href="#getting-started-with-openeo-15-minutes" title="Permalink to this heading">#</a></h2>
-<p>Benjamin (EODC)</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="openeo">
+<h1>OpenEO<a class="headerlink" href="#openeo" title="Permalink to this heading">#</a></h1>
+<section id="registration">
+<h2>Registration<a class="headerlink" href="#registration" title="Permalink to this heading">#</a></h2>
+<figure>
+    <img src="https://raw.githubusercontent.com/openEOPlatform/documentation/main/join/Registration_Flow.png" alt="Registration Flow">
+    <figcaption>Figure 1: Registration Flow</figcaption>
+</figure>
+<p>Register for openEO Platform and immediately start a 30 day free trial:</p>
+<p><a href="https://sso.terrascope.be/auth/realms/terrascope/protocol/openid-connect/auth?client_id=openeoplatform&redirect_uri=https://openeo.cloud/welcome-to-openeo-platform/&state=0%2F95954a95-1968-4a64-8b88-fef0f47936fb&response_type=code&scope=openid" class="action-button" style="display: inline-block; font-size:1.2rem; color: #fff; background-color: #335e6f; padding: 0.8rem 1.6rem; border-radius: 4px; border-bottom: 1px solid #2e5564;">→ Register for openEO Platform</a></p>
+<p>Free trial users receive <strong>1000 free credits</strong> upon registration. openEO Platform is a federation of services which include:</p>
 <ul class="simple">
-<li><p>Intro Presentation and Questionnaire on who is the audience</p></li>
+<li><p>EGI for Authentification &amp; Authorization via <a class="reference external" href="https://www.egi.eu/services/check-in/">EGI Check-in</a></p></li>
+<li><p>Terrascope EOPlaza for Account management</p></li>
+<li><p>EODC for provisioning of JupyterLab</p></li>
+<li><p>Terrascope including Sentinel Hub connection via the EuroDataCube, EODC and Sentinel Hub backends</p></li>
+</ul>
+<p>The Network of Resources a ESA sponsoring initiative to facilitate the use of cloud environments.
+The registration link above will lead you automatically through a couple of phases,
+which are explained in the graphic below.</p>
+<section id="connect-with-egi-check-in">
+<h3>Connect with EGI Check-in<a class="headerlink" href="#connect-with-egi-check-in" title="Permalink to this heading">#</a></h3>
+<p>The first step is to become member of the <em>EGI User Community</em>,
+by creating an account there,
+preferably by just connecting with an <strong>existing account</strong>
+and filling in some additional information.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>EGI Check-in based “Single Sign-on”
+OpenEO Platform relies on
+<a class="reference external" href="https://www.egi.eu/services/check-in/">EGI Check-in</a>
+(provided by the <a class="reference external" href="https://egi.eu">EGI Foundation</a>)
+for authentication and authorization services,
+which offers several benefits:</p>
+<ul class="simple">
+<li><p>Register and log in through an <strong>existing account</strong>
+from either your academic/scientific institution,
+or other social platforms such as Google, GitHub, Facebook or LinkedIn.</p></li>
+<li><p>No need to set up and remember yet another username-password combo.</p></li>
+<li><p>Neither openEO Platform nor the EGI Foundation see, handle or store your password.</p></li>
+<li><p>openEO Platform and EOPlaza only keep minimal user information (e.g. email address).
+Check the privacy policy of <a class="reference external" href="https://openeo.cloud/privacy-policy">openEO Platform</a>
+and <a class="reference external" href="https://vito.be/en/privacy-policy">EOPlaza</a> for further details.</p></li>
+<li><p>Use the same EGI account accross multiple scientific services</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Recommendation
+We recommend using your <strong>institutional account</strong> whenever possible.
+Nevertheless, if you are the first member of your institution to work with EGI Check-in,
+problems may occur and sometimes require your institution’s IT team to properly
+support EGI Check-in through EduGain.
+<a class="reference external" href="https://www.egi.eu/service-contact/">Contact EGI</a> for further support.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Already connected?
+Did you already connect an existing account with EGI Check-in in the past,
+or you are unsure about that?
+Just follow the procedure discussed here:
+previously completed steps will be skipped automatically.</p>
+</div>
+<p>To get an idea of how the EGI sign up flow works and what it will require from you,
+you can consult an <a class="reference external" href="https://docs.egi.eu/users/aai/check-in/signup/">illustrated step-by-step guide in the EGI Documentation</a>.
+If problems occur during this process, feel free to send a support request to <code class="docutils literal notranslate"><span class="pre">check-in</span> <span class="pre">&lt;at&gt;</span> <span class="pre">egi.eu</span></code>.</p>
+<p>If you didn’t see the list of institutions and (social) platforms, you are likely already logged in.
+In this case you can simply select <em>‘SIGN UP’</em>.</p>
+<p>Afterward, you will have to complete a small registration procedure to connect your account.
+You may have to fill any missing personal information: <em>Name</em>, <em>Email</em>, <em>Affiliation</em> and/or <em>Organisation</em>.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Patience required!
+Please Wait until your registration is processed and you see the following Banner on top of your screen:</p>
+</div>
+<figure>
+    <img src="https://raw.githubusercontent.com/openEOPlatform/documentation/main/join/join0.png" alt="Join EGI user community - process end">
+    <figcaption>Figure 2: Join EGI user community - Screen when the process is finished</figcaption>
+</figure>
+<p>After submitting the registration form, you will receive a verification e-mail.
+The e-mail verification needs to be completed before you can contine with the next steps.</p>
+</section>
+<section id="eoplaza">
+<h3>EOPlaza<a class="headerlink" href="#eoplaza" title="Permalink to this heading">#</a></h3>
+<p>Once you finished the registration flow at EGI Check-in,
+you will be forwarded to EOPlaza for further set up of your openEO Platform account.</p>
+<p>For example, on the <a class="reference external" href="https://portal.terrascope.be/dashboard">EOPlaza Dashboard</a>
+you can consult your balance of credits.
+Whenever you consume processing resources on openEO Platform, credits will be deducted.
+You can increase the number of credits by a <a class="reference external" href="https://openeo.cloud/esa-network-of-resources-funding/">Network of Resources</a> request,
+or acquiring them directly on EOPlaza.</p>
+<p>If you have any questions about the enrollment to openEO Platform or the free trial period,
+please <a class="reference external" href="https://openeo.cloud/contact/">contact us</a>.</p>
+</section>
+<section id="working-with-openeo-platform">
+<h3>Working with openEO Platform<a class="headerlink" href="#working-with-openeo-platform" title="Permalink to this heading">#</a></h3>
+<p>After you’ve been registered on openEO Platform, you can start working with
+the platform through any of the clients. With all clients you will need to connect to
+<code class="docutils literal notranslate"><span class="pre">https://openeo.cloud</span></code> and then authenticate through EGI Check-in with the
+account used above.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Tip
+For your own convenience, we advise you to always log in with the same identity provider you originally registered with. Otherwise, you run the risk of creating a separate new EGI account, which in turn will have to go through the openEO Platform virtual organization acceptance process again.
+It is possible to link multiple accounts from multiple identity providers to the same EGI account. However, this must be done before you use these accounts to log in, as explained in the <a class="reference external" href="https://docs.egi.eu/users/aai/check-in/linking/">EGI documentation</a>.</p>
+</div>
+<p>See the getting started guides to find out more about how to use the clients for this:</p>
+<ul class="simple">
+<li><p><span class="xref myst">Editor</span></p></li>
+<li><p><span class="xref myst">JavaScript</span></p></li>
+<li><p><span class="xref myst">JupyterLab</span></p></li>
+<li><p><span class="xref myst">Python</span></p></li>
+<li><p><span class="xref myst">R</span></p></li>
 </ul>
 </section>
-<section id="finding-data-running-first-graphs-difference-to-client-side-processing">
-<h2>11:15 Finding Data, Running first graphs, difference to client-side processing<a class="headerlink" href="#finding-data-running-first-graphs-difference-to-client-side-processing" title="Permalink to this heading">#</a></h2>
-<p>Daniel (Sinergise)</p>
-<ul class="simple">
-<li><p>Logging in People and showing them around</p></li>
-<li><p>Showing Different Clients (R, Python &amp; Web editor)</p></li>
-<li><p>Show viewing functionality in webeditor</p></li>
-</ul>
-<p>-&gt; switch to python client here</p>
-<p>Valentina/Sean (EODC)</p>
-<ul class="simple">
-<li><p>Notebook showing how to search data &amp; find metadata</p></li>
-<li><p>Aggregate temporal period, Corine Landcover - Change detection , Tone Mapping</p></li>
-<li><p>Local/ Client Side Processing: → Align with Michele on this what to show - replicate a small UC that we are presenting anyways</p></li>
-</ul>
-</section>
-<section id="integrate-custom-code-into-your-workflow-using-user-defined-functions">
-<h2>11:45 Integrate custom code into your workflow using User Defined Functions<a class="headerlink" href="#integrate-custom-code-into-your-workflow-using-user-defined-functions" title="Permalink to this heading">#</a></h2>
-<p>Jeroen (VITO)</p>
-<ul class="simple">
-<li><p>Take over logged-in people showing them workflow creation and custom code introduction into their workflow</p></li>
-<li><p>complex workflows with predefined functions (worldwater, rank composites)</p></li>
-<li><p>FAIR metadata generation</p></li>
-<li><p>Short note on costs: <a class="reference external" href="https://docs.openeo.cloud/federation/accounting.html#platform-credit-rates">https://docs.openeo.cloud/federation/accounting.html#platform-credit-rates</a></p></li>
-<li><p>Storing results and loading them again with load_stac</p></li>
-</ul>
-<p>This will be in part 3:</p>
-<ul class="simple">
-<li><p>complex workflows with UDF, machine learning or what FuseTS does with running Python libraries such as Whittaker algorithm</p></li>
-</ul>
-</section>
-<section id="feedback-block">
-<h2>12:15 Feedback Block<a class="headerlink" href="#feedback-block" title="Permalink to this heading">#</a></h2>
-<p>Benjamin</p>
-<ul class="simple">
-<li><p>openEO forum, contact e-mail and FAQ, CDSE implementation, MOOC EURAC - <a class="reference external" href="https://eo-college.org/courses/cubes-and-clouds/">https://eo-college.org/courses/cubes-and-clouds/</a></p></li>
-</ul>
 </section>
 </section>
 
@@ -493,7 +562,7 @@ We will also show attendees how to integrate custom code into your workflow usin
         },
         kernelOptions: {
             name: "python3",
-            path: "./part2"
+            path: "./before"
         },
         predefinedOutput: true
     }
@@ -511,20 +580,20 @@ We will also show attendees how to integrate custom code into your workflow usin
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../part1/visualization.html"
+       href="setup.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Interactive plotting with HoloViews</p>
+        <p class="prev-next-title">Setup</p>
       </div>
     </a>
     <a class="right-next"
-       href="advanced_workflows.html"
+       href="EOSC.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Case 1 Rank composites</p>
+        <p class="prev-next-title">Pangeo&#64;EOSC</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -543,10 +612,12 @@ We will also show attendees how to integrate custom code into your workflow usin
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-openeo-15-minutes">11:00 Getting started with OpenEO (15 minutes)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-data-running-first-graphs-difference-to-client-side-processing">11:15 Finding Data, Running first graphs, difference to client-side processing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrate-custom-code-into-your-workflow-using-user-defined-functions">11:45 Integrate custom code into your workflow using User Defined Functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feedback-block">12:15 Feedback Block</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registration">Registration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-with-egi-check-in">Connect with EGI Check-in</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eoplaza">EOPlaza</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-openeo-platform">Working with openEO Platform</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
