@@ -9,7 +9,9 @@ In this section you will learn how to register and access `pangeo-eosc` services
 You need to create an [EGI Check-in account](https://www.egi.eu/service/check-in/) and enroll to the `vo.pangeo.eu` Virtual Organisation. There are several steps to follow:
 
 1. Sign up for an EGI account on the **development instance** of EGI Check-In, clicking on: [https://aai-dev.egi.eu/registry/co_petitions/start/coef:2](https://aai-dev.egi.eu/registry/co_petitions/start/coef:2). **Use your [ORCID iD](https://orcid.org/) account to authenticate.**
-2. **Enroll** in the `vo.pangeo.eu` Virtual Organisation (VO) by clicking on: [https://aai-dev.egi.eu/registry/co_petitions/start/coef:290](https://aai-dev.egi.eu/registry/co_petitions/start/coef:290). Review and click on `Submit`. Please add a note in the statement of purpose when requesting to join the VO explaining why you want to access `pangeo-eosc`.
+2. **Enroll** in the `vo.pangeo.eu` Virtual Organisation (VO) by clicking on: [https://aai-dev.egi.eu/registry/co_petitions/start/coef:290](https://aai-dev.egi.eu/registry/co_petitions/start/coef:290). Review and click on `Submit`. Please add a note in the statement of purpose when requesting to join the VO explaining as "Pangeo / openeo tutorial at the BIDS23" as shown in the example. ![join the VO Login](../figures/pangeo-eosc-register.png)
+
+
 
 Managers of the Virtual Organisations may **take several days** to approve your petitions to join and also get back to you via email to verify your identity.
 
