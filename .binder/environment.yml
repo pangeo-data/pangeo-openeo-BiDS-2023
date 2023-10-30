@@ -26,10 +26,14 @@ dependencies:
   - s3fs
   - ipycytoscape
   - datashader
+  - kerchunk
+  - stackstac
+  - pystac-client
+  - jupyterlab-git
+  - dask-labextension
   - pip
   - pip:
     - wget
     - sphinx-exercise
-    - kerchunk
     - jupytext
     - nbgitpuller
