@@ -18,14 +18,20 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-sentinel2_l2a
+remote_filename = 'https://object-store.cloud.muni.cz/swift/v1/foss4g-data/CGLS_LTS_1999_2019/c_gls_NDVI-LTS_1999-2019-1221_GLOBE_VGT-PROBAV_V3.0.1.nc'
+with fsspec.open(remote_filename) as inf:
+    h5chunks = kerchunk.hdf.SingleHdf5ToZarr(inf, remote_filename, inline_threshold=100)
+    chunk_info = h5chunks.translate()
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[3], line 1[0m
-[0;32m----> 1[0m [43msentinel2_l2a[49m
+Cell [0;32mIn[24], line 2[0m
+[1;32m      1[0m remote_filename [38;5;241m=[39m [38;5;124m'[39m[38;5;124mhttps://object-store.cloud.muni.cz/swift/v1/foss4g-data/CGLS_LTS_1999_2019/c_gls_NDVI-LTS_1999-2019-1221_GLOBE_VGT-PROBAV_V3.0.1.nc[39m[38;5;124m'[39m
+[0;32m----> 2[0m [38;5;28;01mwith[39;00m [43mfsspec[49m[38;5;241m.[39mopen(remote_filename) [38;5;28;01mas[39;00m inf:
+[1;32m      3[0m     h5chunks [38;5;241m=[39m kerchunk[38;5;241m.[39mhdf[38;5;241m.[39mSingleHdf5ToZarr(inf, remote_filename, inline_threshold[38;5;241m=[39m[38;5;241m100[39m)
+[1;32m      4[0m     chunk_info [38;5;241m=[39m h5chunks[38;5;241m.[39mtranslate()
 
-[0;31mNameError[0m: name 'sentinel2_l2a' is not defined
+[0;31mNameError[0m: name 'fsspec' is not defined
 
