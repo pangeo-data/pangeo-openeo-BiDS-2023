@@ -1,0 +1,14 @@
+name: LTS
+sources:
+  LTS:
+    args:
+      consolidated: false
+      storage_options:
+        fo: "https://object-store.cloud.muni.cz/swift/v1/foss4g-catalogue/c_gls_NDVI-LTS_1999-2019.json"
+        target_options:
+          compression: 
+        target_protocol: https
+      urlpath: reference://    
+    description: "ref-marc" 
+    driver: zarr
+    name: marc

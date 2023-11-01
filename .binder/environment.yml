@@ -26,6 +26,7 @@ dependencies:
   - s3fs
   - ipycytoscape
   - datashader
+  - intake-xarray
   - kerchunk
   - stackstac
   - pystac-client
