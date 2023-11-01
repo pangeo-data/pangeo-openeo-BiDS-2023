@@ -18,16 +18,42 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-save = LTS.sel(lat=45.50, lon=9.36, method='nearest')['min'].mean()
-save
+import pooch
+try:
+    cgls_ds = xr.open_dataset('../data/C_GLS_NDVI_20220101_20220701_Lombardia_S3_2_masked.nc')
+except:
+    cgls_file = pooch.retrieve(
+        url="https://zenodo.org/record/6969999/files/C_GLS_NDVI_20220101_20220701_Lombardia_S3_2_masked.nc",
+        known_hash="md5:be3f16913ebbdb4e7af227f971007b22",
+        path=f".",)    
+    cgls_ds = xr.open_dataset(cgls_file)
+cgls_ds
 ------------------
 
+----- stderr -----
+Downloading data from 'https://zenodo.org/record/6969999/files/C_GLS_NDVI_20220101_20220701_Lombardia_S3_2_masked.nc' to file '/home/runner/work/pangeo-openeo-BiDS-2023/pangeo-openeo-BiDS-2023/tutorial/part3/3bcb6b0879f7f1f3eebff65b142241cf-C_GLS_NDVI_20220101_20220701_Lombardia_S3_2_masked.nc'.
+------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[3], line 1[0m
-[0;32m----> 1[0m save [38;5;241m=[39m [43mLTS[49m[38;5;241m.[39msel(lat[38;5;241m=[39m[38;5;241m45.50[39m, lon[38;5;241m=[39m[38;5;241m9.36[39m, method[38;5;241m=[39m[38;5;124m'[39m[38;5;124mnearest[39m[38;5;124m'[39m)[[38;5;124m'[39m[38;5;124mmin[39m[38;5;124m'[39m][38;5;241m.[39mmean()
-[1;32m      2[0m save
+Cell [0;32mIn[17], line 3[0m
+[1;32m      2[0m [38;5;28;01mtry[39;00m:
+[0;32m----> 3[0m     cgls_ds [38;5;241m=[39m [43mxr[49m[38;5;241m.[39mopen_dataset([38;5;124m'[39m[38;5;124m../data/C_GLS_NDVI_20220101_20220701_Lombardia_S3_2_masked.nc[39m[38;5;124m'[39m)
+[1;32m      4[0m [38;5;28;01mexcept[39;00m:
 
-[0;31mNameError[0m: name 'LTS' is not defined
+[0;31mNameError[0m: name 'xr' is not defined
+
+During handling of the above exception, another exception occurred:
+
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[17], line 9[0m
+[1;32m      4[0m [38;5;28;01mexcept[39;00m:
+[1;32m      5[0m     cgls_file [38;5;241m=[39m pooch[38;5;241m.[39mretrieve(
+[1;32m      6[0m         url[38;5;241m=[39m[38;5;124m"[39m[38;5;124mhttps://zenodo.org/record/6969999/files/C_GLS_NDVI_20220101_20220701_Lombardia_S3_2_masked.nc[39m[38;5;124m"[39m,
+[1;32m      7[0m         known_hash[38;5;241m=[39m[38;5;124m"[39m[38;5;124mmd5:be3f16913ebbdb4e7af227f971007b22[39m[38;5;124m"[39m,
+[1;32m      8[0m         path[38;5;241m=[39m[38;5;124mf[39m[38;5;124m"[39m[38;5;124m.[39m[38;5;124m"[39m,)    
+[0;32m----> 9[0m     cgls_ds [38;5;241m=[39m [43mxr[49m[38;5;241m.[39mopen_dataset(cgls_file)
+[1;32m     10[0m cgls_ds
+
+[0;31mNameError[0m: name 'xr' is not defined
 
