@@ -201,11 +201,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="data_exploitability_pangeo.html">How to exploit data on Pangeo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chunking_introduction.html">Data chunking with zarr</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scaling_dask.html">Scaling with Dask</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Advanced OpenEO (UDF)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">OpenEO - User Defined Functions</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="advanced_ufunc.html">Advanced OpenEO (Ufunc)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced_workflow.html">OpenEO - Advanced Workflows</a></li>
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the workshop</span></p>
 <ul class="nav bd-sidenav">
@@ -437,7 +435,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -453,6 +453,19 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">OpenEO - User Defined Functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-udf-with-machine-learning">Case 1 UDF with machine learning</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-eo-data">Sampling EO data</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -464,6 +477,23 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="openeo-user-defined-functions">
 <h1>OpenEO - User Defined Functions<a class="headerlink" href="#openeo-user-defined-functions" title="Permalink to this heading">#</a></h1>
+<p>The openEO user defined functions (UDF’s), provide a way to run Pangeo code as part of a larger openEO workflow.
+This allows you to get the best of both worlds.</p>
+<p>To understand user defined functions, it is recommended to start here:</p>
+<p><a class="reference external" href="https://open-eo.github.io/openeo-python-client/udf.html">https://open-eo.github.io/openeo-python-client/udf.html</a></p>
+<section id="case-1-udf-with-machine-learning">
+<h2>Case 1 UDF with machine learning<a class="headerlink" href="#case-1-udf-with-machine-learning" title="Permalink to this heading">#</a></h2>
+<p>Applying deep learning models is one of the most common reason to use UDF’s.</p>
+<p><a class="reference external" href="https://github.com/openEOPlatform/parcel-delineation/blob/main/Parcel%20delineation.ipynb">https://github.com/openEOPlatform/parcel-delineation/blob/main/Parcel delineation.ipynb</a></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="sampling-eo-data">
+<h1>Sampling EO data<a class="headerlink" href="#sampling-eo-data" title="Permalink to this heading">#</a></h1>
+<p>When calibrating a model, you often want to work on sample datasets that is representative for the full dataset, without actually having to download petabytes of data.</p>
+<p>Therefore, many users sample EO datasets at various point or polygon locations, which then generates a local archive of netCDF files that can be used
+to calibrate a model.</p>
+<p>The local openEO processing support allows to start from samples that are pretty much ‘raw’ data, so that you also have the ability to change your preprocessing pipeline.</p>
+<p><a class="reference external" href="https://open-eo.github.io/openeo-python-client/cookbook/sampling.html">https://open-eo.github.io/openeo-python-client/cookbook/sampling.html</a></p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -520,6 +550,25 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">OpenEO - User Defined Functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-udf-with-machine-learning">Case 1 UDF with machine learning</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-eo-data">Sampling EO data</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
