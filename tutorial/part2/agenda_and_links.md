@@ -16,13 +16,11 @@ Daniel (Sinergise)
 - Showing Different Clients (R, Python & Web editor)
 - Show viewing functionality in webeditor  
 
--> switch to python client here
-
 Valentina/Sean (EODC)
 
 - Notebook showing how to search data & find metadata
 - Aggregate temporal period, Corine Landcover - Change detection , Tone Mapping
-- Local/ Client Side Processing: → Align with Michele on this what to show - replicate a small UC that we are presenting anyways
+- Local/Client Side Processing
 
 
 ## 11:45 Integrate custom code into your workflow using User Defined Functions 
