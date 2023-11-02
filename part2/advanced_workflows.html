@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Case 1 Rank composites &#8212; BiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
+    <title>Advanced workflows in openEO &#8212; BiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
   
   
   
@@ -191,11 +191,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2 - OpenEO</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="agenda_and_links.html">Agenda</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Case 1 Rank composites</a></li>
-
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Advanced workflows</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3</span></p>
 <ul class="nav bd-sidenav">
@@ -404,7 +400,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Case 1 Rank composites</h1>
+    <h1>Advanced workflows in openEO</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -414,13 +410,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Case 1 Rank composites</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-machine-learning-training-and-inference">Case 2 Machine learning training and inference</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3-esa-worldwater">Case 3 ESA WorldWater</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#accounting-in-openeo-platform">Accounting in openEO platform</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fair-metadata-generation">FAIR metadata generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authors-contributors">Authors &amp; Contributors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-rank-composites">Case 1 Rank composites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-machine-learning-training-and-inference">Case 2 Machine learning training and inference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3-esa-worldwater">Case 3 ESA WorldWater</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accounting-in-openeo-platform">Accounting in openEO platform</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fair-metadata-generation">FAIR metadata generation</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -431,31 +428,107 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="case-1-rank-composites">
-<h1>Case 1 Rank composites<a class="headerlink" href="#case-1-rank-composites" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="advanced-workflows-in-openeo">
+<h1>Advanced workflows in openEO<a class="headerlink" href="#advanced-workflows-in-openeo" title="Permalink to this heading">#</a></h1>
+<section id="authors-contributors">
+<h2>Authors &amp; Contributors<a class="headerlink" href="#authors-contributors" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Jeroen Dries, VITO (Belgium)</p></li>
+</ul>
+</section>
+<section id="objectives">
+<h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Learn about what is achievable with standardized openEO processes</p></li>
+<li><p>What are openEO platform ‘credits’</p></li>
+<li><p>Learn about metadata generation in openEO</p></li>
+</ul>
+</section>
+<section id="case-1-rank-composites">
+<h2>Case 1 Rank composites<a class="headerlink" href="#case-1-rank-composites" title="Permalink to this heading">#</a></h2>
 <p>Scientifically correct compositing is the foundation of many EO processing workflows.
 This case shows a max-NDVI composite, which is also a template for more advanced composites.</p>
+<p>Key takeaways:</p>
+<ul class="simple">
+<li><p>Use array_apply to ‘loop’ over data</p></li>
+<li><p>Create masks to selectively load data</p></li>
+</ul>
 <p><a class="github reference external" href="https://github.com/Open-EO/openeo-community-examples/blob/main/python/RankComposites/rank_composites.ipynb">Open-EO/openeo-community-examples</a></p>
 </section>
 <section id="case-2-machine-learning-training-and-inference">
-<h1>Case 2 Machine learning training and inference<a class="headerlink" href="#case-2-machine-learning-training-and-inference" title="Permalink to this heading">#</a></h1>
+<h2>Case 2 Machine learning training and inference<a class="headerlink" href="#case-2-machine-learning-training-and-inference" title="Permalink to this heading">#</a></h2>
 <p>Timeseries based classification of pixels to assign categorical labels is another base-technique in the EO
 toolbox. This example uses Random Forest, which is superseded by more advanced AI models, but is still
 regarded by many as a baseline against which more complex approaches can be compared.</p>
 <p>Operational products, like <a class="reference external" href="https://land.copernicus.eu/global/products/lc">Copernicus landcover 3.0</a> are
 also based on random forest.</p>
+<p>Key takeaways:</p>
+<ul class="simple">
+<li><p>Transform a timeseries datacube into features for learning</p></li>
+<li><p>Use ML processes directly from openEO</p></li>
+</ul>
 <p>Dynamic landcover: <a class="reference external" href="https://docs.openeo.cloud/usecases/landcover/">https://docs.openeo.cloud/usecases/landcover/</a></p>
 </section>
 <section id="case-3-esa-worldwater">
-<h1>Case 3 ESA WorldWater<a class="headerlink" href="#case-3-esa-worldwater" title="Permalink to this heading">#</a></h1>
+<h2>Case 3 ESA WorldWater<a class="headerlink" href="#case-3-esa-worldwater" title="Permalink to this heading">#</a></h2>
 <p>ESA WorldWater is an example of rule based classification, using Sentinel-2 and Sentinel-1, it was developed
-by DHI-GRAS.
-<a class="github reference external" href="https://github.com/DHI-GRAS/worldwater-toolbox">DHI-GRAS/worldwater-toolbox</a></p>
+by DHI-GRAS.</p>
+<p>Key takeaways:</p>
+<ul class="simple">
+<li><p>Use of complex, rule-based classification</p></li>
+</ul>
+<p>Note: the most recent code of this example is still under review in a pull request, so we include the relevant bits inline.</p>
+<p><a class="github reference external" href="https://github.com/DHI-GRAS/worldwater-toolbox">DHI-GRAS/worldwater-toolbox</a>
+<a class="github reference external" href="https://github.com/DHI-GRAS/worldwater-toolbox/blob/ccd01afef4d634c3727c7f3d06e423acf7680131/world_water_toolbox/wwt.py">DHI-GRAS/worldwater-toolbox</a></p>
+<p>ESA Worldwater formulas are written using predefined functions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">openeo.processes</span> <span class="kn">import</span> <span class="n">if_</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">array_element</span><span class="p">,</span> <span class="n">log</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">gte</span><span class="p">,</span> <span class="n">eq</span><span class="p">,</span> <span class="nb">sum</span>
+
+<span class="n">LOOKUPTABLE</span> <span class="o">=</span> <span class="p">{</span>
+<span class="s2">&quot;Deserts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;S1&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">vh</span><span class="p">,</span> <span class="n">vv</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="mf">7.03</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.44</span> <span class="o">*</span> <span class="n">vv</span><span class="p">)))),</span>
+    <span class="s2">&quot;S2&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">ndvi</span><span class="p">,</span> <span class="n">ndwi</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="p">(</span><span class="mf">0.133</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mf">5.92</span> <span class="o">*</span> <span class="n">ndvi</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">14.82</span> <span class="o">*</span> <span class="n">ndwi</span><span class="p">)))),</span>
+    <span class="s2">&quot;S1_S2&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">vv</span><span class="p">,</span> <span class="n">ndvi</span><span class="p">,</span> <span class="n">ndwi</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="mf">3.69</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.25</span> <span class="o">*</span> <span class="n">vv</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">0.47</span> <span class="o">*</span> <span class="n">ndvi</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">15.3</span> <span class="o">*</span> <span class="n">ndwi</span><span class="p">)))),</span>
+<span class="p">},</span>
+<span class="s2">&quot;Mountain&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;S1&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">vh</span><span class="p">,</span> <span class="n">vv</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="mf">3.76</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.262</span> <span class="o">*</span> <span class="n">vv</span><span class="p">)))),</span>
+    <span class="s2">&quot;S2&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">ndvi</span><span class="p">,</span> <span class="n">ndwi</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="p">(</span><span class="mf">0.262</span> <span class="o">+</span> <span class="p">(</span><span class="mf">0.75</span> <span class="o">*</span> <span class="n">ndvi</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">12.65</span> <span class="o">*</span> <span class="n">ndwi</span><span class="p">)))),</span>
+    <span class="s2">&quot;S1_S2&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">vv</span><span class="p">,</span> <span class="n">ndvi</span><span class="p">,</span> <span class="n">ndwi</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.13</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.11</span> <span class="o">*</span> <span class="n">vv</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">3.03</span> <span class="o">*</span> <span class="n">ndvi</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">13.21</span> <span class="o">*</span> <span class="n">ndwi</span><span class="p">)))),</span>
+<span class="p">},</span>
+<span class="o">...</span>
+<span class="p">}</span>
+
+</pre></div>
+</div>
+<p>An openEO ‘apply_dimension’ over bands is used to compute final water occurance.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">openeo.processes</span> <span class="kn">import</span> <span class="n">if_</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">array_element</span><span class="p">,</span> <span class="n">log</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">gte</span><span class="p">,</span> <span class="n">eq</span><span class="p">,</span> <span class="nb">sum</span>
+
+<span class="n">merged</span> <span class="o">=</span> <span class="n">s1_s2_water</span><span class="o">.</span><span class="n">merge_cubes</span><span class="p">(</span><span class="n">s2_median_water</span><span class="p">)</span><span class="o">.</span><span class="n">merge_cubes</span><span class="p">(</span><span class="n">s1_median_water</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">combined</span><span class="p">(</span><span class="n">bands</span><span class="p">):</span>
+    <span class="n">s1_s2_water</span> <span class="o">=</span> <span class="n">bands</span><span class="o">.</span><span class="n">array_element</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">s1_s2_mask</span> <span class="o">=</span> <span class="n">s1_s2_water</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+
+    <span class="n">s2_median_water</span> <span class="o">=</span> <span class="n">bands</span><span class="o">.</span><span class="n">array_element</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">s2_mask</span> <span class="o">=</span> <span class="n">if_</span><span class="p">(</span><span class="n">s1_s2_mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s2_median_water</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+
+    <span class="n">s1_median_water</span> <span class="o">=</span> <span class="n">bands</span><span class="o">.</span><span class="n">array_element</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">s1_mask</span> <span class="o">=</span> <span class="n">if_</span><span class="p">(</span><span class="n">s2_mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">if_</span><span class="p">(</span><span class="n">s1_s2_mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s1_median_water</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+
+    <span class="n">s1_s2_masked</span> <span class="o">=</span> <span class="n">if_</span><span class="p">(</span><span class="n">s1_s2_mask</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s1_s2_water</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">s2_masked</span> <span class="o">=</span> <span class="n">if_</span><span class="p">(</span><span class="n">s2_mask</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s2_median_water</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">s1_masked</span> <span class="o">=</span> <span class="n">if_</span><span class="p">(</span><span class="n">s1_mask</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s1_median_water</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">s1_s2_masked</span> <span class="o">+</span> <span class="n">s2_masked</span> <span class="o">+</span> <span class="n">s1_masked</span>
+
+<span class="n">merge_all</span> <span class="o">=</span> <span class="n">merged</span><span class="o">.</span><span class="n">apply_dimension</span><span class="p">(</span><span class="n">combined</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s1">&#39;bands&#39;</span><span class="p">)</span>
+
+</pre></div>
+</div>
 <p>A similar water detection example is the AquaMonitor, developed by Deltares:
 <a class="github reference external" href="https://github.com/c-scale-community/use-case-aquamonitor">c-scale-community/use-case-aquamonitor</a></p>
 </section>
 <section id="accounting-in-openeo-platform">
-<h1>Accounting in openEO platform<a class="headerlink" href="#accounting-in-openeo-platform" title="Permalink to this heading">#</a></h1>
+<h2>Accounting in openEO platform<a class="headerlink" href="#accounting-in-openeo-platform" title="Permalink to this heading">#</a></h2>
 <p>When running openEO scripts on small scale locally, you use your own resources. When running at larger
 scale in the cloud, this generates a small cost per run.</p>
 <p>While these costs are often relatively small compared to the time savings, it is important to keep track of.
@@ -463,8 +536,9 @@ Here we explain how to do exactly that.</p>
 <p><a class="reference external" href="https://docs.openeo.cloud/federation/accounting.html">https://docs.openeo.cloud/federation/accounting.html</a></p>
 </section>
 <section id="fair-metadata-generation">
-<h1>FAIR metadata generation<a class="headerlink" href="#fair-metadata-generation" title="Permalink to this heading">#</a></h1>
+<h2>FAIR metadata generation<a class="headerlink" href="#fair-metadata-generation" title="Permalink to this heading">#</a></h2>
 <p>A short demo on STAC metadata that is generated by these examples.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -530,13 +604,14 @@ Here we explain how to do exactly that.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Case 1 Rank composites</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-machine-learning-training-and-inference">Case 2 Machine learning training and inference</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3-esa-worldwater">Case 3 ESA WorldWater</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#accounting-in-openeo-platform">Accounting in openEO platform</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fair-metadata-generation">FAIR metadata generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authors-contributors">Authors &amp; Contributors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-rank-composites">Case 1 Rank composites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-machine-learning-training-and-inference">Case 2 Machine learning training and inference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3-esa-worldwater">Case 3 ESA WorldWater</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accounting-in-openeo-platform">Accounting in openEO platform</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fair-metadata-generation">FAIR metadata generation</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
