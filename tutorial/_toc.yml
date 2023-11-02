@@ -33,6 +33,8 @@ parts:
     title: Agenda
   - file: part2/advanced_workflows
     title: Advanced workflows
+  - file: part2/stac_metadata
+    title: STAC metadata generation
 
 - caption: Part 3
   chapters:
