@@ -459,7 +459,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">OpenEO - User Defined Functions</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-udf-with-machine-learning">Case 1 UDF with machine learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-not-to-use-udf-s">When (not) to use UDF’s</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-udf-to-predefined-process">From UDF to predefined process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#udf-with-basic-xarray-code-peak-valley-detection">UDF with basic XArray code: peak-valley detection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#udf-with-machine-learning">UDF with machine learning</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-eo-data">Sampling EO data</a></li>
@@ -481,9 +484,47 @@ document.write(`
 This allows you to get the best of both worlds.</p>
 <p>To understand user defined functions, it is recommended to start here:</p>
 <p><a class="reference external" href="https://open-eo.github.io/openeo-python-client/udf.html">https://open-eo.github.io/openeo-python-client/udf.html</a></p>
-<section id="case-1-udf-with-machine-learning">
-<h2>Case 1 UDF with machine learning<a class="headerlink" href="#case-1-udf-with-machine-learning" title="Permalink to this heading">#</a></h2>
+<section id="when-not-to-use-udf-s">
+<h2>When (not) to use UDF’s<a class="headerlink" href="#when-not-to-use-udf-s" title="Permalink to this heading">#</a></h2>
+<p>Use UDF’s when:</p>
+<ol class="arabic simple">
+<li><p>You have an existing algorithm that is too large/complex to reimplement in terms of openEO processes.</p></li>
+<li><p>You require a process that is not supported yet, and don’t have the time to propose a new process that can be implemented by the backend.</p></li>
+</ol>
+<p>Do not use UDF’s when:</p>
+<ol class="arabic simple">
+<li><p>You start from scratch and the algorithm can be expressed in openEO processes</p></li>
+<li><p>You want to achieve the highest possible level of portability, without depending on any specific technology.</p></li>
+<li><p>You are running on a backend that simply does not support UDF’s.</p></li>
+</ol>
+</section>
+<section id="from-udf-to-predefined-process">
+<h2>From UDF to predefined process<a class="headerlink" href="#from-udf-to-predefined-process" title="Permalink to this heading">#</a></h2>
+<p>The most widely heard criticism of UDF’s is that they are bad for portability because they introduce a technology dependency in your workflow.</p>
+<p>We therefore have some general recommendations when implementing them. The general idea is that UDF’s in fact allow to quickly test and use pieces of code
+that can eventually become predefined processes. The fact that UDF’s allow you to test a process idea in practice is actually a great
+way to finetune the implementation and definition of your process. This avoids defining something which may require changes later on.</p>
+<ol class="arabic simple">
+<li><p>Try to keep UDF’s small and modular. Many authors tend to include bits that were relevant outside openEO, but actually can be removed.</p></li>
+<li><p>Minimize your dependencies. OpenEO requires far fewer extras compared to a file based workflow. You may need to adjust some imports!</p></li>
+</ol>
+<p>When you identified a UDF that does one clear thing well, you may want to get in touch with the openEO team or your backend provider to see how it can
+become an openEO predefined process. Also note that your implementation in Python may be the basis for an actual implementation in the backend!</p>
+</section>
+<section id="udf-with-basic-xarray-code-peak-valley-detection">
+<h2>UDF with basic XArray code: peak-valley detection<a class="headerlink" href="#udf-with-basic-xarray-code-peak-valley-detection" title="Permalink to this heading">#</a></h2>
+<p>This example may require a <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">fusets</span></code></p>
+<p>The actual peak-valley algorithm can be found here:</p>
+<p><a class="github reference external" href="https://github.com/Open-EO/FuseTS/blob/main/src/fusets/peakvalley.py">Open-EO/FuseTS</a></p>
+<p>This is the ‘UDF’ entrypoint:
+<a class="github reference external" href="https://github.com/Open-EO/FuseTS/blob/main/src/fusets/openeo/peakvalley_udf.py#L18">Open-EO/FuseTS</a></p>
+<p><a class="github reference external" href="https://github.com/Open-EO/FuseTS/blob/main/notebooks/AI4FOOD_PeakValley_Detection_NDVI_S2/peakvalley_detection.ipynb">Open-EO/FuseTS</a></p>
+</section>
+<section id="udf-with-machine-learning">
+<h2>UDF with machine learning<a class="headerlink" href="#udf-with-machine-learning" title="Permalink to this heading">#</a></h2>
 <p>Applying deep learning models is one of the most common reason to use UDF’s.</p>
+<p>This example relies on understanding ‘apply_neighborhood’, which is explained here:</p>
+<p><a class="reference external" href="https://open-eo.github.io/openeo-python-client/udf.html#example-apply-neighborhood-with-a-udf">https://open-eo.github.io/openeo-python-client/udf.html#example-apply-neighborhood-with-a-udf</a></p>
 <p><a class="reference external" href="https://github.com/openEOPlatform/parcel-delineation/blob/main/Parcel%20delineation.ipynb">https://github.com/openEOPlatform/parcel-delineation/blob/main/Parcel delineation.ipynb</a></p>
 </section>
 </section>
@@ -560,7 +601,10 @@ to calibrate a model.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">OpenEO - User Defined Functions</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-udf-with-machine-learning">Case 1 UDF with machine learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-not-to-use-udf-s">When (not) to use UDF’s</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-udf-to-predefined-process">From UDF to predefined process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#udf-with-basic-xarray-code-peak-valley-detection">UDF with basic XArray code: peak-valley detection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#udf-with-machine-learning">UDF with machine learning</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-eo-data">Sampling EO data</a></li>
