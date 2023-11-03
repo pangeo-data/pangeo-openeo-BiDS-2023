@@ -120,10 +120,10 @@ It is possible to link multiple accounts from multiple identity providers to the
 
 See the getting started guides to find out more about how to use the clients for this:
 
-* [Editor](../getting-started/editor/index.md)
-* [JavaScript](../getting-started/javascript/index.md#authentication)
-* [JupyterLab](../getting-started/jupyterlab/index.md)
-* [Python](../getting-started/python/index.md#authentication)
-* [R](../getting-started/r/index.md#authentication)
+* [Editor](https://docs.openeo.cloud/getting-started/editor/)
+* [JavaScript](https://docs.openeo.cloud/getting-started/javascript/#processes)
+* [JupyterLab](https://docs.openeo.cloud/getting-started/jupyterlab/)
+* [Python](https://docs.openeo.cloud/getting-started/python/#authentication)
+* [R](https://docs.openeo.cloud/getting-started/r/#processes)
 
  
