@@ -17,6 +17,16 @@ Aggregate_spatial with a sum over pixels can be implemented as a 'reduce' style 
 Data partitioning is also something that a backend normally does for you, but it may happen that it is not 'smart enough' to understand your use case.This
 can lead for instance to 'out of memory' style errors.
 
+### Example architecture
+
+There is no single openEO architecture, as openEO is just an API that can be implemented on top of many technologies. That is also
+a key point which makes it technology independent.
+
+The image shown below shows a typical 'cloud' deployment in a Kubernetes environment. Cloud based environments tend to use automatic scaling techniques
+to grow or shrink the size of the openEO backend based on the requests from users. 
+
+![openEO architecture](https://github.com/Open-EO/openeo-geotrellis-kubernetes/blob/master/openEO_k8s.png?raw=true)
+
 ### Understanding logs
 
 An openEO backend provides logging, but it can be particularly hard to understand. This again has to do with the cloud based nature: 
