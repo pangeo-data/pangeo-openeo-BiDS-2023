@@ -15,19 +15,10 @@
 
 ### Meetings
 - [General](https://pangeo.io/meeting-notes.html#community-meeting): Pangeo holds community meetings every Wednesday. The meetings alternate between 12PM and 4PM US Eastern Time to encourage participants from a wider range of time zones. 
-- [Continental meetings](https://pangeo.io/meeting-notes.html#continental-community-meetings): to adress different time zones among the globe continental meetings have been organized in Europe/Africa and Oceania.
+- [Pangeo European Coffee](https://pangeo.io/meeting-notes.html#continental-community-meetings): an informal meeting with open discussions, to adress different time zones among the globe continental meetings. Schedule: Every week on Tuesday at 9:30am CET
+
 - [Showcases](https://pangeo.io/pangeo-showcase.html#pangeo-showcase): 15 minutes talks which are an opportunity for anyone to meet other members of the Pangeo community and let them know what you are working on. The talks are recorded, given a DOI, and made available on the [Pangeo YouTube Channel](https://youtube.com/playlist?list=PLuQQBBQFfpgq0OvjKbjcYgTDzDxTqtwua). If you are interested in giving a talk, [fill out this short form](https://forms.gle/QwxKusVvrvDakSNs8).
 
-### Cloud infrastructure
-- [2i2c JupyterHub](https://us-central1-b.gcp.pangeo.io/hub/login?next=%2Fhub%2F): serves Pangeo on open source infrastructure. It's operated and designed by [2i2c](https://2i2c.org/), and funded by [NSF EarthCube Program (Award ICER-2026932)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2026932). The service is **open to anyone** that a hub administrator has approved the application form (see [here](https://docs.google.com/forms/d/e/1FAIpQLSeqKncKG-s365pC_Lfe4_UetJ-wcFfjOSyHhYYQjXbKRHzswQ/viewform)). Find a blog post informing the 2i2c/Pangeo partnership [here](https://2i2c.org/blog/2021/pangeo-goes-live/).
-
-### Data life cycle
-- [Pangeo Forge](https://pangeo-forge.org/):  a tool designed to aid the extraction, transformation, and loading of datasets.
-
-### Most recent trainings (2021/22)
-- [Galaxy training in climate data](https://training.galaxyproject.org/training-material/topics/climate/): contains two modules introducing Pangeo, _Pangeo ecosystem 101 for everyone_ and _Pangeo Notebook in Galaxy - Introduction to Xarray_ showcasing how the Pangeo stack assists processing and analysing big climate datasets.
-- [BIOGEOMON 2022 Python Pangeo Workshop](https://github.com/LandscapeGeoinformatics): led by [Landscape Geoinformatics](https://github.com/LandscapeGeoinformatics) includes Jupyter notebooks demonstrating Xarray for working with labeled multi-dimensional arrays of data. The material also shows a few basic steps how to improve reproducibility and pro-actively apply FAIR principles when sharing and archiving data and code online for publishing via [GitHub](https://github.com/) and [Zenodo](https://zenodo.org/).
-- [FOSS4G 2021](https://github.com/pangeo-data/foss4g-2021): focuses on data discovery with SpatioTemporal Asset Catalogs (STAC), data loading with Cloud-optimized formats (Cloud-Optimized Geotiff, ZARR), and scalable analysis with Xarray and Dask libraries.
 
 ## Additional resources/initiatives consuming Pangeo stack
 _List of some active initiatives. Find more in https://github.com/pangeo-data_.
