@@ -1,6 +1,6 @@
 # Unlocking the Power of Space Data with Pangeo & OpenEO
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This repository contains the documentation and jupyter notebooks used for delivering tutorial to BiDS'23.
@@ -72,6 +72,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/aljacob"><img src="https://avatars.githubusercontent.com/u/7644251?v=4?s=100" width="100px;" alt="Alexander Jacob"/><br /><sub><b>Alexander Jacob</b></sub></a><br /><a href="#ideas-aljacob" title="Ideas, Planning, & Feedback">🤔</a> <a href="#design-aljacob" title="Design">🎨</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=aljacob" title="Code">💻</a> <a href="#content-aljacob" title="Content">🖋</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=aljacob" title="Documentation">📖</a> <a href="#tutorial-aljacob" title="Tutorials">✅</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/bschumac"><img src="https://avatars.githubusercontent.com/u/10756379?v=4?s=100" width="100px;" alt="bschumac"/><br /><sub><b>bschumac</b></sub></a><br /><a href="#infra-bschumac" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#platform-bschumac" title="Packaging/porting to new platform">📦</a> <a href="#eventOrganizing-bschumac" title="Event Organizing">📋</a></td>
     </tr>
   </tbody>
 </table>
