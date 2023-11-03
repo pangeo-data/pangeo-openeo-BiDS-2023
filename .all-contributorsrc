@@ -148,6 +148,20 @@
         "doc",
         "tutorial"
       ]
+    },
+    {
+      "login": "annefou",
+      "name": "Anne Fouilloux",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8168508?v=4",
+      "profile": "https://www.linkedin.com/in/annefouilloux/",
+      "contributions": [
+        "ideas",
+        "design",
+        "code",
+        "content",
+        "doc",
+        "tutorial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
