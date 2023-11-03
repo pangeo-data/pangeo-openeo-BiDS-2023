@@ -1,5 +1,8 @@
 # Scaling openEO & under the hood
 
+To understand how the design of openEO is linked to performance and scalability, 
+[this page](https://openeo.org/documentation/1.0/developers/backends/performance.html) is a good read.
+
 ## Under the hood
 
 openEO backends rely on the same principles as e.g. Dask and any other large scale parallel processing framework:
@@ -16,6 +19,12 @@ Aggregate_spatial with a sum over pixels can be implemented as a 'reduce' style 
 
 Data partitioning is also something that a backend normally does for you, but it may happen that it is not 'smart enough' to understand your use case.This
 can lead for instance to 'out of memory' style errors.
+
+In a real world backend, these concepts result in a graph of processing steps ('stages' in Spark), and a number of tasks per step that can be executed in parallel. 
+An example is shown below.
+
+![Spark graph](../figures/openeo_spark.png)
+
 
 ### Example architecture
 
@@ -41,6 +50,7 @@ help you to do that.
 ## General performance tips
 
 ### Keep the size of your data cube in mind
+
 Backends are distributed, cloud based programs, but it is still possible to overload them easily due to the sheer size of earth observation datasets.
 If your algorithm at some point reduces dataset size, you may want to put this step early in the algorithm. 
 
