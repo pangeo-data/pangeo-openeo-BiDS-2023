@@ -1,4 +1,4 @@
-# Scaling Big Data Analysis with Pangeo and OpenEO: Unlocking the Power of Space Data
+# Unlocking the Power of Space Data with Pangeo & OpenEO
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
@@ -11,47 +11,57 @@ This repository contains the documentation and jupyter notebooks used for delive
 
 The content of this repository (folder `tutorial`) is rendered as an online document using [Jupyter Book](https://jupyterbook.org/en/stable/intro.html). **You can access it [here](https://pangeo-data.github.io/pangeo-openeo-BiDS-2023)**.
 
-## Agenda
+# Timeline of the workshops
 
-**Part-1: Pangeo**
+The programmes for each workshop are given below for your information. Each workshop is held separately.
 
-- 9:00  Welcome (5 minutes)
-- 9:05 Introduction and Motivation (15 minutes)
-- 9:20 Overview of the Pangeo ecosystem (20 minutes)
-- 9:40 Understanding Xarray to avoid common pitfalls (30 minutes)
-- 10:10  Interactive Visualization with Hvplot (20 minutes)
-- 10:30 Break (30 minutes)
+## Introduction to Pangeo
 
-**Part-2: OpenEO**
+| Time | Activity | 
+| ---- | -------- | 
+| 09:00  | 👋 Welcome  (5 minutes) | 
+| 9:05   | Introduction and Motivation (15 minutes) |
+| 9:20   | Overview of the Pangeo ecosystem (20 minutes) |
+| 9:40   | Understanding Xarray to avoid common pitfalls (30 minutes) |
+| 10:10  | Interactive Visualization with Hvplot (15 minutes) |
+| 10:30  | Break (30 minutes)  | |
 
-- 11:00 Getting started with OpenEO 
-- 11:15 Finding Data, Running first graphs, difference to client-side processing
-- 11:45 Integrate custom code into your workflow using User Defined Functions 
-- 12:15 Feedback Block
-- 12:30 Lunch
+## Introduction to OpenEO
 
-**Part-3: Unlocking the Power of Space Data with Pangeo & OpenEO**
+| Time | Activity | 
+| ---- | -------- | 
+| 11:00 | 👋 Introduction and motivation (5 minutes) | 
+| 11:05 | Getting started with OpenEO (10 minutes) | 
+| 11:15 | Accessing and processing data with OpenEO (30 minutes) | 
+| 11:45 | ntegrate custom code into your workflow using User Defined Functions (30 minutes) | 
+| 12:15 | Q&A session - feedbacks (20 minutes) | 
+| 12:30 | 🍽️ Lunch | 
 
-- 14:00 Introduction to the afternoon session
+## Unlocking the Power of Space Data with Pangeo & OpenEO
 
-- 14:05 Data discoverability and searchability
-  - An overview of STAC and different sources and platforms (openeo.cloud, STAC browser, STAC Index ...)
+Please note that this workshop assumes some prior knowledge of Pangeo and OpenEO. If you are not familiar with any of these technologies, we suggest to check the content of the two other workshops (taught in the morning).
 
-- 14:30 Data and pre-processing general knowledge
-  - Introduction to chunking examples with netcdf, zarr and Kerchunk
-  - Parallelization with Dask
+| Time | Activity | 
+| ---- | -------- | 
+| 14:00  | 👋 Introduction and motivation (5 minutes) | 
+| 14:05 | Data discoverability and searchability (25 minutes) |
+|  | An overview of STAC and the different available sources|
+| 14:30 | Data and pre-processing general knowledge (60 minutes) |
+|  | Introduction to chunking with netCDF, ZARR and Kerchunk |
+|  | Parallelization with Dask |
+| 15:30 |  ☕️ Break |
+| 16:00 | Different data exploitation approaches (60 minutes) |
+|  | How to exploit data with OpenEO: snow coverage example |
+|  | How to exploit data on Pangeo: pure Xarray version |
+| 17:00 | How to go beyond (45 minutes)|
+|  | Custom algorithms: UDF (OpenEO) and ufunc (Xarray) |
+|  | Scaling with OpenEO (how it works underneath)  |
+| 17:40 | Wrap-up and feedback survey (15 minutes)  |
 
-- 16:00 Different data exploitation approaches
-  - How to exploit data on OpenEO (30 minutes)
-  - Snow coverage example
-  - How to exploit data on Pangeo (30 minutes)
-  - Snow coverage pure xarray version
+These timelines are purely approximative and given for indication purpose only. We will adjust depending on the audience.
+There will be additional breaks (5 minutes) regularly and time for questions during the workshops.
 
-- 17:00 How to go beyond
-  - Understanding how to create a custom algorithm: UDF (OpenEO) and ufunc (Xarray) (20 minutes)
-  - Scaling with OpenEO (how it works underneath) (30 minutes)
 
-- 17:45 Wrap-up and feedback survey (15 minutes)
 
 ## Contributors ✨
 
