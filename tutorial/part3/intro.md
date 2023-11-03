@@ -1,7 +1,7 @@
-# Overview of the Pangeo ecosystem
+# Unlocking the Power of Space Data with Pangeo & OpenEO
 
+In this tutorial, we assume you have some prior knowledge about [Pangeo](https://pangeo.io) and [OpenEO](https://openeo.org).
 
-- You can find a short introduction to Pangeo [here](https://doi.org/10.5281/zenodo.10070519)
 - Please follow the explanation at [https://pangeo-data.github.io/pangeo-openeo-BiDS-2023/before/EOSC.html](https://pangeo-data.github.io/pangeo-openeo-BiDS-2023/before/EOSC.html) and register yourself to Pangeo-EOSC cluster, and connect to Pangeo-EOSC cluster.  
 
 - Once you are connected, please open a terminal, and type:
