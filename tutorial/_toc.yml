@@ -29,11 +29,11 @@ parts:
 
 - caption: Part 2 - OpenEO
   chapters:
-  - file: part2/openEO - boa_sentinel_2
+  - file: part2/openEO-boa_sentinel_2
     title: Sentinel-2 Bottom Of Atmosphere (BOA)
-  - file: part2/openEO - Corine Land Cover Alps
+  - file: part2/openEO-Corine_Land_Cover_Alps
     title: Corine Land Cover Alps
-  - file: part2/openEO - Client Side Land Cover Alps
+  - file: part2/openEO-Client_Side_Land_Cover_Alps
     title: Client Side Land Cover Alps
   - file: part2/advanced_workflows
     title: Advanced workflows
