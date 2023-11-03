@@ -1,0 +1,1110 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>openEO Platform &#8212; BiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'part2/openEO - Corine Land Cover Alps';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="openEO Platform DEMO" href="openEO%20-%20Client%20Side%20Land%20Cover%20Alps.html" />
+    <link rel="prev" title="openEO Platform" href="openEO%20-%20boa_sentinel_2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pangeo_openeo.png" class="logo__image only-light" alt="BiDS'23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data - Home"/>
+    <script>document.write(`<img src="../_static/pangeo_openeo.png" class="logo__image only-dark" alt="BiDS'23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome 👋
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../about/timeline.html">Workshop timeline</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Before the workshop</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../before/setup.html">Setup</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../before/openeo.html">OpenEO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../before/EOSC.html">Pangeo@EOSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../before/copernicus.html">Copernicus Data Space Ecosystem</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 1 - Pangeo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../part1/motivation.html">Introduction and Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/overview.html">Overview of the Pangeo ecosystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/xarray_pitfalls.html">Common pitfalls with xarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/visualization.html">Interactive Visualization with Hvplot</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2 - OpenEO</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="openEO%20-%20boa_sentinel_2.html">Sentinel-2 Bottom Of Atmosphere (BOA)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Corine Land Cover Alps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openEO%20-%20Client%20Side%20Land%20Cover%20Alps.html">Client Side Land Cover Alps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_workflows.html">Advanced workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stac_metadata.html">STAC metadata generation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../part3/data_discovery.html">Data discoverability and searchability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/chunking_introduction.html">Introduction to chunking with netCDF, ZARR and Kerchunk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/scaling_dask.html">Parallelization with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_openEO.html">How to exploit data with openEO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_pangeo.html">How to exploit data on Pangeo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/advanced_udf.html">OpenEO - User Defined Functions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../part3/scaling_openeo.html">Scaling with OpenEO</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the workshop</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../afterword/resources.html">Join the community!</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../afterword/pythia.html">Project Pythia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../afterword/envds-book.html">Environmental Data Science Book</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://notebooks.gesis.org/binder/v2/gh/pangeo-data/pangeo-openeo-BiDS-2023/main?urlpath=lab/tree/tutorial/part2/openEO - Corine Land Cover Alps.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://pangeo-foss4g.vm.fedcloud.eu/jupyterhub/hub/user-redirect/git-pull?repo=https%3A//github.com/pangeo-data/pangeo-openeo-BiDS-2023&urlpath=lab/tree/pangeo-openeo-BiDS-2023/tutorial/part2/openEO+-+Corine+Land+Cover+Alps.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/issues/new?title=Issue%20on%20page%20%2Fpart2/openEO - Corine Land Cover Alps.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/part2/openEO - Corine Land Cover Alps.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>openEO Platform</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#big-data-from-space-2023">Big Data From Space 2023</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-openeo-platform-using-python">Connect to openEO Platform using python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-the-collection-description">Look at the collection description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-corine-land-cover-classes-and-their-associated-numbers">The Corine Land Cover classes and their associated numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pick-a-number-for-a-class-of-interest">Pick a number for a class of interest</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-creating-an-openeo-process-graph">Start creating an openEO process graph</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pick-a-spatial-extent-of-interest">Pick a spatial extent of interest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-corine-land-cover-collection">Load the corine land cover collection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-you-are-interested-in-a-specific-class-pick-the-number-of-the-class-and-set-the-data-equal-to-it">If you are interested in a specific class, pick the number of the class and set the data equal to it.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-result-as-a-netcdf">Save the result as a netCDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-start-a-job">Create and start a job</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#once-the-job-status-says-finished-results-can-be-downloaded">Once the job status says ‘finished’, results can be downloaded.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-at-the-results-using-python-matplotlib">Looking at the results using python matplotlib</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><img src="https://avatars.githubusercontent.com/u/74911464?s=200&v=4"
+     alt="OpenEO Platform logo"
+     style="float: left; margin-right: 10px;" /></p>
+<section id="openeo-platform">
+<h1>openEO Platform<a class="headerlink" href="#openeo-platform" title="Permalink to this heading">#</a></h1>
+<section id="big-data-from-space-2023">
+<h2>Big Data From Space 2023<a class="headerlink" href="#big-data-from-space-2023" title="Permalink to this heading">#</a></h2>
+<p>Exploring Corine Land Cover</p>
+</section>
+<section id="connect-to-openeo-platform-using-python">
+<h2>Connect to openEO Platform using python<a class="headerlink" href="#connect-to-openeo-platform-using-python" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">openeo</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">openeo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;openeo.cloud&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">Visit <a href="https://aai.egi.eu/device?user_code=KKKP-WXGV" title="Authenticate at https://aai.egi.eu/device?user_code=KKKP-WXGV" target="_blank" rel="noopener noreferrer">https://aai.egi.eu/device?user_code=KKKP-WXGV</a> <a href="#" onclick="navigator.clipboard.writeText('https://aai.egi.eu/device?user_code=KKKP-WXGV');return false;" title="Copy authentication URL to clipboard">&#128203;</a> to authenticate.</div><div class="output text_html"><code>[-------------------------------------]</code> ❌ Timed out</div><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">OidcDeviceCodePollTimeout</span><span class="g g-Whitespace">                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/openeo/rest/connection.py:729,</span> in <span class="ni">Connection.authenticate_oidc</span><span class="nt">(self, provider_id, client_id, client_secret, store_refresh_token, use_pkce, display, max_poll_time)</span>
+<span class="g g-Whitespace">    </span><span class="mi">725</span> <span class="n">_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Trying device code flow.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">726</span> <span class="n">authenticator</span> <span class="o">=</span> <span class="n">OidcDeviceAuthenticator</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">727</span>     <span class="n">client_info</span><span class="o">=</span><span class="n">client_info</span><span class="p">,</span> <span class="n">use_pkce</span><span class="o">=</span><span class="n">use_pkce</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="n">display</span><span class="p">,</span> <span class="n">max_poll_time</span><span class="o">=</span><span class="n">max_poll_time</span>
+<span class="g g-Whitespace">    </span><span class="mi">728</span> <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">729</span> <span class="n">con</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authenticate_oidc</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">730</span>     <span class="n">authenticator</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">731</span>     <span class="n">provider_id</span><span class="o">=</span><span class="n">provider_id</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">732</span>     <span class="n">store_refresh_token</span><span class="o">=</span><span class="n">store_refresh_token</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">733</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">734</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Authenticated using device code flow.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">735</span> <span class="k">return</span> <span class="n">con</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/openeo/rest/connection.py:459,</span> in <span class="ni">Connection._authenticate_oidc</span><span class="nt">(self, authenticator, provider_id, store_refresh_token, fallback_refresh_token_to_store, oidc_auth_renewer)</span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span> <span class="k">def</span> <span class="nf">_authenticate_oidc</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">448</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span>     <span class="n">authenticator</span><span class="p">:</span> <span class="n">OidcAuthenticator</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span>     <span class="n">oidc_auth_renewer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">OidcAuthenticator</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Connection</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">456</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">457</span><span class="sd">     Authenticate through OIDC and set up bearer token (based on OIDC access_token) for further requests.</span>
+<span class="g g-Whitespace">    </span><span class="mi">458</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">459</span>     <span class="n">tokens</span> <span class="o">=</span> <span class="n">authenticator</span><span class="o">.</span><span class="n">get_tokens</span><span class="p">(</span><span class="n">request_refresh_token</span><span class="o">=</span><span class="n">store_refresh_token</span><span class="p">)</span>
+<span class="nn">    460     _log.info(&quot;Obtained tokens: {t}&quot;.format(t=[k for k, v</span> in <span class="ni">tokens._asdict().items</span><span class="nt">() if v]))</span>
+<span class="g g-Whitespace">    </span><span class="mi">461</span>     <span class="k">if</span> <span class="n">store_refresh_token</span><span class="p">:</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/openeo/rest/auth/oidc.py:911,</span> in <span class="ni">OidcDeviceAuthenticator.get_tokens</span><span class="nt">(self, request_refresh_token)</span>
+<span class="g g-Whitespace">    </span><span class="mi">908</span>         <span class="n">next_poll</span> <span class="o">=</span> <span class="n">elapsed</span><span class="p">()</span> <span class="o">+</span> <span class="n">poll_interval</span>
+<span class="g g-Whitespace">    </span><span class="mi">910</span> <span class="n">poll_ui</span><span class="o">.</span><span class="n">show_progress</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;Timed out&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">911</span> <span class="k">raise</span> <span class="n">OidcDeviceCodePollTimeout</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Timeout (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_poll_time</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">s) while polling for access token.&quot;</span><span class="p">)</span>
+
+<span class="ne">OidcDeviceCodePollTimeout</span>: Timeout (300.0s) while polling for access token.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="look-at-the-collection-description">
+<h2>Look at the collection description<a class="headerlink" href="#look-at-the-collection-description" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">describe_collection</span><span class="p">(</span><span class="s2">&quot;corine_land_cover&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    <script>
+    if (!window.customElements || !window.customElements.get('openeo-collection')) {
+        var el = document.createElement('script');
+        el.src = "https://cdn.jsdelivr.net/npm/@openeo/vue-components@2/assets/openeo.min.js";
+        document.head.appendChild(el);
+
+        var font = document.createElement('font');
+        font.as = "font";
+        font.type = "font/woff2";
+        font.crossOrigin = true;
+        font.href = "https://use.fontawesome.com/releases/v5.13.0/webfonts/fa-solid-900.woff2"
+        document.head.appendChild(font);
+    }
+    </script>
+    <openeo-collection>
+        <script type="application/json">{"mapOptions": {}, "data": {"cube:dimensions": {"bands": {"type": "bands", "values": ["CLC"]}, "t": {"extent": [["2000-12-15T00:00:00", "2018-12-15T00:00:00"]], "type": "temporal"}, "x": {"axis": "x", "extent": [1400000.0, 7900000.0], "reference_system": "PROJCS[\"Azimuthal_Equidistant\",GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433]],PROJECTION[\"Azimuthal_Equidistant\"],PARAMETER[\"latitude_of_center\",53],PARAMETER[\"longitude_of_center\",24],PARAMETER[\"false_easting\",5837287.81977],PARAMETER[\"false_northing\",2121415.69617],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]]]", "type": "spatial"}, "y": {"axis": "y", "extent": [100000.0, 4500000.0], "reference_system": "PROJCS[\"Azimuthal_Equidistant\",GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433]],PROJECTION[\"Azimuthal_Equidistant\"],PARAMETER[\"latitude_of_center\",53],PARAMETER[\"longitude_of_center\",24],PARAMETER[\"false_easting\",5837287.81977],PARAMETER[\"false_northing\",2121415.69617],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]]]", "type": "spatial"}}, "description": "The CORINE Land Cover (CLC) inventory began in 1985, consisting of 44 land cover classes. This collection is resampled and stored at a 10m x 10m resolution. For further information on CORINE land cover see [here](https://land.copernicus.eu/pan-european/corine-land-cover)", "extent": {"spatial": {"bbox": [[-32.091997820189285, 31.6977150076753, 55.116146716432254, 72.11413813793037]]}, "temporal": {"interval": [["2000-12-15T00:00:00Z", "2018-12-15T00:00:00Z"]]}}, "id": "corine_land_cover", "item_assets": {}, "keywords": ["EODC", "Copernicus", "ARD", "Level-3"], "license": "proprietary", "links": [{"href": "https://openeocloud.vito.be/openeo/1.0.0/collections", "rel": "root"}, {"href": "https://openeocloud.vito.be/openeo/1.0.0/collections", "rel": "parent"}, {"href": "https://openeocloud.vito.be/openeo/1.0.0/collections/corine_land_cover", "rel": "self"}], "properties": {}, "stac_extensions": ["https://stac-extensions.github.io/datacube/v2.0.0/schema.json", "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json", "https://github.com/stac-extensions/eo"], "stac_version": "1.0.0", "summaries": {"constellation": {}, "eo:bands": [{"common_name": "band_1", "name": "CLC"}], "federation:backends": ["eodc"], "odc:file_format": {"0": "GeoTIFF"}, "odc:product_family": {"0": "level2"}, "platform": {}}, "title": "CORINE Land Cover", "type": "Collection"}}</script>
+    </openeo-collection>
+    </div></div>
+</div>
+</section>
+<section id="the-corine-land-cover-classes-and-their-associated-numbers">
+<h2>The Corine Land Cover classes and their associated numbers<a class="headerlink" href="#the-corine-land-cover-classes-and-their-associated-numbers" title="Permalink to this heading">#</a></h2>
+<section id="pick-a-number-for-a-class-of-interest">
+<h3>Pick a number for a class of interest<a class="headerlink" href="#pick-a-number-for-a-class-of-interest" title="Permalink to this heading">#</a></h3>
+<p>This is not the full list but just to give an example</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Number</p></th>
+<th class="head"><p>Class</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>Number</p></th>
+<th class="head"><p>Class</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>Number</p></th>
+<th class="head"><p>Class</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Discontinuous urban fabric</p></td>
+<td><p></p></td>
+<td><p>9</p></td>
+<td><p>Construction sites</p></td>
+<td><p></p></td>
+<td><p>32</p></td>
+<td><p>Sparsely vegetated areas</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Industrial or commercial units</p></td>
+<td><p></p></td>
+<td><p>10</p></td>
+<td><p>Green urban areas</p></td>
+<td><p></p></td>
+<td><p>33</p></td>
+<td><p>Burnt areas</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Road and rail networks and associated land</p></td>
+<td><p></p></td>
+<td><p>11</p></td>
+<td><p>Sport and leisure facilities</p></td>
+<td><p></p></td>
+<td><p>34</p></td>
+<td><p>Glaciers and perpetual snow</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="start-creating-an-openeo-process-graph">
+<h2>Start creating an openEO process graph<a class="headerlink" href="#start-creating-an-openeo-process-graph" title="Permalink to this heading">#</a></h2>
+<section id="pick-a-spatial-extent-of-interest">
+<h3>Pick a spatial extent of interest<a class="headerlink" href="#pick-a-spatial-extent-of-interest" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spatial_extent</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;west&quot;</span><span class="p">:</span> <span class="mf">12.1783447265625</span><span class="p">,</span>
+                  <span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="mf">46.9061837801476</span><span class="p">,</span>
+                  <span class="s2">&quot;east&quot;</span><span class="p">:</span> <span class="mf">13.50151062011719</span><span class="p">,</span>
+                  <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="mf">47.093500502407764</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-the-corine-land-cover-collection">
+<h3>Load the corine land cover collection<a class="headerlink" href="#load-the-corine-land-cover-collection" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span><span class="s1">&#39;corine_land_cover&#39;</span><span class="p">,</span> <span class="n">spatial_extent</span> <span class="o">=</span> <span class="n">spatial_extent</span><span class="p">,</span> <span class="n">temporal_extent</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span><span class="s2">&quot;2020-06-30&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="if-you-are-interested-in-a-specific-class-pick-the-number-of-the-class-and-set-the-data-equal-to-it">
+<h3>If you are interested in a specific class, pick the number of the class and set the data equal to it.<a class="headerlink" href="#if-you-are-interested-in-a-specific-class-pick-the-number-of-the-class-and-set-the-data-equal-to-it" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_34</span> <span class="o">=</span> <span class="n">data</span> <span class="o">==</span> <span class="mi">34</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="save-the-result-as-a-netcdf">
+<h3>Save the result as a netCDF<a class="headerlink" href="#save-the-result-as-a-netcdf" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">saved_data</span> <span class="o">=</span> <span class="n">data_34</span><span class="o">.</span><span class="n">save_result</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;NetCDF&quot;</span><span class="p">)</span>
+<span class="n">saved_data</span><span class="o">.</span><span class="n">flat_graph</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;loadcollection1&#39;: {&#39;process_id&#39;: &#39;load_collection&#39;,
+  &#39;arguments&#39;: {&#39;id&#39;: &#39;corine_land_cover&#39;,
+   &#39;spatial_extent&#39;: {&#39;west&#39;: 12.1783447265625,
+    &#39;south&#39;: 46.9061837801476,
+    &#39;east&#39;: 13.50151062011719,
+    &#39;north&#39;: 47.093500502407764},
+   &#39;temporal_extent&#39;: [&#39;2000-01-01&#39;, &#39;2020-06-30&#39;]}},
+ &#39;apply1&#39;: {&#39;process_id&#39;: &#39;apply&#39;,
+  &#39;arguments&#39;: {&#39;data&#39;: {&#39;from_node&#39;: &#39;loadcollection1&#39;},
+   &#39;process&#39;: {&#39;process_graph&#39;: {&#39;eq1&#39;: {&#39;process_id&#39;: &#39;eq&#39;,
+      &#39;arguments&#39;: {&#39;x&#39;: {&#39;from_parameter&#39;: &#39;x&#39;}, &#39;y&#39;: 34},
+      &#39;result&#39;: True}}}}},
+ &#39;saveresult1&#39;: {&#39;process_id&#39;: &#39;save_result&#39;,
+  &#39;arguments&#39;: {&#39;data&#39;: {&#39;from_node&#39;: &#39;apply1&#39;},
+   &#39;format&#39;: &#39;NetCDF&#39;,
+   &#39;options&#39;: {}},
+  &#39;result&#39;: True}}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-and-start-a-job">
+<h3>Create and start a job<a class="headerlink" href="#create-and-start-a-job" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">saved_data</span><span class="o">.</span><span class="n">create_job</span><span class="p">()</span>
+<span class="n">job</span><span class="o">.</span><span class="n">start_job</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    <script>
+    if (!window.customElements || !window.customElements.get('openeo-job')) {
+        var el = document.createElement('script');
+        el.src = "https://cdn.jsdelivr.net/npm/@openeo/vue-components@2/assets/openeo.min.js";
+        document.head.appendChild(el);
+
+        var font = document.createElement('font');
+        font.as = "font";
+        font.type = "font/woff2";
+        font.crossOrigin = true;
+        font.href = "https://use.fontawesome.com/releases/v5.13.0/webfonts/fa-solid-900.woff2"
+        document.head.appendChild(font);
+    }
+    </script>
+    <openeo-job>
+        <script type="application/json">{"currency": "credits", "job": {"created": "2023-11-02T14:42:34Z", "id": "eodc-e6cc1b7f-4216-47fe-8c59-53df7af25b4a", "process": {"id": "3D5DC05DFAAE4533", "process_graph": {"apply1": {"arguments": {"data": {"from_node": "loadcollection1"}, "process": {"process_graph": {"eq1": {"arguments": {"x": {"from_parameter": "x"}, "y": 34}, "process_id": "eq", "result": true}}}}, "process_id": "apply"}, "loadcollection1": {"arguments": {"id": "corine_land_cover", "spatial_extent": {"east": 13.50151062011719, "north": 47.093500502407764, "south": 46.9061837801476, "west": 12.1783447265625}, "temporal_extent": ["2000-01-01", "2020-06-30"]}, "process_id": "load_collection"}, "saveresult1": {"arguments": {"data": {"from_node": "apply1"}, "format": "NetCDF", "options": {}}, "process_id": "save_result", "result": true}}}, "status": "queued"}}</script>
+    </openeo-job>
+    </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    <script>
+    if (!window.customElements || !window.customElements.get('openeo-job')) {
+        var el = document.createElement('script');
+        el.src = "https://cdn.jsdelivr.net/npm/@openeo/vue-components@2/assets/openeo.min.js";
+        document.head.appendChild(el);
+
+        var font = document.createElement('font');
+        font.as = "font";
+        font.type = "font/woff2";
+        font.crossOrigin = true;
+        font.href = "https://use.fontawesome.com/releases/v5.13.0/webfonts/fa-solid-900.woff2"
+        document.head.appendChild(font);
+    }
+    </script>
+    <openeo-job>
+        <script type="application/json">{"currency": "credits", "job": {"created": "2023-11-02T14:42:34Z", "id": "eodc-e6cc1b7f-4216-47fe-8c59-53df7af25b4a", "process": {"id": "3D5DC05DFAAE4533", "process_graph": {"apply1": {"arguments": {"data": {"from_node": "loadcollection1"}, "process": {"process_graph": {"eq1": {"arguments": {"x": {"from_parameter": "x"}, "y": 34}, "process_id": "eq", "result": true}}}}, "process_id": "apply"}, "loadcollection1": {"arguments": {"id": "corine_land_cover", "spatial_extent": {"east": 13.50151062011719, "north": 47.093500502407764, "south": 46.9061837801476, "west": 12.1783447265625}, "temporal_extent": ["2000-01-01", "2020-06-30"]}, "process_id": "load_collection"}, "saveresult1": {"arguments": {"data": {"from_node": "apply1"}, "format": "NetCDF", "options": {}}, "process_id": "save_result", "result": true}}}, "status": "finished"}}</script>
+    </openeo-job>
+    </div></div>
+</div>
+</section>
+<section id="once-the-job-status-says-finished-results-can-be-downloaded">
+<h3>Once the job status says ‘finished’, results can be downloaded.<a class="headerlink" href="#once-the-job-status-says-finished-results-can-be-downloaded" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
+<span class="n">metadata</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">download_files</span><span class="p">(</span><span class="s2">&quot;./glaciers/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[PosixPath(&#39;glaciers/EU010M_E049N015T1_20001215T000000.nc&#39;),
+ PosixPath(&#39;glaciers/EU010M_E049N015T1_20061215T000000.nc&#39;),
+ PosixPath(&#39;glaciers/EU010M_E049N015T1_20121215T000000.nc&#39;),
+ PosixPath(&#39;glaciers/EU010M_E049N015T1_20181215T000000.nc&#39;),
+ PosixPath(&#39;glaciers/EU010M_E050N015T1_20001215T000000.nc&#39;),
+ PosixPath(&#39;glaciers/EU010M_E050N015T1_20061215T000000.nc&#39;),
+ PosixPath(&#39;glaciers/EU010M_E050N015T1_20121215T000000.nc&#39;),
+ PosixPath(&#39;glaciers/EU010M_E050N015T1_20181215T000000.nc&#39;),
+ PosixPath(&#39;glaciers/job-results.json&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_2000</span> <span class="o">=</span> <span class="n">data_34</span><span class="o">.</span><span class="n">filter_temporal</span><span class="p">(</span><span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2000-12-31&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop_dimension</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+<span class="n">data_2018</span> <span class="o">=</span> <span class="n">data_34</span><span class="o">.</span><span class="n">filter_temporal</span><span class="p">(</span><span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2018-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2018-12-31&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop_dimension</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+<span class="n">difference</span> <span class="o">=</span> <span class="n">data_2000</span> <span class="o">-</span> <span class="n">data_2018</span>
+<span class="n">saved_diff</span> <span class="o">=</span> <span class="n">difference</span><span class="o">.</span><span class="n">save_result</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;NetCDF&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">saved_diff</span><span class="o">.</span><span class="n">flat_graph</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;loadcollection1&#39;: {&#39;process_id&#39;: &#39;load_collection&#39;,
+  &#39;arguments&#39;: {&#39;id&#39;: &#39;corine_land_cover&#39;,
+   &#39;spatial_extent&#39;: {&#39;west&#39;: 12.1783447265625,
+    &#39;south&#39;: 46.9061837801476,
+    &#39;east&#39;: 13.50151062011719,
+    &#39;north&#39;: 47.093500502407764},
+   &#39;temporal_extent&#39;: [&#39;2000-01-01&#39;, &#39;2020-06-30&#39;]}},
+ &#39;apply1&#39;: {&#39;process_id&#39;: &#39;apply&#39;,
+  &#39;arguments&#39;: {&#39;data&#39;: {&#39;from_node&#39;: &#39;loadcollection1&#39;},
+   &#39;process&#39;: {&#39;process_graph&#39;: {&#39;eq1&#39;: {&#39;process_id&#39;: &#39;eq&#39;,
+      &#39;arguments&#39;: {&#39;x&#39;: {&#39;from_parameter&#39;: &#39;x&#39;}, &#39;y&#39;: 34},
+      &#39;result&#39;: True}}}}},
+ &#39;filtertemporal1&#39;: {&#39;process_id&#39;: &#39;filter_temporal&#39;,
+  &#39;arguments&#39;: {&#39;data&#39;: {&#39;from_node&#39;: &#39;apply1&#39;},
+   &#39;extent&#39;: [&#39;2000-01-01&#39;, &#39;2000-12-31&#39;]}},
+ &#39;dropdimension1&#39;: {&#39;process_id&#39;: &#39;drop_dimension&#39;,
+  &#39;arguments&#39;: {&#39;data&#39;: {&#39;from_node&#39;: &#39;filtertemporal1&#39;}, &#39;name&#39;: &#39;t&#39;}},
+ &#39;filtertemporal2&#39;: {&#39;process_id&#39;: &#39;filter_temporal&#39;,
+  &#39;arguments&#39;: {&#39;data&#39;: {&#39;from_node&#39;: &#39;apply1&#39;},
+   &#39;extent&#39;: [&#39;2018-01-01&#39;, &#39;2018-12-31&#39;]}},
+ &#39;dropdimension2&#39;: {&#39;process_id&#39;: &#39;drop_dimension&#39;,
+  &#39;arguments&#39;: {&#39;data&#39;: {&#39;from_node&#39;: &#39;filtertemporal2&#39;}, &#39;name&#39;: &#39;t&#39;}},
+ &#39;mergecubes1&#39;: {&#39;process_id&#39;: &#39;merge_cubes&#39;,
+  &#39;arguments&#39;: {&#39;cube1&#39;: {&#39;from_node&#39;: &#39;dropdimension1&#39;},
+   &#39;cube2&#39;: {&#39;from_node&#39;: &#39;dropdimension2&#39;},
+   &#39;overlap_resolver&#39;: {&#39;process_graph&#39;: {&#39;subtract1&#39;: {&#39;process_id&#39;: &#39;subtract&#39;,
+      &#39;arguments&#39;: {&#39;x&#39;: {&#39;from_parameter&#39;: &#39;x&#39;},
+       &#39;y&#39;: {&#39;from_parameter&#39;: &#39;y&#39;}},
+      &#39;result&#39;: True}}}}},
+ &#39;saveresult1&#39;: {&#39;process_id&#39;: &#39;save_result&#39;,
+  &#39;arguments&#39;: {&#39;data&#39;: {&#39;from_node&#39;: &#39;mergecubes1&#39;},
+   &#39;format&#39;: &#39;NetCDF&#39;,
+   &#39;options&#39;: {}},
+  &#39;result&#39;: True}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">saved_diff</span><span class="o">.</span><span class="n">create_job</span><span class="p">()</span>
+<span class="n">job</span><span class="o">.</span><span class="n">start_job</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    <script>
+    if (!window.customElements || !window.customElements.get('openeo-job')) {
+        var el = document.createElement('script');
+        el.src = "https://cdn.jsdelivr.net/npm/@openeo/vue-components@2/assets/openeo.min.js";
+        document.head.appendChild(el);
+
+        var font = document.createElement('font');
+        font.as = "font";
+        font.type = "font/woff2";
+        font.crossOrigin = true;
+        font.href = "https://use.fontawesome.com/releases/v5.13.0/webfonts/fa-solid-900.woff2"
+        document.head.appendChild(font);
+    }
+    </script>
+    <openeo-job>
+        <script type="application/json">{"currency": "credits", "job": {"created": "2023-11-02T14:09:33Z", "id": "eodc-75cc016d-4ee7-4e90-afb6-9b68ee6aaf35", "process": {"id": "4A549AC3FE1C4E85", "process_graph": {"apply1": {"arguments": {"data": {"from_node": "loadcollection1"}, "process": {"process_graph": {"eq1": {"arguments": {"x": {"from_parameter": "x"}, "y": 34}, "process_id": "eq", "result": true}}}}, "process_id": "apply"}, "dropdimension1": {"arguments": {"data": {"from_node": "filtertemporal1"}, "name": "t"}, "process_id": "drop_dimension"}, "dropdimension2": {"arguments": {"data": {"from_node": "filtertemporal2"}, "name": "t"}, "process_id": "drop_dimension"}, "filtertemporal1": {"arguments": {"data": {"from_node": "apply1"}, "extent": ["2000-01-01", "2000-12-31"]}, "process_id": "filter_temporal"}, "filtertemporal2": {"arguments": {"data": {"from_node": "apply1"}, "extent": ["2018-01-01", "2018-12-31"]}, "process_id": "filter_temporal"}, "loadcollection1": {"arguments": {"id": "corine_land_cover", "spatial_extent": {"east": 13.50151062011719, "north": 47.093500502407764, "south": 46.9061837801476, "west": 12.1783447265625}, "temporal_extent": ["2000-01-01", "2020-06-30"]}, "process_id": "load_collection"}, "mergecubes1": {"arguments": {"cube1": {"from_node": "dropdimension1"}, "cube2": {"from_node": "dropdimension2"}, "overlap_resolver": {"process_graph": {"subtract1": {"arguments": {"x": {"from_parameter": "x"}, "y": {"from_parameter": "y"}}, "process_id": "subtract", "result": true}}}}, "process_id": "merge_cubes"}, "saveresult1": {"arguments": {"data": {"from_node": "mergecubes1"}, "format": "NetCDF", "options": {}}, "process_id": "save_result", "result": true}}}, "status": "queued"}}</script>
+    </openeo-job>
+    </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    <script>
+    if (!window.customElements || !window.customElements.get('openeo-job')) {
+        var el = document.createElement('script');
+        el.src = "https://cdn.jsdelivr.net/npm/@openeo/vue-components@2/assets/openeo.min.js";
+        document.head.appendChild(el);
+
+        var font = document.createElement('font');
+        font.as = "font";
+        font.type = "font/woff2";
+        font.crossOrigin = true;
+        font.href = "https://use.fontawesome.com/releases/v5.13.0/webfonts/fa-solid-900.woff2"
+        document.head.appendChild(font);
+    }
+    </script>
+    <openeo-job>
+        <script type="application/json">{"currency": "credits", "job": {"created": "2023-11-02T14:09:33Z", "id": "eodc-75cc016d-4ee7-4e90-afb6-9b68ee6aaf35", "process": {"id": "4A549AC3FE1C4E85", "process_graph": {"apply1": {"arguments": {"data": {"from_node": "loadcollection1"}, "process": {"process_graph": {"eq1": {"arguments": {"x": {"from_parameter": "x"}, "y": 34}, "process_id": "eq", "result": true}}}}, "process_id": "apply"}, "dropdimension1": {"arguments": {"data": {"from_node": "filtertemporal1"}, "name": "t"}, "process_id": "drop_dimension"}, "dropdimension2": {"arguments": {"data": {"from_node": "filtertemporal2"}, "name": "t"}, "process_id": "drop_dimension"}, "filtertemporal1": {"arguments": {"data": {"from_node": "apply1"}, "extent": ["2000-01-01", "2000-12-31"]}, "process_id": "filter_temporal"}, "filtertemporal2": {"arguments": {"data": {"from_node": "apply1"}, "extent": ["2018-01-01", "2018-12-31"]}, "process_id": "filter_temporal"}, "loadcollection1": {"arguments": {"id": "corine_land_cover", "spatial_extent": {"east": 13.50151062011719, "north": 47.093500502407764, "south": 46.9061837801476, "west": 12.1783447265625}, "temporal_extent": ["2000-01-01", "2020-06-30"]}, "process_id": "load_collection"}, "mergecubes1": {"arguments": {"cube1": {"from_node": "dropdimension1"}, "cube2": {"from_node": "dropdimension2"}, "overlap_resolver": {"process_graph": {"subtract1": {"arguments": {"x": {"from_parameter": "x"}, "y": {"from_parameter": "y"}}, "process_id": "subtract", "result": true}}}}, "process_id": "merge_cubes"}, "saveresult1": {"arguments": {"data": {"from_node": "mergecubes1"}, "format": "NetCDF", "options": {}}, "process_id": "save_result", "result": true}}}, "status": "finished"}}</script>
+    </openeo-job>
+    </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
+<span class="n">metadata</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">download_files</span><span class="p">(</span><span class="s2">&quot;./glaciers/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[PosixPath(&#39;glaciers/EU010M_E049N015T1_NO_TIME.nc&#39;),
+ PosixPath(&#39;glaciers/EU010M_E050N015T1_NO_TIME.nc&#39;),
+ PosixPath(&#39;glaciers/job-results.json&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="looking-at-the-results-using-python-matplotlib">
+<h2>Looking at the results using python matplotlib<a class="headerlink" href="#looking-at-the-results-using-python-matplotlib" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;./glaciers/&quot;</span>
+
+<span class="n">data_2000</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">([</span><span class="n">path</span> <span class="o">+</span> <span class="n">file</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;2000&quot;</span> <span class="ow">in</span> <span class="n">file</span><span class="p">])</span>
+<span class="n">data_2018</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">([</span><span class="n">path</span> <span class="o">+</span> <span class="n">file</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;2018&quot;</span> <span class="ow">in</span> <span class="n">file</span><span class="p">])</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">([</span><span class="n">path</span> <span class="o">+</span> <span class="n">file</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;NO_TIME&quot;</span> <span class="ow">in</span> <span class="n">file</span><span class="p">])</span>
+
+<span class="n">corine_2000</span> <span class="o">=</span> <span class="n">data_2000</span><span class="o">.</span><span class="n">B01</span><span class="o">.</span><span class="n">values</span>
+<span class="n">corine_2018</span> <span class="o">=</span> <span class="n">data_2018</span><span class="o">.</span><span class="n">B01</span><span class="o">.</span><span class="n">values</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">diff</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Glaciers and perpetual snow in 2000: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">corine_2000</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Glaciers and perpetual snow in 2018: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">corine_2018</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Glaciers and perpetual snow in 2000:  1796440.0
+Glaciers and perpetual snow in 2018:  1060202.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="mi">24</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;2000-12-15&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">corine_2000</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;RdBu&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;2018-12-15&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">corine_2018</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;RdBu&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Difference&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;coolwarm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f9e79a88880&gt;
+</pre></div>
+</div>
+<img alt="../_images/98c2b42f5e96b9b3742b3685993d99937f592a21d9faef7ad7766ba256d56b41.png" src="../_images/98c2b42f5e96b9b3742b3685993d99937f592a21d9faef7ad7766ba256d56b41.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./part2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="openEO%20-%20boa_sentinel_2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">openEO Platform</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="openEO%20-%20Client%20Side%20Land%20Cover%20Alps.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">openEO Platform DEMO</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#big-data-from-space-2023">Big Data From Space 2023</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-openeo-platform-using-python">Connect to openEO Platform using python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-the-collection-description">Look at the collection description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-corine-land-cover-classes-and-their-associated-numbers">The Corine Land Cover classes and their associated numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pick-a-number-for-a-class-of-interest">Pick a number for a class of interest</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-creating-an-openeo-process-graph">Start creating an openEO process graph</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pick-a-spatial-extent-of-interest">Pick a spatial extent of interest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-corine-land-cover-collection">Load the corine land cover collection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-you-are-interested-in-a-specific-class-pick-the-number-of-the-class-and-set-the-data-equal-to-it">If you are interested in a specific class, pick the number of the class and set the data equal to it.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-result-as-a-netcdf">Save the result as a netCDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-start-a-job">Create and start a job</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#once-the-job-status-says-finished-results-can-be-downloaded">Once the job status says ‘finished’, results can be downloaded.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-at-the-results-using-python-matplotlib">Looking at the results using python matplotlib</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pangeo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1583 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>openEO Platform &#8212; BiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'part2/openEO - boa_sentinel_2';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="openEO Platform" href="openEO%20-%20Corine%20Land%20Cover%20Alps.html" />
+    <link rel="prev" title="Interactive plotting with HoloViews" href="../part1/visualization.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pangeo_openeo.png" class="logo__image only-light" alt="BiDS'23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data - Home"/>
+    <script>document.write(`<img src="../_static/pangeo_openeo.png" class="logo__image only-dark" alt="BiDS'23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome 👋
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../about/timeline.html">Workshop timeline</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Before the workshop</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../before/setup.html">Setup</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../before/openeo.html">OpenEO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../before/EOSC.html">Pangeo@EOSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../before/copernicus.html">Copernicus Data Space Ecosystem</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 1 - Pangeo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../part1/motivation.html">Introduction and Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/overview.html">Overview of the Pangeo ecosystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/xarray_pitfalls.html">Common pitfalls with xarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/visualization.html">Interactive Visualization with Hvplot</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2 - OpenEO</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Sentinel-2 Bottom Of Atmosphere (BOA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openEO%20-%20Corine%20Land%20Cover%20Alps.html">Corine Land Cover Alps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openEO%20-%20Client%20Side%20Land%20Cover%20Alps.html">Client Side Land Cover Alps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_workflows.html">Advanced workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stac_metadata.html">STAC metadata generation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../part3/data_discovery.html">Data discoverability and searchability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/chunking_introduction.html">Introduction to chunking with netCDF, ZARR and Kerchunk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/scaling_dask.html">Parallelization with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_openEO.html">How to exploit data with openEO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_pangeo.html">How to exploit data on Pangeo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/advanced_udf.html">OpenEO - User Defined Functions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../part3/scaling_openeo.html">Scaling with OpenEO</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the workshop</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../afterword/resources.html">Join the community!</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../afterword/pythia.html">Project Pythia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../afterword/envds-book.html">Environmental Data Science Book</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://notebooks.gesis.org/binder/v2/gh/pangeo-data/pangeo-openeo-BiDS-2023/main?urlpath=lab/tree/tutorial/part2/openEO - boa_sentinel_2.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://pangeo-foss4g.vm.fedcloud.eu/jupyterhub/hub/user-redirect/git-pull?repo=https%3A//github.com/pangeo-data/pangeo-openeo-BiDS-2023&urlpath=lab/tree/pangeo-openeo-BiDS-2023/tutorial/part2/openEO+-+boa_sentinel_2.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/issues/new?title=Issue%20on%20page%20%2Fpart2/openEO - boa_sentinel_2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/part2/openEO - boa_sentinel_2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>openEO Platform</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#big-data-from-space-2023">Big Data From Space 2023</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-openeo-platform-using-python">Connect to openEO Platform using python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-the-collection-description">Look at the collection description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-creating-an-openeo-process-graph">Start creating an openEO process graph</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pick-a-spatial-extent-of-interest">Pick a spatial extent of interest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-bottom-of-atmosphere-sentinel-2-collection">Load the bottom of atmosphere Sentinel 2 collection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregate-the-data-for-one-month-using-a-median">Aggregate the data for one month using a median</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-result-as-a-netcdf">Save the result as a netCDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-start-a-job">Create and start a job</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-results-when-the-job-is-finished">Download the results, when the job is finished</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-the-results-using-python-matplotlib">Look at the results using python matplotlib</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><img src="https://avatars.githubusercontent.com/u/74911464?s=200&v=4"
+     alt="OpenEO Platform logo"
+     style="float: left; margin-right: 10px;" /></p>
+<section id="openeo-platform">
+<h1>openEO Platform<a class="headerlink" href="#openeo-platform" title="Permalink to this heading">#</a></h1>
+<section id="big-data-from-space-2023">
+<h2>Big Data From Space 2023<a class="headerlink" href="#big-data-from-space-2023" title="Permalink to this heading">#</a></h2>
+<p>Exploring bottom of atmosphere data</p>
+</section>
+<section id="connect-to-openeo-platform-using-python">
+<h2>Connect to openEO Platform using python<a class="headerlink" href="#connect-to-openeo-platform-using-python" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">openeo</span>
+<span class="kn">from</span> <span class="nn">openeo.processes</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">openeo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;openeo.cloud&quot;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">Visit <a href="https://aai.egi.eu/device?user_code=DYQW-HGNV" title="Authenticate at https://aai.egi.eu/device?user_code=DYQW-HGNV" target="_blank" rel="noopener noreferrer">https://aai.egi.eu/device?user_code=DYQW-HGNV</a> <a href="#" onclick="navigator.clipboard.writeText('https://aai.egi.eu/device?user_code=DYQW-HGNV');return false;" title="Copy authentication URL to clipboard">&#128203;</a> to authenticate.</div><div class="output text_html"><code>[-------------------------------------]</code> ❌ Timed out</div><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">OidcDeviceCodePollTimeout</span><span class="g g-Whitespace">                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/openeo/rest/connection.py:729,</span> in <span class="ni">Connection.authenticate_oidc</span><span class="nt">(self, provider_id, client_id, client_secret, store_refresh_token, use_pkce, display, max_poll_time)</span>
+<span class="g g-Whitespace">    </span><span class="mi">725</span> <span class="n">_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Trying device code flow.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">726</span> <span class="n">authenticator</span> <span class="o">=</span> <span class="n">OidcDeviceAuthenticator</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">727</span>     <span class="n">client_info</span><span class="o">=</span><span class="n">client_info</span><span class="p">,</span> <span class="n">use_pkce</span><span class="o">=</span><span class="n">use_pkce</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="n">display</span><span class="p">,</span> <span class="n">max_poll_time</span><span class="o">=</span><span class="n">max_poll_time</span>
+<span class="g g-Whitespace">    </span><span class="mi">728</span> <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">729</span> <span class="n">con</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authenticate_oidc</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">730</span>     <span class="n">authenticator</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">731</span>     <span class="n">provider_id</span><span class="o">=</span><span class="n">provider_id</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">732</span>     <span class="n">store_refresh_token</span><span class="o">=</span><span class="n">store_refresh_token</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">733</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">734</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Authenticated using device code flow.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">735</span> <span class="k">return</span> <span class="n">con</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/openeo/rest/connection.py:459,</span> in <span class="ni">Connection._authenticate_oidc</span><span class="nt">(self, authenticator, provider_id, store_refresh_token, fallback_refresh_token_to_store, oidc_auth_renewer)</span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span> <span class="k">def</span> <span class="nf">_authenticate_oidc</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">448</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span>     <span class="n">authenticator</span><span class="p">:</span> <span class="n">OidcAuthenticator</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span>     <span class="n">oidc_auth_renewer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">OidcAuthenticator</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Connection</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">456</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">457</span><span class="sd">     Authenticate through OIDC and set up bearer token (based on OIDC access_token) for further requests.</span>
+<span class="g g-Whitespace">    </span><span class="mi">458</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">459</span>     <span class="n">tokens</span> <span class="o">=</span> <span class="n">authenticator</span><span class="o">.</span><span class="n">get_tokens</span><span class="p">(</span><span class="n">request_refresh_token</span><span class="o">=</span><span class="n">store_refresh_token</span><span class="p">)</span>
+<span class="nn">    460     _log.info(&quot;Obtained tokens: {t}&quot;.format(t=[k for k, v</span> in <span class="ni">tokens._asdict().items</span><span class="nt">() if v]))</span>
+<span class="g g-Whitespace">    </span><span class="mi">461</span>     <span class="k">if</span> <span class="n">store_refresh_token</span><span class="p">:</span>
+
+<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/openeo/rest/auth/oidc.py:911,</span> in <span class="ni">OidcDeviceAuthenticator.get_tokens</span><span class="nt">(self, request_refresh_token)</span>
+<span class="g g-Whitespace">    </span><span class="mi">908</span>         <span class="n">next_poll</span> <span class="o">=</span> <span class="n">elapsed</span><span class="p">()</span> <span class="o">+</span> <span class="n">poll_interval</span>
+<span class="g g-Whitespace">    </span><span class="mi">910</span> <span class="n">poll_ui</span><span class="o">.</span><span class="n">show_progress</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;Timed out&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">911</span> <span class="k">raise</span> <span class="n">OidcDeviceCodePollTimeout</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Timeout (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_poll_time</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">s) while polling for access token.&quot;</span><span class="p">)</span>
+
+<span class="ne">OidcDeviceCodePollTimeout</span>: Timeout (300.0s) while polling for access token.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="look-at-the-collection-description">
+<h2>Look at the collection description<a class="headerlink" href="#look-at-the-collection-description" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">describe_collection</span><span class="p">(</span><span class="s2">&quot;boa_sentinel_2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    <script>
+    if (!window.customElements || !window.customElements.get('openeo-collection')) {
+        var el = document.createElement('script');
+        el.src = "https://cdn.jsdelivr.net/npm/@openeo/vue-components@2/assets/openeo.min.js";
+        document.head.appendChild(el);
+
+        var font = document.createElement('font');
+        font.as = "font";
+        font.type = "font/woff2";
+        font.crossOrigin = true;
+        font.href = "https://use.fontawesome.com/releases/v5.13.0/webfonts/fa-solid-900.woff2"
+        document.head.appendChild(font);
+    }
+    </script>
+    <openeo-collection>
+        <script type="application/json">{"mapOptions": {}, "data": {"cube:dimensions": {"bands": {"type": "bands", "values": ["B02", "B03", "B04", "B05", "B06", "B07", "B08", "B08", "B11", "B12"]}, "t": {"extent": [["2015-07-04T12:00:00+00:00", "2021-06-22T12:00:00+00:00"]], "type": "temporal"}, "x": {"axis": "x", "extent": [4100000.0, 5500000.0], "reference_system": "PROJCS[\"Azimuthal_Equidistant\",GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433]],PROJECTION[\"Azimuthal_Equidistant\"],PARAMETER[\"latitude_of_center\",53],PARAMETER[\"longitude_of_center\",24],PARAMETER[\"false_easting\",5837287.81977],PARAMETER[\"false_northing\",2121415.69617],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]]]", "type": "spatial"}, "y": {"axis": "y", "extent": [900000.0, 2200000.0], "reference_system": "PROJCS[\"Azimuthal_Equidistant\",GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433]],PROJECTION[\"Azimuthal_Equidistant\"],PARAMETER[\"latitude_of_center\",53],PARAMETER[\"longitude_of_center\",24],PARAMETER[\"false_easting\",5837287.81977],PARAMETER[\"false_northing\",2121415.69617],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]]]", "type": "spatial"}}, "description": "Preprocessed analysis-ready-data (ARD) from Sentinel-2 processed with FORCE. ARD data can only be combined with other ARD data or loaded results of previous processed jobs. ARD data cannot be combined with Level-1 collections! As this is Level-2 (ARD) data, ARD processes (``ard_normalized_radar_backscatter()``, ``ard_surface_reflectance()``, ``sar_backscatter()``, ``atmospheric_correction()``) cannot be applied.", "extent": {"spatial": {"bbox": [[1.4211922929976784, 41.388795496730424, 19.38022689396854, 52.43260595832486]]}, "temporal": {"interval": [["2015-07-04T12:00:00Z", "2021-06-22T12:00:00Z"]]}}, "id": "boa_sentinel_2", "item_assets": {"cloud": {"description": "The QAI dataset contains bit-wise stored quality information for each pixel. The cloud state is available in bit 1-2.", "file:values": {"0": {"summary": "clear", "values": [0]}, "1": {"summary": "less confident cloud (i.e., buffered cloud)", "values": [1]}, "2": {"summary": "confident, opaque cloud", "values": [2]}, "3": {"summary": "cirrus", "values": [3]}}, "roles": ["cloud", "metadata"], "type": "image/tiff; application=geotiff"}, "cloud_shadow": {"description": "The QAI dataset contains bit-wise stored quality information for each pixel. The cloud-shadow flag is available in bit 3.", "file:values": {"0": {"summary": "no - no cloud-shadow on pixel", "values": [0]}, "1": {"summary": "yes - cloud-shadow on pixel", "values": [1]}}, "roles": ["cloud-shadow", "metadata"], "type": "image/tiff; application=geotiff"}, "saturation": {"description": "The QAI dataset contains bit-wise stored quality information for each pixel. The saturation flag is available in bit 9.", "file:values": {"0": {"summary": "no - pixel is NOT saturated", "values": [0]}, "1": {"summary": "yes - pixel is saturated", "values": [1]}}, "roles": ["saturation", "metadata"], "type": "image/tiff; application=geotiff"}}, "keywords": ["EODC", "MSI", "ESA", "Copernicus", "Sentinel-2", "Level-2"], "license": "proprietary", "links": [{"href": "https://openeo.eodc.eu/openeo/1.1.0/collections", "rel": "about"}, {"href": "https://openeo.eodc.eu/openeo/1.1.0/collections", "rel": "cloud"}, {"href": "https://openeo.eodc.eu/openeo/1.1.0/collections", "rel": "snow-ice"}, {"href": "https://openeo.eodc.eu/openeo/1.1.0/collections", "rel": "land-water"}, {"href": "https://openeo.eodc.eu/openeo/1.1.0/collections", "rel": "water-vapor"}, {"href": "https://openeo.eodc.eu/openeo/1.1.0/collections", "rel": "cloud-shadow"}, {"href": "https://openeo.eodc.eu/openeo/1.1.0/collections", "rel": "card4l-document"}, {"href": "https://openeo.eodc.eu/openeo/1.1.0/collections", "rel": "elevation-model"}, {"href": "https://openeo.eodc.eu/openeo/1.1.0/collections", "rel": "atmospheric-scattering"}, {"href": "https://openeocloud.vito.be/openeo/1.0.0/collections", "rel": "root"}, {"href": "https://openeocloud.vito.be/openeo/1.0.0/collections", "rel": "parent"}, {"href": "https://openeocloud.vito.be/openeo/1.0.0/collections/boa_sentinel_2", "rel": "self"}], "properties": {}, "stac_extensions": ["https://stac-extensions.github.io/datacube/v2.0.0/schema.json", "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json", "https://github.com/stac-extensions/eo"], "stac_version": "1.0.0", "summaries": {"constellation": {"0": "sentinel-2"}, "eo:bands": [{"central_wavelength": 0.49, "common_name": "band_1", "name": "B02"}, {"central_wavelength": 0.56, "common_name": "band_2", "name": "B03"}, {"central_wavelength": 0.67, "common_name": "band_3", "name": "B04"}, {"central_wavelength": 0.7, "common_name": "band_4", "name": "B05"}, {"central_wavelength": 0.74, "common_name": "band_5", "name": "B06"}, {"central_wavelength": 0.78, "common_name": "band_6", "name": "B07"}, {"central_wavelength": 0.83, "common_name": "band_7", "name": "B08"}, {"central_wavelength": 0.86, "common_name": "band_8", "name": "B08"}, {"central_wavelength": 1.61, "common_name": "band_9", "name": "B11"}, {"central_wavelength": 2.2, "common_name": "band_10", "name": "B12"}], "federation:backends": ["eodc"], "instruments": ["msi"], "odc:file_format": {"0": "GeoTIFF"}, "odc:product_family": {"0": "level2"}, "platform": {}}, "title": "Sentinel-2 bottom of atmosphere at 10m resolution, limited area", "type": "Collection"}}</script>
+    </openeo-collection>
+    </div></div>
+</div>
+</section>
+<section id="start-creating-an-openeo-process-graph">
+<h2>Start creating an openEO process graph<a class="headerlink" href="#start-creating-an-openeo-process-graph" title="Permalink to this heading">#</a></h2>
+<section id="pick-a-spatial-extent-of-interest">
+<h3>Pick a spatial extent of interest<a class="headerlink" href="#pick-a-spatial-extent-of-interest" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spatial_extent</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;west&#39;</span><span class="p">:</span> <span class="mf">16.2401</span><span class="p">,</span> <span class="s1">&#39;south&#39;</span><span class="p">:</span> <span class="mf">48.1541</span><span class="p">,</span> <span class="s1">&#39;east&#39;</span><span class="p">:</span> <span class="mf">16.5595</span><span class="p">,</span> <span class="s1">&#39;north&#39;</span><span class="p">:</span> <span class="mf">48.2458</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-the-bottom-of-atmosphere-sentinel-2-collection">
+<h3>Load the bottom of atmosphere Sentinel 2 collection<a class="headerlink" href="#load-the-bottom-of-atmosphere-sentinel-2-collection" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span><span class="s1">&#39;boa_sentinel_2&#39;</span><span class="p">,</span> <span class="n">spatial_extent</span> <span class="o">=</span> <span class="n">spatial_extent</span><span class="p">,</span> <span class="n">temporal_extent</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;2020-02-01&quot;</span><span class="p">,</span><span class="s2">&quot;2020-12-01&quot;</span><span class="p">],</span> <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;B02&quot;</span><span class="p">,</span><span class="s2">&quot;B03&quot;</span><span class="p">,</span><span class="s2">&quot;B04&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="aggregate-the-data-for-one-month-using-a-median">
+<h3>Aggregate the data for one month using a median<a class="headerlink" href="#aggregate-the-data-for-one-month-using-a-median" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_t</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">aggregate_temporal_period</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="n">median</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="save-the-result-as-a-netcdf">
+<h3>Save the result as a netCDF<a class="headerlink" href="#save-the-result-as-a-netcdf" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">saved_data</span> <span class="o">=</span> <span class="n">data_t</span><span class="o">.</span><span class="n">save_result</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;NetCDF&quot;</span><span class="p">)</span>
+<span class="n">saved_data</span><span class="o">.</span><span class="n">flat_graph</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;loadcollection1&#39;: {&#39;process_id&#39;: &#39;load_collection&#39;,
+  &#39;arguments&#39;: {&#39;bands&#39;: [&#39;B02&#39;, &#39;B03&#39;, &#39;B04&#39;],
+   &#39;id&#39;: &#39;boa_sentinel_2&#39;,
+   &#39;spatial_extent&#39;: {&#39;west&#39;: 16.2401,
+    &#39;south&#39;: 48.1541,
+    &#39;east&#39;: 16.5595,
+    &#39;north&#39;: 48.2458},
+   &#39;temporal_extent&#39;: [&#39;2020-02-01&#39;, &#39;2020-12-01&#39;]}},
+ &#39;aggregatetemporalperiod1&#39;: {&#39;process_id&#39;: &#39;aggregate_temporal_period&#39;,
+  &#39;arguments&#39;: {&#39;data&#39;: {&#39;from_node&#39;: &#39;loadcollection1&#39;},
+   &#39;period&#39;: &#39;month&#39;,
+   &#39;reducer&#39;: {&#39;process_graph&#39;: {&#39;median1&#39;: {&#39;process_id&#39;: &#39;median&#39;,
+      &#39;arguments&#39;: {&#39;data&#39;: {&#39;from_parameter&#39;: &#39;data&#39;}},
+      &#39;result&#39;: True}}}}},
+ &#39;saveresult1&#39;: {&#39;process_id&#39;: &#39;save_result&#39;,
+  &#39;arguments&#39;: {&#39;data&#39;: {&#39;from_node&#39;: &#39;aggregatetemporalperiod1&#39;},
+   &#39;format&#39;: &#39;NetCDF&#39;,
+   &#39;options&#39;: {}},
+  &#39;result&#39;: True}}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-and-start-a-job">
+<h3>Create and start a job<a class="headerlink" href="#create-and-start-a-job" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">saved_data</span><span class="o">.</span><span class="n">create_job</span><span class="p">()</span>
+<span class="n">job</span><span class="o">.</span><span class="n">start_job</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    <script>
+    if (!window.customElements || !window.customElements.get('openeo-job')) {
+        var el = document.createElement('script');
+        el.src = "https://cdn.jsdelivr.net/npm/@openeo/vue-components@2/assets/openeo.min.js";
+        document.head.appendChild(el);
+
+        var font = document.createElement('font');
+        font.as = "font";
+        font.type = "font/woff2";
+        font.crossOrigin = true;
+        font.href = "https://use.fontawesome.com/releases/v5.13.0/webfonts/fa-solid-900.woff2"
+        document.head.appendChild(font);
+    }
+    </script>
+    <openeo-job>
+        <script type="application/json">{"currency": "credits", "job": {"created": "2023-11-03T10:16:22Z", "id": "eodc-c48ca978-4104-44ed-a7e9-4e2a1a3bd232", "process": {"id": "E2E8C0C6417A427B", "process_graph": {"aggregatetemporalperiod1": {"arguments": {"data": {"from_node": "loadcollection1"}, "period": "month", "reducer": {"process_graph": {"median1": {"arguments": {"data": {"from_parameter": "data"}}, "process_id": "median", "result": true}}}}, "process_id": "aggregate_temporal_period"}, "loadcollection1": {"arguments": {"bands": ["B02", "B03", "B04"], "id": "boa_sentinel_2", "spatial_extent": {"east": 16.5595, "north": 48.2458, "south": 48.1541, "west": 16.2401}, "temporal_extent": ["2020-02-01", "2020-12-01"]}, "process_id": "load_collection"}, "saveresult1": {"arguments": {"data": {"from_node": "aggregatetemporalperiod1"}, "format": "NetCDF", "options": {}}, "process_id": "save_result", "result": true}}}, "status": "queued"}}</script>
+    </openeo-job>
+    </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    <script>
+    if (!window.customElements || !window.customElements.get('openeo-job')) {
+        var el = document.createElement('script');
+        el.src = "https://cdn.jsdelivr.net/npm/@openeo/vue-components@2/assets/openeo.min.js";
+        document.head.appendChild(el);
+
+        var font = document.createElement('font');
+        font.as = "font";
+        font.type = "font/woff2";
+        font.crossOrigin = true;
+        font.href = "https://use.fontawesome.com/releases/v5.13.0/webfonts/fa-solid-900.woff2"
+        document.head.appendChild(font);
+    }
+    </script>
+    <openeo-job>
+        <script type="application/json">{"currency": "credits", "job": {"created": "2023-11-03T10:16:22Z", "id": "eodc-c48ca978-4104-44ed-a7e9-4e2a1a3bd232", "process": {"id": "E2E8C0C6417A427B", "process_graph": {"aggregatetemporalperiod1": {"arguments": {"data": {"from_node": "loadcollection1"}, "period": "month", "reducer": {"process_graph": {"median1": {"arguments": {"data": {"from_parameter": "data"}}, "process_id": "median", "result": true}}}}, "process_id": "aggregate_temporal_period"}, "loadcollection1": {"arguments": {"bands": ["B02", "B03", "B04"], "id": "boa_sentinel_2", "spatial_extent": {"east": 16.5595, "north": 48.2458, "south": 48.1541, "west": 16.2401}, "temporal_extent": ["2020-02-01", "2020-12-01"]}, "process_id": "load_collection"}, "saveresult1": {"arguments": {"data": {"from_node": "aggregatetemporalperiod1"}, "format": "NetCDF", "options": {}}, "process_id": "save_result", "result": true}}}, "status": "finished"}}</script>
+    </openeo-job>
+    </div></div>
+</div>
+</section>
+<section id="download-the-results-when-the-job-is-finished">
+<h3>Download the results, when the job is finished<a class="headerlink" href="#download-the-results-when-the-job-is-finished" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="look-at-the-results-using-python-matplotlib">
+<h3>Look at the results using python matplotlib<a class="headerlink" href="#look-at-the-results-using-python-matplotlib" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;./boa/&quot;</span>
+<span class="n">output_s2</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+<span class="n">output_s2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
+Dimensions:      (t: 10, y: 1262, x: 2468)
+Coordinates:
+  * y            (y) float64 1.623e+06 1.623e+06 1.623e+06 ... 1.61e+06 1.61e+06
+  * x            (x) float64 5.26e+06 5.26e+06 5.26e+06 ... 5.285e+06 5.285e+06
+    spatial_ref  int32 0
+  * t            (t) datetime64[ns] 2020-02-29 2020-03-31 ... 2020-11-30
+Data variables:
+    B02          (t, y, x) float32 dask.array&lt;chunksize=(1, 1262, 2468), meta=np.ndarray&gt;
+    B03          (t, y, x) float32 dask.array&lt;chunksize=(1, 1262, 2468), meta=np.ndarray&gt;
+    B04          (t, y, x) float32 dask.array&lt;chunksize=(1, 1262, 2468), meta=np.ndarray&gt;
+Attributes:
+    crs:           PROJCS[&quot;Azimuthal_Equidistant&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_...
+    grid_mapping:  spatial_ref
+    nodata:        -9999</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-53a5fb51-6d5a-4bb6-9a73-440555d9f3ca' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-53a5fb51-6d5a-4bb6-9a73-440555d9f3ca' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>t</span>: 10</li><li><span class='xr-has-index'>y</span>: 1262</li><li><span class='xr-has-index'>x</span>: 2468</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-ec550fd4-dc35-47f8-b449-0205437c02f7' class='xr-section-summary-in' type='checkbox'  checked><label for='section-ec550fd4-dc35-47f8-b449-0205437c02f7' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.623e+06 1.623e+06 ... 1.61e+06</div><input id='attrs-61f6af37-86dc-4316-9e57-4a9a3a25f188' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-61f6af37-86dc-4316-9e57-4a9a3a25f188' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-179e718b-fcc6-483f-83b2-ab7cdcdfb38c' class='xr-var-data-in' type='checkbox'><label for='data-179e718b-fcc6-483f-83b2-ab7cdcdfb38c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>metre</dd><dt><span>resolution :</span></dt><dd>-10.0</dd><dt><span>crs :</span></dt><dd>PROJCS[&quot;Azimuthal_Equidistant&quot;,GEOGCS[&quot;GCS_WGS_1984&quot;,DATUM[&quot;D_WGS_1984&quot;,SPHEROID[&quot;WGS_1984&quot;,6378137,298.257223563]],PRIMEM[&quot;Greenwich&quot;,0],UNIT[&quot;degree&quot;,0.0174532925199433]],PROJECTION[&quot;Azimuthal_Equidistant&quot;],PARAMETER[&quot;latitude_of_center&quot;,53],PARAMETER[&quot;longitude_of_center&quot;,24],PARAMETER[&quot;false_easting&quot;,5837287.81977],PARAMETER[&quot;false_northing&quot;,2121415.69617],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]]]</dd></dl></div><div class='xr-var-data'><pre>array([1623095., 1623085., 1623075., ..., 1610505., 1610495., 1610485.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>5.26e+06 5.26e+06 ... 5.285e+06</div><input id='attrs-b6fd2f12-c3ee-40a0-932b-f3fae4198f9a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b6fd2f12-c3ee-40a0-932b-f3fae4198f9a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-46340b95-94cc-47f8-8974-18690288bfdc' class='xr-var-data-in' type='checkbox'><label for='data-46340b95-94cc-47f8-8974-18690288bfdc' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>resolution :</span></dt><dd>10.0</dd><dt><span>units :</span></dt><dd>metre</dd><dt><span>crs :</span></dt><dd>PROJCS[&quot;Azimuthal_Equidistant&quot;,GEOGCS[&quot;GCS_WGS_1984&quot;,DATUM[&quot;D_WGS_1984&quot;,SPHEROID[&quot;WGS_1984&quot;,6378137,298.257223563]],PRIMEM[&quot;Greenwich&quot;,0],UNIT[&quot;degree&quot;,0.0174532925199433]],PROJECTION[&quot;Azimuthal_Equidistant&quot;],PARAMETER[&quot;latitude_of_center&quot;,53],PARAMETER[&quot;longitude_of_center&quot;,24],PARAMETER[&quot;false_easting&quot;,5837287.81977],PARAMETER[&quot;false_northing&quot;,2121415.69617],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]]]</dd></dl></div><div class='xr-var-data'><pre>array([5260305., 5260315., 5260325., ..., 5284955., 5284965., 5284975.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>spatial_ref</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>0</div><input id='attrs-182e61b6-17b8-4eac-90a9-766d8f20356d' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-182e61b6-17b8-4eac-90a9-766d8f20356d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d56586e2-9678-4b52-b3c0-f7d344aebf13' class='xr-var-data-in' type='checkbox'><label for='data-d56586e2-9678-4b52-b3c0-f7d344aebf13' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>grid_mapping_name :</span></dt><dd>azimuthal_equidistant</dd><dt><span>spatial_ref :</span></dt><dd>PROJCS[&quot;Azimuthal_Equidistant&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0],UNIT[&quot;degree&quot;,0.0174532925199433]],PROJECTION[&quot;Azimuthal_Equidistant&quot;],PARAMETER[&quot;latitude_of_center&quot;,53],PARAMETER[&quot;longitude_of_center&quot;,24],PARAMETER[&quot;false_easting&quot;,5837287.81977],PARAMETER[&quot;false_northing&quot;,2121415.69617],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],AXIS[&quot;Easting&quot;,EAST],AXIS[&quot;Northing&quot;,NORTH]]</dd></dl></div><div class='xr-var-data'><pre>array(0, dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>t</span></div><div class='xr-var-dims'>(t)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2020-02-29 ... 2020-11-30</div><input id='attrs-f135e3e2-af87-4a8a-aead-3d1796d6c052' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-f135e3e2-af87-4a8a-aead-3d1796d6c052' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ecff4cc8-66ea-4ec3-a747-dfca09c4902d' class='xr-var-data-in' type='checkbox'><label for='data-ecff4cc8-66ea-4ec3-a747-dfca09c4902d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;2020-02-29T00:00:00.000000000&#x27;, &#x27;2020-03-31T00:00:00.000000000&#x27;,
+       &#x27;2020-04-30T00:00:00.000000000&#x27;, &#x27;2020-05-31T00:00:00.000000000&#x27;,
+       &#x27;2020-06-30T00:00:00.000000000&#x27;, &#x27;2020-07-31T00:00:00.000000000&#x27;,
+       &#x27;2020-08-31T00:00:00.000000000&#x27;, &#x27;2020-09-30T00:00:00.000000000&#x27;,
+       &#x27;2020-10-31T00:00:00.000000000&#x27;, &#x27;2020-11-30T00:00:00.000000000&#x27;],
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-46c37570-d72f-40d4-b044-8770bae07468' class='xr-section-summary-in' type='checkbox'  checked><label for='section-46c37570-d72f-40d4-b044-8770bae07468' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>B02</span></div><div class='xr-var-dims'>(t, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 1262, 2468), meta=np.ndarray&gt;</div><input id='attrs-5e9a1479-9a06-41e9-a672-a5a798c6e73e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-5e9a1479-9a06-41e9-a672-a5a798c6e73e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b593d9ab-d205-4965-bfeb-bbff80e4ff29' class='xr-var-data-in' type='checkbox'><label for='data-b593d9ab-d205-4965-bfeb-bbff80e4ff29' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 118.81 MiB </td>
+                        <td> 11.88 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (10, 1262, 2468) </td>
+                        <td> (1, 1262, 2468) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 40 Tasks </td>
+                        <td> 10 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> float32 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="194" height="126" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="10" y1="61" x2="24" y2="76" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="61" style="stroke-width:2" />
+  <line x1="11" y1="1" x2="11" y2="62" />
+  <line x1="12" y1="2" x2="12" y2="64" />
+  <line x1="14" y1="4" x2="14" y2="65" />
+  <line x1="15" y1="5" x2="15" y2="67" />
+  <line x1="17" y1="7" x2="17" y2="68" />
+  <line x1="18" y1="8" x2="18" y2="70" />
+  <line x1="20" y1="10" x2="20" y2="71" />
+  <line x1="21" y1="11" x2="21" y2="73" />
+  <line x1="23" y1="13" x2="23" y2="74" />
+  <line x1="24" y1="14" x2="24" y2="76" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,76.3100242058322 10.0,61.3614262560778" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="130" y2="0" style="stroke-width:2" />
+  <line x1="11" y1="1" x2="131" y2="1" />
+  <line x1="12" y1="2" x2="132" y2="2" />
+  <line x1="14" y1="4" x2="134" y2="4" />
+  <line x1="15" y1="5" x2="135" y2="5" />
+  <line x1="17" y1="7" x2="137" y2="7" />
+  <line x1="18" y1="8" x2="138" y2="8" />
+  <line x1="20" y1="10" x2="140" y2="10" />
+  <line x1="21" y1="11" x2="141" y2="11" />
+  <line x1="23" y1="13" x2="143" y2="13" />
+  <line x1="24" y1="14" x2="144" y2="14" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="130" y1="0" x2="144" y2="14" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 130.0,0.0 144.9485979497544,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="24" y1="14" x2="144" y2="14" style="stroke-width:2" />
+  <line x1="24" y1="76" x2="144" y2="76" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="24" y1="14" x2="24" y2="76" style="stroke-width:2" />
+  <line x1="144" y1="14" x2="144" y2="76" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="24.9485979497544,14.948597949754403 144.9485979497544,14.948597949754403 144.9485979497544,76.3100242058322 24.9485979497544,76.3100242058322" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="84.948598" y="96.310024" font-size="1.0rem" font-weight="100" text-anchor="middle" >2468</text>
+  <text x="164.948598" y="45.629311" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,164.948598,45.629311)">1262</text>
+  <text x="7.474299" y="88.835725" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,88.835725)">10</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>B03</span></div><div class='xr-var-dims'>(t, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 1262, 2468), meta=np.ndarray&gt;</div><input id='attrs-b5c1e090-c9dc-48fa-8fc2-df94c81d8573' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-b5c1e090-c9dc-48fa-8fc2-df94c81d8573' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f99a29d9-4571-47bb-b3f7-4ae0d6f0888b' class='xr-var-data-in' type='checkbox'><label for='data-f99a29d9-4571-47bb-b3f7-4ae0d6f0888b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 118.81 MiB </td>
+                        <td> 11.88 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (10, 1262, 2468) </td>
+                        <td> (1, 1262, 2468) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 40 Tasks </td>
+                        <td> 10 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> float32 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="194" height="126" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="10" y1="61" x2="24" y2="76" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="61" style="stroke-width:2" />
+  <line x1="11" y1="1" x2="11" y2="62" />
+  <line x1="12" y1="2" x2="12" y2="64" />
+  <line x1="14" y1="4" x2="14" y2="65" />
+  <line x1="15" y1="5" x2="15" y2="67" />
+  <line x1="17" y1="7" x2="17" y2="68" />
+  <line x1="18" y1="8" x2="18" y2="70" />
+  <line x1="20" y1="10" x2="20" y2="71" />
+  <line x1="21" y1="11" x2="21" y2="73" />
+  <line x1="23" y1="13" x2="23" y2="74" />
+  <line x1="24" y1="14" x2="24" y2="76" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,76.3100242058322 10.0,61.3614262560778" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="130" y2="0" style="stroke-width:2" />
+  <line x1="11" y1="1" x2="131" y2="1" />
+  <line x1="12" y1="2" x2="132" y2="2" />
+  <line x1="14" y1="4" x2="134" y2="4" />
+  <line x1="15" y1="5" x2="135" y2="5" />
+  <line x1="17" y1="7" x2="137" y2="7" />
+  <line x1="18" y1="8" x2="138" y2="8" />
+  <line x1="20" y1="10" x2="140" y2="10" />
+  <line x1="21" y1="11" x2="141" y2="11" />
+  <line x1="23" y1="13" x2="143" y2="13" />
+  <line x1="24" y1="14" x2="144" y2="14" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="130" y1="0" x2="144" y2="14" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 130.0,0.0 144.9485979497544,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="24" y1="14" x2="144" y2="14" style="stroke-width:2" />
+  <line x1="24" y1="76" x2="144" y2="76" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="24" y1="14" x2="24" y2="76" style="stroke-width:2" />
+  <line x1="144" y1="14" x2="144" y2="76" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="24.9485979497544,14.948597949754403 144.9485979497544,14.948597949754403 144.9485979497544,76.3100242058322 24.9485979497544,76.3100242058322" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="84.948598" y="96.310024" font-size="1.0rem" font-weight="100" text-anchor="middle" >2468</text>
+  <text x="164.948598" y="45.629311" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,164.948598,45.629311)">1262</text>
+  <text x="7.474299" y="88.835725" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,88.835725)">10</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>B04</span></div><div class='xr-var-dims'>(t, y, x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 1262, 2468), meta=np.ndarray&gt;</div><input id='attrs-4bf07d06-663e-411b-b67d-b3bbfbba61ec' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-4bf07d06-663e-411b-b67d-b3bbfbba61ec' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-046f015c-f036-4e04-ae08-f2c466db1604' class='xr-var-data-in' type='checkbox'><label for='data-046f015c-f036-4e04-ae08-f2c466db1604' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 118.81 MiB </td>
+                        <td> 11.88 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (10, 1262, 2468) </td>
+                        <td> (1, 1262, 2468) </td>
+                    </tr>
+                    <tr>
+                        <th> Count </th>
+                        <td> 40 Tasks </td>
+                        <td> 10 Chunks </td>
+                    </tr>
+                    <tr>
+                    <th> Type </th>
+                    <td> float32 </td>
+                    <td> numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="194" height="126" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="10" y1="61" x2="24" y2="76" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="61" style="stroke-width:2" />
+  <line x1="11" y1="1" x2="11" y2="62" />
+  <line x1="12" y1="2" x2="12" y2="64" />
+  <line x1="14" y1="4" x2="14" y2="65" />
+  <line x1="15" y1="5" x2="15" y2="67" />
+  <line x1="17" y1="7" x2="17" y2="68" />
+  <line x1="18" y1="8" x2="18" y2="70" />
+  <line x1="20" y1="10" x2="20" y2="71" />
+  <line x1="21" y1="11" x2="21" y2="73" />
+  <line x1="23" y1="13" x2="23" y2="74" />
+  <line x1="24" y1="14" x2="24" y2="76" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,76.3100242058322 10.0,61.3614262560778" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="130" y2="0" style="stroke-width:2" />
+  <line x1="11" y1="1" x2="131" y2="1" />
+  <line x1="12" y1="2" x2="132" y2="2" />
+  <line x1="14" y1="4" x2="134" y2="4" />
+  <line x1="15" y1="5" x2="135" y2="5" />
+  <line x1="17" y1="7" x2="137" y2="7" />
+  <line x1="18" y1="8" x2="138" y2="8" />
+  <line x1="20" y1="10" x2="140" y2="10" />
+  <line x1="21" y1="11" x2="141" y2="11" />
+  <line x1="23" y1="13" x2="143" y2="13" />
+  <line x1="24" y1="14" x2="144" y2="14" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="130" y1="0" x2="144" y2="14" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 130.0,0.0 144.9485979497544,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="24" y1="14" x2="144" y2="14" style="stroke-width:2" />
+  <line x1="24" y1="76" x2="144" y2="76" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="24" y1="14" x2="24" y2="76" style="stroke-width:2" />
+  <line x1="144" y1="14" x2="144" y2="76" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="24.9485979497544,14.948597949754403 144.9485979497544,14.948597949754403 144.9485979497544,76.3100242058322 24.9485979497544,76.3100242058322" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="84.948598" y="96.310024" font-size="1.0rem" font-weight="100" text-anchor="middle" >2468</text>
+  <text x="164.948598" y="45.629311" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,164.948598,45.629311)">1262</text>
+  <text x="7.474299" y="88.835725" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,88.835725)">10</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-3fde0533-5d45-4652-9ad8-acfb6daa1842' class='xr-section-summary-in' type='checkbox'  ><label for='section-3fde0533-5d45-4652-9ad8-acfb6daa1842' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e28554ae-4534-49ae-b184-811984b8712e' class='xr-index-data-in' type='checkbox'/><label for='index-e28554ae-4534-49ae-b184-811984b8712e' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([1623095.0, 1623085.0, 1623075.0, 1623065.0, 1623055.0, 1623045.0,
+       1623035.0, 1623025.0, 1623015.0, 1623005.0,
+       ...
+       1610575.0, 1610565.0, 1610555.0, 1610545.0, 1610535.0, 1610525.0,
+       1610515.0, 1610505.0, 1610495.0, 1610485.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;y&#x27;, length=1262))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-b9daaa76-cca9-45b4-a903-62a4e02909d3' class='xr-index-data-in' type='checkbox'/><label for='index-b9daaa76-cca9-45b4-a903-62a4e02909d3' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([5260305.0, 5260315.0, 5260325.0, 5260335.0, 5260345.0, 5260355.0,
+       5260365.0, 5260375.0, 5260385.0, 5260395.0,
+       ...
+       5284885.0, 5284895.0, 5284905.0, 5284915.0, 5284925.0, 5284935.0,
+       5284945.0, 5284955.0, 5284965.0, 5284975.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=2468))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>t</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-d632be98-6b34-4c1c-b414-6f01f04cea2c' class='xr-index-data-in' type='checkbox'/><label for='index-d632be98-6b34-4c1c-b414-6f01f04cea2c' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2020-02-29&#x27;, &#x27;2020-03-31&#x27;, &#x27;2020-04-30&#x27;, &#x27;2020-05-31&#x27;,
+               &#x27;2020-06-30&#x27;, &#x27;2020-07-31&#x27;, &#x27;2020-08-31&#x27;, &#x27;2020-09-30&#x27;,
+               &#x27;2020-10-31&#x27;, &#x27;2020-11-30&#x27;],
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;t&#x27;, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-f8a2e98d-0fa9-4c99-bd10-1ea5c9febfe9' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f8a2e98d-0fa9-4c99-bd10-1ea5c9febfe9' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>crs :</span></dt><dd>PROJCS[&quot;Azimuthal_Equidistant&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0],UNIT[&quot;degree&quot;,0.0174532925199433]],PROJECTION[&quot;Azimuthal_Equidistant&quot;],PARAMETER[&quot;latitude_of_center&quot;,53],PARAMETER[&quot;longitude_of_center&quot;,24],PARAMETER[&quot;false_easting&quot;,5837287.81977],PARAMETER[&quot;false_northing&quot;,2121415.69617],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],AXIS[&quot;Easting&quot;,EAST],AXIS[&quot;Northing&quot;,NORTH]]</dd><dt><span>grid_mapping :</span></dt><dd>spatial_ref</dd><dt><span>nodata :</span></dt><dd>-9999</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="mi">24</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">output_s2</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;February 2020&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">tone_mapping</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">B04</span><span class="p">,</span><span class="n">output</span><span class="o">.</span><span class="n">B03</span><span class="p">,</span><span class="n">output</span><span class="o">.</span><span class="n">B02</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;brg&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">output_s2</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;July 2020&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">tone_mapping</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">B04</span><span class="p">,</span><span class="n">output</span><span class="o">.</span><span class="n">B03</span><span class="p">,</span><span class="n">output</span><span class="o">.</span><span class="n">B02</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;brg&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">output_s2</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;November 2020&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">tone_mapping</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">B04</span><span class="p">,</span><span class="n">output</span><span class="o">.</span><span class="n">B03</span><span class="p">,</span><span class="n">output</span><span class="o">.</span><span class="n">B02</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;brg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f16e14e84c0&gt;
+</pre></div>
+</div>
+<img alt="../_images/0daf830c1a2b23dc03e1b3dfc9ff142b325d7b4837c5cf1221b804ca765ac791.png" src="../_images/0daf830c1a2b23dc03e1b3dfc9ff142b325d7b4837c5cf1221b804ca765ac791.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./part2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../part1/visualization.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Interactive plotting with HoloViews</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="openEO%20-%20Corine%20Land%20Cover%20Alps.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">openEO Platform</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#big-data-from-space-2023">Big Data From Space 2023</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-openeo-platform-using-python">Connect to openEO Platform using python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-the-collection-description">Look at the collection description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-creating-an-openeo-process-graph">Start creating an openEO process graph</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pick-a-spatial-extent-of-interest">Pick a spatial extent of interest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-bottom-of-atmosphere-sentinel-2-collection">Load the bottom of atmosphere Sentinel 2 collection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregate-the-data-for-one-month-using-a-median">Aggregate the data for one month using a median</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-result-as-a-netcdf">Save the result as a netCDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-start-a-job">Create and start a job</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-results-when-the-job-is-finished">Download the results, when the job is finished</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-the-results-using-python-matplotlib">Look at the results using python matplotlib</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pangeo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

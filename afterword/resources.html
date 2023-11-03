@@ -190,28 +190,26 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2 - OpenEO</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../part2/agenda_and_links.html">Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/openEO%20-%20boa_sentinel_2.html">Sentinel-2 Bottom Of Atmosphere (BOA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/openEO%20-%20Corine%20Land%20Cover%20Alps.html">Corine Land Cover Alps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/openEO%20-%20Client%20Side%20Land%20Cover%20Alps.html">Client Side Land Cover Alps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part2/advanced_workflows.html">Advanced workflows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part2/stac_metadata.html">STAC metadata generation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../part3/data_discovery.html">Data discoverability and searchability</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_openEO.html">How to exploit data on openEO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/chunking_introduction.html">Introduction to chunking with netCDF, ZARR and Kerchunk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/scaling_dask.html">Parallelization with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_openEO.html">How to exploit data with openEO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_pangeo.html">How to exploit data on Pangeo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../part3/chunking_introduction.html">Data chunking with zarr</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../part3/scaling_dask.html">Scaling with Dask</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part3/advanced_udf.html">OpenEO - User Defined Functions</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="../part3/advanced_ufunc.html">Advanced OpenEO (Ufunc)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part3/scaling_openeo.html">Scaling with OpenEO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the workshop</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Join the community!</a></li>
-
-
-
 
 
 <li class="toctree-l1"><a class="reference internal" href="pythia.html">Project Pythia</a></li>
@@ -412,9 +410,6 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Join the community!</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#meetings">Meetings</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-infrastructure">Cloud infrastructure</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-life-cycle">Data life cycle</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#most-recent-trainings-2021-22">Most recent trainings (2021/22)</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources-initiatives-consuming-pangeo-stack">Additional resources/initiatives consuming Pangeo stack</a></li>
 </ul>
 
@@ -461,28 +456,8 @@ document.write(`
 <h1>Meetings<a class="headerlink" href="#meetings" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://pangeo.io/meeting-notes.html#community-meeting">General</a>: Pangeo holds community meetings every Wednesday. The meetings alternate between 12PM and 4PM US Eastern Time to encourage participants from a wider range of time zones.</p></li>
-<li><p><a class="reference external" href="https://pangeo.io/meeting-notes.html#continental-community-meetings">Continental meetings</a>: to adress different time zones among the globe continental meetings have been organized in Europe/Africa and Oceania.</p></li>
+<li><p><a class="reference external" href="https://pangeo.io/meeting-notes.html#continental-community-meetings">Pangeo European Coffee</a>: an informal meeting with open discussions, to adress different time zones among the globe continental meetings. Schedule: Every week on Tuesday at 9:30am CET</p></li>
 <li><p><a class="reference external" href="https://pangeo.io/pangeo-showcase.html#pangeo-showcase">Showcases</a>: 15 minutes talks which are an opportunity for anyone to meet other members of the Pangeo community and let them know what you are working on. The talks are recorded, given a DOI, and made available on the <a class="reference external" href="https://youtube.com/playlist?list=PLuQQBBQFfpgq0OvjKbjcYgTDzDxTqtwua">Pangeo YouTube Channel</a>. If you are interested in giving a talk, <a class="reference external" href="https://forms.gle/QwxKusVvrvDakSNs8">fill out this short form</a>.</p></li>
-</ul>
-</section>
-<section id="cloud-infrastructure">
-<h1>Cloud infrastructure<a class="headerlink" href="#cloud-infrastructure" title="Permalink to this heading">#</a></h1>
-<ul class="simple">
-<li><p><a class="reference external" href="https://us-central1-b.gcp.pangeo.io/hub/login?next=%2Fhub%2F">2i2c JupyterHub</a>: serves Pangeo on open source infrastructure. It’s operated and designed by <a class="reference external" href="https://2i2c.org/">2i2c</a>, and funded by <a class="reference external" href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2026932">NSF EarthCube Program (Award ICER-2026932)</a>. The service is <strong>open to anyone</strong> that a hub administrator has approved the application form (see <a class="reference external" href="https://docs.google.com/forms/d/e/1FAIpQLSeqKncKG-s365pC_Lfe4_UetJ-wcFfjOSyHhYYQjXbKRHzswQ/viewform">here</a>). Find a blog post informing the 2i2c/Pangeo partnership <a class="reference external" href="https://2i2c.org/blog/2021/pangeo-goes-live/">here</a>.</p></li>
-</ul>
-</section>
-<section id="data-life-cycle">
-<h1>Data life cycle<a class="headerlink" href="#data-life-cycle" title="Permalink to this heading">#</a></h1>
-<ul class="simple">
-<li><p><a class="reference external" href="https://pangeo-forge.org/">Pangeo Forge</a>:  a tool designed to aid the extraction, transformation, and loading of datasets.</p></li>
-</ul>
-</section>
-<section id="most-recent-trainings-2021-22">
-<h1>Most recent trainings (2021/22)<a class="headerlink" href="#most-recent-trainings-2021-22" title="Permalink to this heading">#</a></h1>
-<ul class="simple">
-<li><p><a class="reference external" href="https://training.galaxyproject.org/training-material/topics/climate/">Galaxy training in climate data</a>: contains two modules introducing Pangeo, <em>Pangeo ecosystem 101 for everyone</em> and <em>Pangeo Notebook in Galaxy - Introduction to Xarray</em> showcasing how the Pangeo stack assists processing and analysing big climate datasets.</p></li>
-<li><p><a class="reference external" href="https://github.com/LandscapeGeoinformatics">BIOGEOMON 2022 Python Pangeo Workshop</a>: led by <a class="reference external" href="https://github.com/LandscapeGeoinformatics">Landscape Geoinformatics</a> includes Jupyter notebooks demonstrating Xarray for working with labeled multi-dimensional arrays of data. The material also shows a few basic steps how to improve reproducibility and pro-actively apply FAIR principles when sharing and archiving data and code online for publishing via <a class="reference external" href="https://github.com/">GitHub</a> and <a class="reference external" href="https://zenodo.org/">Zenodo</a>.</p></li>
-<li><p><a class="reference external" href="https://github.com/pangeo-data/foss4g-2021">FOSS4G 2021</a>: focuses on data discovery with SpatioTemporal Asset Catalogs (STAC), data loading with Cloud-optimized formats (Cloud-Optimized Geotiff, ZARR), and scalable analysis with Xarray and Dask libraries.</p></li>
 </ul>
 </section>
 <section id="additional-resources-initiatives-consuming-pangeo-stack">
@@ -573,9 +548,6 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Join the community!</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#meetings">Meetings</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-infrastructure">Cloud infrastructure</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-life-cycle">Data life cycle</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#most-recent-trainings-2021-22">Most recent trainings (2021/22)</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources-initiatives-consuming-pangeo-stack">Additional resources/initiatives consuming Pangeo stack</a></li>
 </ul>
 

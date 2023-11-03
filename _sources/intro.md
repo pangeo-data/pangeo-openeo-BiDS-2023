@@ -14,9 +14,9 @@ More information can be found on the [BiDS'23](https://www.bigdatafromspace2023.
 ### Pangeo & OpenEO tutorial
 
 The tutorials are divided in 3 parts:
-1. Introduction to the Pangeo ecosystem
-2. Introduction to the OpenEO platform
-3. Scaling Big Data Analysis with Pangeo and OpenEO: Unlocking the Power of Space Data
+1. Introduction to Pangeo
+2. Introduction to OpenEO
+3. Unlocking the Power of Space Data with Pangeo & OpenEO
 
 The workshop timelines, setup and content are accessible via the left menu of this webpage.
 

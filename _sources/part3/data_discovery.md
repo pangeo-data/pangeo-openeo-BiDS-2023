@@ -1,5 +1,5 @@
 # Data discoverability and searchability
 
-## An overview of STAC
+## An overview of STAC and the different available sources
 
-## Overview of different sources and platforms
+The presentation is available here: https://docs.google.com/presentation/d/1bUTlmvrDMm1affvr8tq5gePqBigCTY9YVN3mtcscpJk/edit?usp=sharing

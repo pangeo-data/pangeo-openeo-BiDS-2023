@@ -1,0 +1,1323 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>openEO Platform DEMO &#8212; BiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'part2/openEO - Client Side Land Cover Alps';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Advanced workflows in openEO" href="advanced_workflows.html" />
+    <link rel="prev" title="openEO Platform" href="openEO%20-%20Corine%20Land%20Cover%20Alps.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pangeo_openeo.png" class="logo__image only-light" alt="BiDS'23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data - Home"/>
+    <script>document.write(`<img src="../_static/pangeo_openeo.png" class="logo__image only-dark" alt="BiDS'23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome 👋
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../about/timeline.html">Workshop timeline</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Before the workshop</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../before/setup.html">Setup</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../before/openeo.html">OpenEO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../before/EOSC.html">Pangeo@EOSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../before/copernicus.html">Copernicus Data Space Ecosystem</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 1 - Pangeo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../part1/motivation.html">Introduction and Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/overview.html">Overview of the Pangeo ecosystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/xarray_pitfalls.html">Common pitfalls with xarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/visualization.html">Interactive Visualization with Hvplot</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2 - OpenEO</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="openEO%20-%20boa_sentinel_2.html">Sentinel-2 Bottom Of Atmosphere (BOA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openEO%20-%20Corine%20Land%20Cover%20Alps.html">Corine Land Cover Alps</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Client Side Land Cover Alps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_workflows.html">Advanced workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stac_metadata.html">STAC metadata generation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../part3/data_discovery.html">Data discoverability and searchability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/chunking_introduction.html">Introduction to chunking with netCDF, ZARR and Kerchunk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/scaling_dask.html">Parallelization with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_openEO.html">How to exploit data with openEO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_pangeo.html">How to exploit data on Pangeo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/advanced_udf.html">OpenEO - User Defined Functions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../part3/scaling_openeo.html">Scaling with OpenEO</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the workshop</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../afterword/resources.html">Join the community!</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../afterword/pythia.html">Project Pythia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../afterword/envds-book.html">Environmental Data Science Book</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://notebooks.gesis.org/binder/v2/gh/pangeo-data/pangeo-openeo-BiDS-2023/main?urlpath=lab/tree/tutorial/part2/openEO - Client Side Land Cover Alps.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://pangeo-foss4g.vm.fedcloud.eu/jupyterhub/hub/user-redirect/git-pull?repo=https%3A//github.com/pangeo-data/pangeo-openeo-BiDS-2023&urlpath=lab/tree/pangeo-openeo-BiDS-2023/tutorial/part2/openEO+-+Client+Side+Land+Cover+Alps.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/issues/new?title=Issue%20on%20page%20%2Fpart2/openEO - Client Side Land Cover Alps.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/part2/openEO - Client Side Land Cover Alps.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>openEO Platform DEMO</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#have-a-look-at-the-collection">Have a look at the collection</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><img src="https://avatars.githubusercontent.com/u/74911464?s=200&v=4"
+     alt="OpenEO Platform logo"
+     style="float: left; margin-right: 10px;" /></p>
+<section id="openeo-platform-demo">
+<h1>openEO Platform DEMO<a class="headerlink" href="#openeo-platform-demo" title="Permalink to this heading">#</a></h1>
+<p>Land Cover change over an alpine region using Client Side Processing</p>
+<p>Import the necessary modules fro openEO Client Side Processing</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">openeo.local</span> <span class="kn">import</span> <span class="n">LocalConnection</span>
+<span class="n">local_conn</span> <span class="o">=</span> <span class="n">LocalConnection</span><span class="p">(</span><span class="s2">&quot;./&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">openeo.local</span> <span class="kn">import</span> <span class="n">LocalConnection</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">local_conn</span> <span class="o">=</span> <span class="n">LocalConnection</span><span class="p">(</span><span class="s2">&quot;./&quot;</span><span class="p">)</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">micromamba</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">bids23</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">openeo</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">openeo.local.connection</span> <span class="kn">import</span> <span class="n">LocalConnection</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;LocalConnection&quot;</span><span class="p">]</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">micromamba</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">bids23</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">openeo</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">connection</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">8</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">openeo_pg_parser_networkx.graph</span> <span class="kn">import</span> <span class="n">OpenEOProcessGraph</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">openeo_pg_parser_networkx.pg_schema</span> <span class="kn">import</span> <span class="n">BoundingBox</span><span class="p">,</span> <span class="n">TemporalInterval</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">openeo_processes_dask.process_implementations.cubes</span> <span class="kn">import</span> <span class="n">load_stac</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;openeo_pg_parser_networkx&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="have-a-look-at-the-collection">
+<h2>Have a look at the collection<a class="headerlink" href="#have-a-look-at-the-collection" title="Permalink to this heading">#</a></h2>
+<p>We will use a collection from Microsoft Planetary Computer:</p>
+<p><strong>10m Annual Land Use Land Cover (9-class)</strong></p>
+<p><a class="reference external" href="https://planetarycomputer.microsoft.com/dataset/io-lulc-9-class">https://planetarycomputer.microsoft.com/dataset/io-lulc-9-class</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span>      <span class="o">=</span> <span class="s2">&quot;https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class&quot;</span>
+
+<span class="n">spatial_extent</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;west&quot;</span><span class="p">:</span> <span class="mf">12.1783447265625</span><span class="p">,</span>
+                  <span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="mf">46.9061837801476</span><span class="p">,</span>
+                  <span class="s2">&quot;east&quot;</span><span class="p">:</span> <span class="mf">13.50151062011719</span><span class="p">,</span>
+                  <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="mf">47.093500502407764</span><span class="p">}</span>
+
+<span class="n">iulc_9_class_2017</span> <span class="o">=</span> <span class="n">local_conn</span><span class="o">.</span><span class="n">load_stac</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span><span class="p">,</span>
+                             <span class="n">spatial_extent</span> <span class="o">=</span> <span class="n">spatial_extent</span><span class="p">,</span>
+                             <span class="n">temporal_extent</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;2017-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2017-01-02&quot;</span><span class="p">]</span>
+                            <span class="p">)</span>
+
+<span class="c1"># We need to select this temporal internal (2023-01) to get the 2022 data due to how this particular collection is stored in STAC.</span>
+<span class="c1"># You can experiment changing temporal_extent and check the outout of iulc_9_class_2022.execute()</span>
+<span class="n">iulc_9_class_2022</span> <span class="o">=</span> <span class="n">local_conn</span><span class="o">.</span><span class="n">load_stac</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span><span class="p">,</span>
+                             <span class="n">spatial_extent</span> <span class="o">=</span> <span class="n">spatial_extent</span><span class="p">,</span>
+                             <span class="n">temporal_extent</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;2023-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2023-01-02&quot;</span><span class="p">]</span>
+                            <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\mclaus\Miniconda3\envs\stacenv\lib\site-packages\stackstac\prepare.py:408: UserWarning: The argument &#39;infer_datetime_format&#39; is deprecated and will be removed in a future version. A strict version of it is now the default, see https://pandas.pydata.org/pdeps/0004-consistent-to-datetime-parsing.html. You can safely remove this argument.
+  times = pd.to_datetime(
+C:\Users\mclaus\Miniconda3\envs\stacenv\lib\site-packages\stackstac\prepare.py:408: UserWarning: The argument &#39;infer_datetime_format&#39; is deprecated and will be removed in a future version. A strict version of it is now the default, see https://pandas.pydata.org/pdeps/0004-consistent-to-datetime-parsing.html. You can safely remove this argument.
+  times = pd.to_datetime(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iulc_2017</span> <span class="o">=</span> <span class="n">iulc_9_class_2017</span><span class="o">.</span><span class="n">drop_dimension</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">drop_dimension</span><span class="p">(</span><span class="s2">&quot;band&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">add_dimension</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;bands&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;bands&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;iulc_2017&quot;</span><span class="p">)</span>
+<span class="n">iulc_2022</span> <span class="o">=</span> <span class="n">iulc_9_class_2022</span><span class="o">.</span><span class="n">drop_dimension</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">drop_dimension</span><span class="p">(</span><span class="s2">&quot;band&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">add_dimension</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;bands&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;bands&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;iulc_2022&quot;</span><span class="p">)</span>
+<span class="n">iulc_2017_2022</span> <span class="o">=</span> <span class="n">iulc_2017</span><span class="o">.</span><span class="n">merge_cubes</span><span class="p">(</span><span class="n">iulc_2022</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The IULC class for “Snow and Ice” is reflected by the values which are equal to 9.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snow_and_ice</span> <span class="o">=</span> <span class="n">iulc_2017_2022</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">9</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compute the difference between the different snow and ice maps:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_difference</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">snow_and_ice_2017</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">array_element</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">snow_and_ice_2022</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">array_element</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">snow_and_ice_2022</span> <span class="o">-</span> <span class="n">snow_and_ice_2017</span>
+    
+<span class="n">snow_and_ice_difference</span> <span class="o">=</span> <span class="n">snow_and_ice</span><span class="o">.</span><span class="n">reduce_dimension</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="n">compute_difference</span><span class="p">,</span><span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;bands&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">add_dimension</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;bands&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;bands&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;diff&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Merge all in one datacube and visualiza the final process graph:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snow_and_ice_2017_2022_diff</span> <span class="o">=</span> <span class="n">snow_and_ice</span><span class="o">.</span><span class="n">merge_cubes</span><span class="p">(</span><span class="n">snow_and_ice_difference</span><span class="p">)</span>
+<span class="n">snow_and_ice_2017_2022_diff</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    <script>
+    if (!window.customElements || !window.customElements.get('openeo-model-builder')) {
+        var el = document.createElement('script');
+        el.src = "https://cdn.jsdelivr.net/npm/@openeo/vue-components@2/assets/openeo.min.js";
+        document.head.appendChild(el);
+
+        var font = document.createElement('font');
+        font.as = "font";
+        font.type = "font/woff2";
+        font.crossOrigin = true;
+        font.href = "https://use.fontawesome.com/releases/v5.13.0/webfonts/fa-solid-900.woff2"
+        document.head.appendChild(font);
+    }
+    </script>
+    <openeo-model-builder>
+        <script type="application/json">{"id": "bef2507ed0604cb5b6e16225c4e3e4af", "explicit-zoom": true, "height": "400px", "value": {"process_graph": {"loadstac1": {"process_id": "load_stac", "arguments": {"spatial_extent": {"west": 12.1783447265625, "south": 46.9061837801476, "east": 13.50151062011719, "north": 47.093500502407764}, "temporal_extent": ["2017-01-01", "2017-01-02"], "url": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class"}}, "dropdimension1": {"process_id": "drop_dimension", "arguments": {"data": {"from_node": "loadstac1"}, "name": "time"}}, "dropdimension2": {"process_id": "drop_dimension", "arguments": {"data": {"from_node": "dropdimension1"}, "name": "band"}}, "adddimension1": {"process_id": "add_dimension", "arguments": {"data": {"from_node": "dropdimension2"}, "label": "iulc_2017", "name": "bands", "type": "bands"}}, "loadstac2": {"process_id": "load_stac", "arguments": {"spatial_extent": {"west": 12.1783447265625, "south": 46.9061837801476, "east": 13.50151062011719, "north": 47.093500502407764}, "temporal_extent": ["2023-01-01", "2023-01-02"], "url": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/io-lulc-9-class"}}, "dropdimension3": {"process_id": "drop_dimension", "arguments": {"data": {"from_node": "loadstac2"}, "name": "time"}}, "dropdimension4": {"process_id": "drop_dimension", "arguments": {"data": {"from_node": "dropdimension3"}, "name": "band"}}, "adddimension2": {"process_id": "add_dimension", "arguments": {"data": {"from_node": "dropdimension4"}, "label": "iulc_2022", "name": "bands", "type": "bands"}}, "mergecubes1": {"process_id": "merge_cubes", "arguments": {"cube1": {"from_node": "adddimension1"}, "cube2": {"from_node": "adddimension2"}}}, "apply1": {"process_id": "apply", "arguments": {"data": {"from_node": "mergecubes1"}, "process": {"process_graph": {"eq1": {"process_id": "eq", "arguments": {"x": {"from_parameter": "x"}, "y": 9}, "result": true}}}}}, "reducedimension1": {"process_id": "reduce_dimension", "arguments": {"data": {"from_node": "apply1"}, "dimension": "bands", "reducer": {"process_graph": {"arrayelement1": {"process_id": "array_element", "arguments": {"data": {"from_parameter": "data"}, "index": 1}}, "arrayelement2": {"process_id": "array_element", "arguments": {"data": {"from_parameter": "data"}, "index": 0}}, "subtract1": {"process_id": "subtract", "arguments": {"x": {"from_node": "arrayelement1"}, "y": {"from_node": "arrayelement2"}}, "result": true}}}}}, "adddimension3": {"process_id": "add_dimension", "arguments": {"data": {"from_node": "reducedimension1"}, "label": "diff", "name": "bands", "type": "bands"}}, "mergecubes2": {"process_id": "merge_cubes", "arguments": {"cube1": {"from_node": "apply1"}, "cube2": {"from_node": "adddimension3"}}, "result": true}}}}</script>
+    </openeo-model-builder>
+    </div></div>
+</div>
+<p>Get the result as an Dask based xArray object:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snow_and_ice_2017_2022_diff_xr</span> <span class="o">=</span> <span class="n">snow_and_ice_2017_2022_diff</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="n">snow_and_ice_2017_2022_diff_xr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\mclaus\Miniconda3\envs\stacenv\lib\site-packages\stackstac\prepare.py:408: UserWarning: The argument &#39;infer_datetime_format&#39; is deprecated and will be removed in a future version. A strict version of it is now the default, see https://pandas.pydata.org/pdeps/0004-consistent-to-datetime-parsing.html. You can safely remove this argument.
+  times = pd.to_datetime(
+C:\Users\mclaus\Miniconda3\envs\stacenv\lib\site-packages\stackstac\prepare.py:408: UserWarning: The argument &#39;infer_datetime_format&#39; is deprecated and will be removed in a future version. A strict version of it is now the default, see https://pandas.pydata.org/pdeps/0004-consistent-to-datetime-parsing.html. You can safely remove this argument.
+  times = pd.to_datetime(
+</pre></div>
+</div>
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (bands: 3, y: 2359, x: 10116)&gt;
+dask.array&lt;getitem, shape=(3, 2359, 10116), dtype=float64, chunksize=(1, 1024, 1024), chunktype=numpy.ndarray&gt;
+Coordinates: (12/15)
+  * x                (x) float64 2.851e+05 2.851e+05 ... 3.863e+05 3.863e+05
+  * y                (y) float64 5.219e+06 5.219e+06 ... 5.196e+06 5.196e+06
+  * bands            (bands) &lt;U9 &#x27;iulc_2017&#x27; &#x27;iulc_2022&#x27; &#x27;diff&#x27;
+    id               &lt;U8 &#x27;33T-2017&#x27;
+    io:tile_id       &lt;U3 &#x27;33T&#x27;
+    proj:bbox        object {756097.7729520155, 243907.7729520155, 5320646.33...
+    ...               ...
+    proj:epsg        int32 32633
+    proj:transform   object {0.0, 243907.7729520155, 5320646.335981226, 10.0,...
+    start_datetime   &lt;U20 &#x27;2017-01-01T00:00:00Z&#x27;
+    raster:bands     object {&#x27;nodata&#x27;: 0, &#x27;spatial_resolution&#x27;: 10}
+    file:size        int32 165589758
+    epsg             int32 32633
+Attributes:
+    reduced_dimensions_min_values:  {&#x27;bands&#x27;: &#x27;iulc_2017&#x27;}</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>bands</span>: 3</li><li><span class='xr-has-index'>y</span>: 2359</li><li><span class='xr-has-index'>x</span>: 10116</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-91195ba8-c238-44e1-ac68-ab7809f12947' class='xr-array-in' type='checkbox' checked><label for='section-91195ba8-c238-44e1-ac68-ab7809f12947' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>dask.array&lt;chunksize=(1, 116, 998), meta=np.ndarray&gt;</span></div><div class='xr-array-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 546.20 MiB </td>
+                        <td> 8.00 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (3, 2359, 10116) </td>
+                        <td> (1, 1024, 1024) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 120 chunks in 29 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="194" height="107" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="10" y1="2" x2="24" y2="17" />
+  <line x1="10" y1="20" x2="24" y2="35" />
+  <line x1="10" y1="39" x2="24" y2="54" />
+  <line x1="10" y1="42" x2="24" y2="57" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="42" style="stroke-width:2" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="24" y1="14" x2="24" y2="57" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,57.581834966060825 10.0,42.633237016306424" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="130" y2="0" style="stroke-width:2" />
+  <line x1="14" y1="4" x2="134" y2="4" />
+  <line x1="19" y1="9" x2="139" y2="9" />
+  <line x1="24" y1="14" x2="144" y2="14" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="21" y1="0" x2="36" y2="14" />
+  <line x1="33" y1="0" x2="48" y2="14" />
+  <line x1="46" y1="0" x2="61" y2="14" />
+  <line x1="58" y1="0" x2="73" y2="14" />
+  <line x1="70" y1="0" x2="85" y2="14" />
+  <line x1="82" y1="0" x2="97" y2="14" />
+  <line x1="94" y1="0" x2="109" y2="14" />
+  <line x1="106" y1="0" x2="121" y2="14" />
+  <line x1="119" y1="0" x2="133" y2="14" />
+  <line x1="130" y1="0" x2="144" y2="14" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 130.0,0.0 144.9485979497544,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="24" y1="14" x2="144" y2="14" style="stroke-width:2" />
+  <line x1="24" y1="17" x2="144" y2="17" />
+  <line x1="24" y1="35" x2="144" y2="35" />
+  <line x1="24" y1="54" x2="144" y2="54" />
+  <line x1="24" y1="57" x2="144" y2="57" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="24" y1="14" x2="24" y2="57" style="stroke-width:2" />
+  <line x1="36" y1="14" x2="36" y2="57" />
+  <line x1="48" y1="14" x2="48" y2="57" />
+  <line x1="61" y1="14" x2="61" y2="57" />
+  <line x1="73" y1="14" x2="73" y2="57" />
+  <line x1="85" y1="14" x2="85" y2="57" />
+  <line x1="97" y1="14" x2="97" y2="57" />
+  <line x1="109" y1="14" x2="109" y2="57" />
+  <line x1="121" y1="14" x2="121" y2="57" />
+  <line x1="133" y1="14" x2="133" y2="57" />
+  <line x1="144" y1="14" x2="144" y2="57" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="24.9485979497544,14.948597949754403 144.9485979497544,14.948597949754403 144.9485979497544,57.581834966060825 24.9485979497544,57.581834966060825" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="84.948598" y="77.581835" font-size="1.0rem" font-weight="100" text-anchor="middle" >10116</text>
+  <text x="164.948598" y="36.265216" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,164.948598,36.265216)">2359</text>
+  <text x="7.474299" y="70.107536" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,70.107536)">3</text>
+</svg>
+        </td>
+    </tr>
+</table></div></div></li><li class='xr-section-item'><input id='section-eaf66049-91ad-467c-bada-64d13bfd64db' class='xr-section-summary-in' type='checkbox'  checked><label for='section-eaf66049-91ad-467c-bada-64d13bfd64db' class='xr-section-summary' >Coordinates: <span>(15)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>2.851e+05 2.851e+05 ... 3.863e+05</div><input id='attrs-7cfe3659-c3c5-48be-a63d-061c290ab5e4' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7cfe3659-c3c5-48be-a63d-061c290ab5e4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1192e68d-2f87-4d2e-af3b-fc58cf7a58ab' class='xr-var-data-in' type='checkbox'><label for='data-1192e68d-2f87-4d2e-af3b-fc58cf7a58ab' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([285120., 285130., 285140., ..., 386250., 386260., 386270.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>5.219e+06 5.219e+06 ... 5.196e+06</div><input id='attrs-ab31c4ec-b880-4d16-9ce2-a2bfe7e05baa' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ab31c4ec-b880-4d16-9ce2-a2bfe7e05baa' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-02c9ece7-e333-41ab-a1ee-24737325db45' class='xr-var-data-in' type='checkbox'><label for='data-02c9ece7-e333-41ab-a1ee-24737325db45' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([5219410., 5219400., 5219390., ..., 5195850., 5195840., 5195830.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>bands</span></div><div class='xr-var-dims'>(bands)</div><div class='xr-var-dtype'>&lt;U9</div><div class='xr-var-preview xr-preview'>&#x27;iulc_2017&#x27; &#x27;iulc_2022&#x27; &#x27;diff&#x27;</div><input id='attrs-0fbfeefa-edd2-4a66-ac32-cac41bf258d0' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-0fbfeefa-edd2-4a66-ac32-cac41bf258d0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-402833be-54a3-437e-b62b-e4d6adf0ae66' class='xr-var-data-in' type='checkbox'><label for='data-402833be-54a3-437e-b62b-e4d6adf0ae66' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;iulc_2017&#x27;, &#x27;iulc_2022&#x27;, &#x27;diff&#x27;], dtype=&#x27;&lt;U9&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>id</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U8</div><div class='xr-var-preview xr-preview'>&#x27;33T-2017&#x27;</div><input id='attrs-ddd23ce6-3979-4131-9d73-56cf8e5eaa00' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ddd23ce6-3979-4131-9d73-56cf8e5eaa00' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-db8fd915-d234-47c0-953e-14c25cc23c50' class='xr-var-data-in' type='checkbox'><label for='data-db8fd915-d234-47c0-953e-14c25cc23c50' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;33T-2017&#x27;, dtype=&#x27;&lt;U8&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>io:tile_id</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;33T&#x27;</div><input id='attrs-24a7a243-bc37-49a9-bb33-5f1dabf81b7b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-24a7a243-bc37-49a9-bb33-5f1dabf81b7b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3bba0b9b-02c3-45a9-bb3b-73c6f234b31d' class='xr-var-data-in' type='checkbox'><label for='data-3bba0b9b-02c3-45a9-bb3b-73c6f234b31d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;33T&#x27;, dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>proj:bbox</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>{756097.7729520155, 243907.77295...</div><input id='attrs-1c5cf25e-4192-4e73-9dee-9f2ee70ef1bd' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-1c5cf25e-4192-4e73-9dee-9f2ee70ef1bd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-91f22d0d-ba2b-47c6-be70-1ee86412a0cb' class='xr-var-data-in' type='checkbox'><label for='data-91f22d0d-ba2b-47c6-be70-1ee86412a0cb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array({756097.7729520155, 243907.7729520155, 5320646.335981226, 4427766.335981226},
+      dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>end_datetime</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U20</div><div class='xr-var-preview xr-preview'>&#x27;2018-01-01T00:00:00Z&#x27;</div><input id='attrs-f84922c4-92a8-4854-9fde-883f2f94bb88' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-f84922c4-92a8-4854-9fde-883f2f94bb88' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-bef65056-d19c-41ca-8846-80b82d922a56' class='xr-var-data-in' type='checkbox'><label for='data-bef65056-d19c-41ca-8846-80b82d922a56' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;2018-01-01T00:00:00Z&#x27;, dtype=&#x27;&lt;U20&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>io:supercell_id</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;33T&#x27;</div><input id='attrs-dfa32c74-343b-4680-a9fb-c5643fef3f26' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-dfa32c74-343b-4680-a9fb-c5643fef3f26' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7fa44166-1c73-427f-8a15-ce76de2e142c' class='xr-var-data-in' type='checkbox'><label for='data-7fa44166-1c73-427f-8a15-ce76de2e142c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;33T&#x27;, dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>proj:shape</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>{89288, 51219}</div><input id='attrs-e0725a37-9d7a-4870-a950-d727e845e0eb' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-e0725a37-9d7a-4870-a950-d727e845e0eb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-081cf384-873d-4d34-a10d-188fb45fd7a8' class='xr-var-data-in' type='checkbox'><label for='data-081cf384-873d-4d34-a10d-188fb45fd7a8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array({89288, 51219}, dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>proj:epsg</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>32633</div><input id='attrs-fa0d4125-8d11-4e9f-8036-9050953e5a00' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-fa0d4125-8d11-4e9f-8036-9050953e5a00' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-23adbfd1-a2a6-4f23-a733-51ae56531e69' class='xr-var-data-in' type='checkbox'><label for='data-23adbfd1-a2a6-4f23-a733-51ae56531e69' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(32633)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>proj:transform</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>{0.0, 243907.7729520155, 5320646...</div><input id='attrs-47b0c240-9207-468d-9a21-da15a5313038' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-47b0c240-9207-468d-9a21-da15a5313038' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7bb0d41d-5b86-432c-9de8-8e9c46a15646' class='xr-var-data-in' type='checkbox'><label for='data-7bb0d41d-5b86-432c-9de8-8e9c46a15646' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array({0.0, 243907.7729520155, 5320646.335981226, 10.0, -10.0},
+      dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>start_datetime</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U20</div><div class='xr-var-preview xr-preview'>&#x27;2017-01-01T00:00:00Z&#x27;</div><input id='attrs-98efeaee-5b2f-4a74-b35f-b436c9824766' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-98efeaee-5b2f-4a74-b35f-b436c9824766' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-509be9ce-7033-4962-a688-65296605ebdf' class='xr-var-data-in' type='checkbox'><label for='data-509be9ce-7033-4962-a688-65296605ebdf' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;2017-01-01T00:00:00Z&#x27;, dtype=&#x27;&lt;U20&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>raster:bands</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>{&#x27;nodata&#x27;: 0, &#x27;spatial_resolutio...</div><input id='attrs-5b3ed571-abfc-436b-8008-37cc71406a2f' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-5b3ed571-abfc-436b-8008-37cc71406a2f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e9b0bd46-1e6c-4410-a99c-0288bc6cea5b' class='xr-var-data-in' type='checkbox'><label for='data-e9b0bd46-1e6c-4410-a99c-0288bc6cea5b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array({&#x27;nodata&#x27;: 0, &#x27;spatial_resolution&#x27;: 10}, dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>file:size</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>165589758</div><input id='attrs-7bb46cfa-49c3-452c-84d2-d0da4c8bd41b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7bb46cfa-49c3-452c-84d2-d0da4c8bd41b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4a640720-807c-4a05-b8bf-be88984bd875' class='xr-var-data-in' type='checkbox'><label for='data-4a640720-807c-4a05-b8bf-be88984bd875' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(165589758)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>epsg</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>32633</div><input id='attrs-1f078852-3beb-4bee-a4c3-d171f0e25c2c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-1f078852-3beb-4bee-a4c3-d171f0e25c2c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-bc25db78-4cfd-4756-9c55-cf673361e24e' class='xr-var-data-in' type='checkbox'><label for='data-bc25db78-4cfd-4756-9c55-cf673361e24e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(32633)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-68091f0f-7bfc-43a1-b3d8-e47e950d45e9' class='xr-section-summary-in' type='checkbox'  ><label for='section-68091f0f-7bfc-43a1-b3d8-e47e950d45e9' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-7aeb3bcb-eb52-40f8-9f5d-38b38b9f27ac' class='xr-index-data-in' type='checkbox'/><label for='index-7aeb3bcb-eb52-40f8-9f5d-38b38b9f27ac' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([285120.0, 285130.0, 285140.0, 285150.0, 285160.0, 285170.0, 285180.0,
+       285190.0, 285200.0, 285210.0,
+       ...
+       386180.0, 386190.0, 386200.0, 386210.0, 386220.0, 386230.0, 386240.0,
+       386250.0, 386260.0, 386270.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=10116))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-2625c602-68ef-4f8d-a406-767a6d467abe' class='xr-index-data-in' type='checkbox'/><label for='index-2625c602-68ef-4f8d-a406-767a6d467abe' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([5219410.0, 5219400.0, 5219390.0, 5219380.0, 5219370.0, 5219360.0,
+       5219350.0, 5219340.0, 5219330.0, 5219320.0,
+       ...
+       5195920.0, 5195910.0, 5195900.0, 5195890.0, 5195880.0, 5195870.0,
+       5195860.0, 5195850.0, 5195840.0, 5195830.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;y&#x27;, length=2359))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>bands</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e8f01c96-2f4a-4717-836d-7a9d6514764a' class='xr-index-data-in' type='checkbox'/><label for='index-e8f01c96-2f4a-4717-836d-7a9d6514764a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;iulc_2017&#x27;, &#x27;iulc_2022&#x27;, &#x27;diff&#x27;], dtype=&#x27;object&#x27;, name=&#x27;bands&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-f549bff0-538a-4d95-af61-3dd126c07387' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f549bff0-538a-4d95-af61-3dd126c07387' class='xr-section-summary' >Attributes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>reduced_dimensions_min_values :</span></dt><dd>{&#x27;bands&#x27;: &#x27;iulc_2017&#x27;}</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<p>Compute the values from the Dask based xArray objects for visualization:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_2017</span> <span class="o">=</span> <span class="n">snow_and_ice_2017_2022_diff_xr</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">bands</span><span class="o">=</span><span class="s2">&quot;iulc_2017&quot;</span><span class="p">)</span>
+<span class="n">data_2022</span> <span class="o">=</span> <span class="n">snow_and_ice_2017_2022_diff_xr</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">bands</span><span class="o">=</span><span class="s2">&quot;iulc_2022&quot;</span><span class="p">)</span>
+<span class="n">data_diff</span> <span class="o">=</span> <span class="n">snow_and_ice_2017_2022_diff_xr</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">bands</span><span class="o">=</span><span class="s2">&quot;diff&quot;</span><span class="p">)</span>
+
+<span class="n">iulc_9_class_2017</span> <span class="o">=</span> <span class="n">data_2017</span><span class="o">.</span><span class="n">values</span>
+<span class="n">iulc_9_class_2022</span> <span class="o">=</span> <span class="n">data_2022</span><span class="o">.</span><span class="n">values</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">data_diff</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compute some statistics on the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">diff</span> <span class="o">=</span> <span class="n">iulc_9_class_2017</span> <span class="o">-</span> <span class="n">iulc_9_class_2022</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Glaciers and perpetual snow in 2017: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">iulc_9_class_2017</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Glaciers and perpetual snow in 2022:  &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">iulc_9_class_2022</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Glaciers and perpetual snow in 2017:  3474257.0
+Glaciers and perpetual snow in 2022:   1760962.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>You could also perform the count operation directly in openEO:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snow_and_ice_2017_2022_diff_sum</span> <span class="o">=</span> <span class="n">snow_and_ice_2017_2022_diff</span><span class="o">.</span><span class="n">reduce_spatial</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">snow_and_ice_2017_2022_diff_sum</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">bands</span><span class="o">=</span><span class="s2">&quot;iulc_2017&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\mclaus\Miniconda3\envs\stacenv\lib\site-packages\stackstac\prepare.py:408: UserWarning: The argument &#39;infer_datetime_format&#39; is deprecated and will be removed in a future version. A strict version of it is now the default, see https://pandas.pydata.org/pdeps/0004-consistent-to-datetime-parsing.html. You can safely remove this argument.
+  times = pd.to_datetime(
+C:\Users\mclaus\Miniconda3\envs\stacenv\lib\site-packages\stackstac\prepare.py:408: UserWarning: The argument &#39;infer_datetime_format&#39; is deprecated and will be removed in a future version. A strict version of it is now the default, see https://pandas.pydata.org/pdeps/0004-consistent-to-datetime-parsing.html. You can safely remove this argument.
+  times = pd.to_datetime(
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3474257.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Visualize the Glaciers and perpetual snow map for two different years and the differece:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;2017-01-01&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">iulc_9_class_2017</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;RdBu&quot;</span><span class="p">)</span>
+<span class="c1"># plt.colorbar()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;2022-01-01&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">iulc_9_class_2022</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;RdBu&quot;</span><span class="p">)</span>
+<span class="c1"># plt.colorbar()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Difference&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;coolwarm&quot;</span><span class="p">)</span>
+<span class="c1"># plt.colorbar()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x19b019a7df0&gt;
+</pre></div>
+</div>
+<img alt="../_images/eb80e246d69fc312d2248029e0f78d5194da053d70e418361ffa3a6aa8c263ec.png" src="../_images/eb80e246d69fc312d2248029e0f78d5194da053d70e418361ffa3a6aa8c263ec.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./part2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="openEO%20-%20Corine%20Land%20Cover%20Alps.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">openEO Platform</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="advanced_workflows.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Advanced workflows in openEO</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#have-a-look-at-the-collection">Have a look at the collection</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pangeo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -190,28 +190,26 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2 - OpenEO</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../part2/agenda_and_links.html">Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/openEO%20-%20boa_sentinel_2.html">Sentinel-2 Bottom Of Atmosphere (BOA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/openEO%20-%20Corine%20Land%20Cover%20Alps.html">Corine Land Cover Alps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/openEO%20-%20Client%20Side%20Land%20Cover%20Alps.html">Client Side Land Cover Alps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part2/advanced_workflows.html">Advanced workflows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part2/stac_metadata.html">STAC metadata generation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../part3/data_discovery.html">Data discoverability and searchability</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_openEO.html">How to exploit data on openEO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/chunking_introduction.html">Introduction to chunking with netCDF, ZARR and Kerchunk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/scaling_dask.html">Parallelization with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_openEO.html">How to exploit data with openEO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_pangeo.html">How to exploit data on Pangeo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../part3/chunking_introduction.html">Data chunking with zarr</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../part3/scaling_dask.html">Scaling with Dask</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part3/advanced_udf.html">OpenEO - User Defined Functions</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="../part3/advanced_ufunc.html">Advanced OpenEO (Ufunc)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part3/scaling_openeo.html">Scaling with OpenEO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the workshop</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../afterword/resources.html">Join the community!</a></li>
-
-
-
 
 
 <li class="toctree-l1"><a class="reference internal" href="../afterword/pythia.html">Project Pythia</a></li>
@@ -412,7 +410,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-pangeo">Introduction to Pangeo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-openeo">Introduction to OpenEO</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-big-data-analysis-with-pangeo-openeo-unlocking-the-power-of-space-data">Scaling Big Data Analysis with Pangeo &amp; OpenEO: Unlocking the Power of Space Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unlocking-the-power-of-space-data-with-pangeo-openeo">Unlocking the Power of Space Data with Pangeo &amp; OpenEO</a></li>
 </ul>
             </nav>
         </div>
@@ -451,8 +449,8 @@ document.write(`
 <tr class="row-even"><td><p>10:10</p></td>
 <td><p>Interactive Visualization with Hvplot (15 minutes)</p></td>
 </tr>
-<tr class="row-odd"><td><p>10:25</p></td>
-<td><p>Wrap-up and feedback survey (5 minutes)</p></td>
+<tr class="row-odd"><td><p>10:30</p></td>
+<td><p>Break (30 minutes)</p></td>
 </tr>
 </tbody>
 </table>
@@ -467,19 +465,19 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td><p>11:00</p></td>
-<td><p>👋 Welcome (5 minutes)</p></td>
+<td><p>👋 Introduction and motivation (5 minutes)</p></td>
 </tr>
 <tr class="row-odd"><td><p>11:05</p></td>
 <td><p>Getting started with OpenEO (10 minutes)</p></td>
 </tr>
 <tr class="row-even"><td><p>11:15</p></td>
-<td><p>Accessing data with OpenEO (25 minutes)</p></td>
+<td><p>Accessing and processing data with OpenEO (30 minutes)</p></td>
 </tr>
-<tr class="row-odd"><td><p>11:40</p></td>
-<td><p>Processing data with OpenEO (30 minutes)</p></td>
+<tr class="row-odd"><td><p>11:45</p></td>
+<td><p>ntegrate custom code into your workflow using User Defined Functions (30 minutes)</p></td>
 </tr>
-<tr class="row-even"><td><p>12:10</p></td>
-<td><p>Working with data cubes with OpenEO (20 minutes)</p></td>
+<tr class="row-even"><td><p>12:15</p></td>
+<td><p>Q&amp;A session - feedbacks (20 minutes)</p></td>
 </tr>
 <tr class="row-odd"><td><p>12:30</p></td>
 <td><p>🍽️ Lunch</p></td>
@@ -487,8 +485,8 @@ document.write(`
 </tbody>
 </table>
 </section>
-<section id="scaling-big-data-analysis-with-pangeo-openeo-unlocking-the-power-of-space-data">
-<h2>Scaling Big Data Analysis with Pangeo &amp; OpenEO: Unlocking the Power of Space Data<a class="headerlink" href="#scaling-big-data-analysis-with-pangeo-openeo-unlocking-the-power-of-space-data" title="Permalink to this heading">#</a></h2>
+<section id="unlocking-the-power-of-space-data-with-pangeo-openeo">
+<h2>Unlocking the Power of Space Data with Pangeo &amp; OpenEO<a class="headerlink" href="#unlocking-the-power-of-space-data-with-pangeo-openeo" title="Permalink to this heading">#</a></h2>
 <p>Please note that this workshop assumes some prior knowledge of Pangeo and OpenEO. If you are not familiar with any of these technologies, we suggest to check the content of the two other workshops (taught in the morning).</p>
 <table class="colwidths-auto table">
 <thead>
@@ -498,37 +496,46 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td><p>14:00</p></td>
-<td><p>👋 Welcome (5 minutes)</p></td>
+<td><p>👋 Introduction and motivation (5 minutes)</p></td>
 </tr>
 <tr class="row-odd"><td><p>14:05</p></td>
-<td><p>Understanding what OpenEO does best and how to exploit it to easily streamline your data analysis (20 minutes)</p></td>
+<td><p>Data discoverability and searchability (25 minutes)</p></td>
 </tr>
-<tr class="row-even"><td><p>14:25</p></td>
-<td><p>Scaling with OpenEO (25 minutes)</p></td>
+<tr class="row-even"><td><p></p></td>
+<td><p>An overview of STAC and the different available sources</p></td>
 </tr>
-<tr class="row-odd"><td><p>14:50</p></td>
-<td><p>Understanding when and how to exploit Pangeo to customise your algorithm and analyse multiple data sources (20 minutes)</p></td>
+<tr class="row-odd"><td><p>14:30</p></td>
+<td><p>Data and pre-processing general knowledge (60 minutes)</p></td>
 </tr>
-<tr class="row-even"><td><p>15:10</p></td>
-<td><p>Introduction to chunking (20 minutes)</p></td>
+<tr class="row-even"><td><p></p></td>
+<td><p>Introduction to chunking with netCDF, ZARR and Kerchunk</p></td>
 </tr>
-<tr class="row-odd"><td><p>15:30</p></td>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Parallelization with Dask</p></td>
+</tr>
+<tr class="row-even"><td><p>15:30</p></td>
 <td><p>☕️ Break</p></td>
 </tr>
-<tr class="row-even"><td><p>16:00</p></td>
-<td><p>Scaling with Dask (30 minutes)</p></td>
+<tr class="row-odd"><td><p>16:00</p></td>
+<td><p>Different data exploitation approaches (60 minutes)</p></td>
 </tr>
-<tr class="row-odd"><td><p>16:30</p></td>
-<td><p>Cloud-friendly access to archival data with kerchunk (25 minutes)</p></td>
+<tr class="row-even"><td><p></p></td>
+<td><p>How to exploit data with OpenEO: snow coverage example</p></td>
 </tr>
-<tr class="row-even"><td><p>16:55</p></td>
-<td><p>Create Analysis Ready Cloud Optimised (ARCO) data (25 minutes)</p></td>
+<tr class="row-odd"><td><p></p></td>
+<td><p>How to exploit data on Pangeo: pure Xarray version</p></td>
 </tr>
-<tr class="row-odd"><td><p>17:20</p></td>
-<td><p>Common workflow that combines the best of the two “worlds” (30 minutes)</p></td>
+<tr class="row-even"><td><p>17:00</p></td>
+<td><p>How to go beyond (45 minutes)</p></td>
 </tr>
-<tr class="row-even"><td><p>17:50</p></td>
-<td><p>Wrap-up and feedback survey (10 minutes)</p></td>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Understanding how to create a custom algorithm: UDF (OpenEO) and ufunc (Xarray)</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Scaling with OpenEO (how it works underneath)</p></td>
+</tr>
+<tr class="row-odd"><td><p>17:40</p></td>
+<td><p>Wrap-up and feedback survey (15 minutes)</p></td>
 </tr>
 </tbody>
 </table>
@@ -602,7 +609,7 @@ There will be additional breaks (5 minutes) regularly and time for questions dur
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-pangeo">Introduction to Pangeo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-openeo">Introduction to OpenEO</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-big-data-analysis-with-pangeo-openeo-unlocking-the-power-of-space-data">Scaling Big Data Analysis with Pangeo &amp; OpenEO: Unlocking the Power of Space Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unlocking-the-power-of-space-data-with-pangeo-openeo">Unlocking the Power of Space Data with Pangeo &amp; OpenEO</a></li>
 </ul>
   </nav></div>
 

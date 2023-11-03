@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'part3/data_discovery';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="How to exploit data with openEO" href="data_exploitability_openEO.html" />
+    <link rel="next" title="Data chunking" href="chunking_introduction.html" />
     <link rel="prev" title="FAIR metadata generation" href="../part2/stac_metadata.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -190,28 +190,26 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2 - OpenEO</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../part2/agenda_and_links.html">Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/openEO%20-%20boa_sentinel_2.html">Sentinel-2 Bottom Of Atmosphere (BOA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/openEO%20-%20Corine%20Land%20Cover%20Alps.html">Corine Land Cover Alps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/openEO%20-%20Client%20Side%20Land%20Cover%20Alps.html">Client Side Land Cover Alps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part2/advanced_workflows.html">Advanced workflows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part2/stac_metadata.html">STAC metadata generation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Data discoverability and searchability</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_exploitability_openEO.html">How to exploit data on openEO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chunking_introduction.html">Introduction to chunking with netCDF, ZARR and Kerchunk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaling_dask.html">Parallelization with Dask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_exploitability_openEO.html">How to exploit data with openEO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_exploitability_pangeo.html">How to exploit data on Pangeo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chunking_introduction.html">Data chunking with zarr</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scaling_dask.html">Scaling with Dask</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_udf.html">OpenEO - User Defined Functions</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="advanced_ufunc.html">Advanced OpenEO (Ufunc)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scaling_openeo.html">Scaling with OpenEO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the workshop</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../afterword/resources.html">Join the community!</a></li>
-
-
-
 
 
 <li class="toctree-l1"><a class="reference internal" href="../afterword/pythia.html">Project Pythia</a></li>
@@ -410,8 +408,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-overview-of-stac">An overview of STAC</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-different-sources-and-platforms">Overview of different sources and platforms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-overview-of-stac-and-the-different-available-sources">An overview of STAC and the different available sources</a></li>
 </ul>
             </nav>
         </div>
@@ -425,11 +422,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-discoverability-and-searchability">
 <h1>Data discoverability and searchability<a class="headerlink" href="#data-discoverability-and-searchability" title="Permalink to this heading">#</a></h1>
-<section id="an-overview-of-stac">
-<h2>An overview of STAC<a class="headerlink" href="#an-overview-of-stac" title="Permalink to this heading">#</a></h2>
-</section>
-<section id="overview-of-different-sources-and-platforms">
-<h2>Overview of different sources and platforms<a class="headerlink" href="#overview-of-different-sources-and-platforms" title="Permalink to this heading">#</a></h2>
+<section id="an-overview-of-stac-and-the-different-available-sources">
+<h2>An overview of STAC and the different available sources<a class="headerlink" href="#an-overview-of-stac-and-the-different-available-sources" title="Permalink to this heading">#</a></h2>
+<p>The presentation is available here: <a class="reference external" href="https://docs.google.com/presentation/d/1bUTlmvrDMm1affvr8tq5gePqBigCTY9YVN3mtcscpJk/edit?usp=sharing">https://docs.google.com/presentation/d/1bUTlmvrDMm1affvr8tq5gePqBigCTY9YVN3mtcscpJk/edit?usp=sharing</a></p>
 </section>
 </section>
 
@@ -473,11 +468,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="data_exploitability_openEO.html"
+       href="chunking_introduction.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">How to exploit data with openEO</p>
+        <p class="prev-next-title">Data chunking</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -496,8 +491,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-overview-of-stac">An overview of STAC</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-different-sources-and-platforms">Overview of different sources and platforms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-overview-of-stac-and-the-different-available-sources">An overview of STAC and the different available sources</a></li>
 </ul>
   </nav></div>
 
