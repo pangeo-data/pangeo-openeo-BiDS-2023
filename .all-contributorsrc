@@ -224,6 +224,16 @@
         "doc",
         "tutorial"
       ]
+    },
+    {
+      "login": "sustr4",
+      "name": "Zdeněk Šustr",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1583737?v=4",
+      "profile": "https://github.com/sustr4",
+      "contributions": [
+        "infra",
+        "platform"
+      ]
     }
   ],
   "contributorsPerLine": 7,
