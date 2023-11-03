@@ -1,4 +1,4 @@
-# Part-2: OpenEO (Comment: Intro Session)
+# Part-2: Introduction to OpenEO
 
 This Part is going to introduce participants to openEO Platform. Attendees will learn what openEO Platform is, how to find data and run first process graphs. 
 We will also show attendees how to integrate custom code into your workflow using User Defined Functions.

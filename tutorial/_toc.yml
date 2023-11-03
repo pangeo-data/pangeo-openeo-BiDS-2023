@@ -29,8 +29,12 @@ parts:
 
 - caption: Part 2 - OpenEO
   chapters:
-  - file: part2/agenda_and_links
-    title: Agenda
+  - file: part2/openEO - boa_sentinel_2
+    title: Sentinel-2 Bottom Of Atmosphere (BOA)
+  - file: part2/openEO - Corine Land Cover Alps
+    title: Corine Land Cover Alps
+  - file: part2/openEO - Client Side Land Cover Alps
+    title: Client Side Land Cover Alps
   - file: part2/advanced_workflows
     title: Advanced workflows
   - file: part2/stac_metadata
@@ -40,18 +44,16 @@ parts:
   chapters:
   - file: part3/data_discovery
     title: Data discoverability and searchability
+  - file: part3/chunking_introduction
+    title: Introduction to chunking with netCDF, ZARR and Kerchunk
+  - file: part3/scaling_dask
+    title: Parallelization with Dask
   - file: part3/data_exploitability_openEO
-    title: How to exploit data on openEO
+    title: How to exploit data with openEO
   - file: part3/data_exploitability_pangeo
     title: How to exploit data on Pangeo
-  - file: part3/chunking_introduction
-    title: Data chunking with zarr
-  - file: part3/scaling_dask
-    title: Scaling with Dask
   - file: part3/advanced_udf
-    title: Advanced OpenEO (UDF)
-  - file: part3/advanced_ufunc
-    title: Advanced OpenEO (Ufunc)    
+    title: Custom algorithms: UDF (OpenEO) and ufunc (Xarray)
   - file: part3/scaling_openeo
     title: Scaling with OpenEO
 
