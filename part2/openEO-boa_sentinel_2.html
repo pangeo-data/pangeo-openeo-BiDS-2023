@@ -514,44 +514,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">Visit <a href="https://aai.egi.eu/device?user_code=WEFV-BLNW" title="Authenticate at https://aai.egi.eu/device?user_code=WEFV-BLNW" target="_blank" rel="noopener noreferrer">https://aai.egi.eu/device?user_code=WEFV-BLNW</a> <a href="#" onclick="navigator.clipboard.writeText('https://aai.egi.eu/device?user_code=WEFV-BLNW');return false;" title="Copy authentication URL to clipboard">&#128203;</a> to authenticate.</div><div class="output text_html"><code>[-------------------------------------]</code> ❌ Timed out</div><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">OidcDeviceCodePollTimeout</span><span class="g g-Whitespace">                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
-
-<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/openeo/rest/connection.py:729,</span> in <span class="ni">Connection.authenticate_oidc</span><span class="nt">(self, provider_id, client_id, client_secret, store_refresh_token, use_pkce, display, max_poll_time)</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span> <span class="n">_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Trying device code flow.&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">726</span> <span class="n">authenticator</span> <span class="o">=</span> <span class="n">OidcDeviceAuthenticator</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">727</span>     <span class="n">client_info</span><span class="o">=</span><span class="n">client_info</span><span class="p">,</span> <span class="n">use_pkce</span><span class="o">=</span><span class="n">use_pkce</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="n">display</span><span class="p">,</span> <span class="n">max_poll_time</span><span class="o">=</span><span class="n">max_poll_time</span>
-<span class="g g-Whitespace">    </span><span class="mi">728</span> <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">729</span> <span class="n">con</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authenticate_oidc</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">730</span>     <span class="n">authenticator</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">731</span>     <span class="n">provider_id</span><span class="o">=</span><span class="n">provider_id</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">732</span>     <span class="n">store_refresh_token</span><span class="o">=</span><span class="n">store_refresh_token</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">733</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">734</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Authenticated using device code flow.&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">735</span> <span class="k">return</span> <span class="n">con</span>
-
-<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/openeo/rest/connection.py:459,</span> in <span class="ni">Connection._authenticate_oidc</span><span class="nt">(self, authenticator, provider_id, store_refresh_token, fallback_refresh_token_to_store, oidc_auth_renewer)</span>
-<span class="g g-Whitespace">    </span><span class="mi">447</span> <span class="k">def</span> <span class="nf">_authenticate_oidc</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">448</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">449</span>     <span class="n">authenticator</span><span class="p">:</span> <span class="n">OidcAuthenticator</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">454</span>     <span class="n">oidc_auth_renewer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">OidcAuthenticator</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">455</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Connection</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">456</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">457</span><span class="sd">     Authenticate through OIDC and set up bearer token (based on OIDC access_token) for further requests.</span>
-<span class="g g-Whitespace">    </span><span class="mi">458</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">459</span>     <span class="n">tokens</span> <span class="o">=</span> <span class="n">authenticator</span><span class="o">.</span><span class="n">get_tokens</span><span class="p">(</span><span class="n">request_refresh_token</span><span class="o">=</span><span class="n">store_refresh_token</span><span class="p">)</span>
-<span class="nn">    460     _log.info(&quot;Obtained tokens: {t}&quot;.format(t=[k for k, v</span> in <span class="ni">tokens._asdict().items</span><span class="nt">() if v]))</span>
-<span class="g g-Whitespace">    </span><span class="mi">461</span>     <span class="k">if</span> <span class="n">store_refresh_token</span><span class="p">:</span>
-
-<span class="nn">File ~/micromamba/envs/bids23/lib/python3.11/site-packages/openeo/rest/auth/oidc.py:911,</span> in <span class="ni">OidcDeviceAuthenticator.get_tokens</span><span class="nt">(self, request_refresh_token)</span>
-<span class="g g-Whitespace">    </span><span class="mi">908</span>         <span class="n">next_poll</span> <span class="o">=</span> <span class="n">elapsed</span><span class="p">()</span> <span class="o">+</span> <span class="n">poll_interval</span>
-<span class="g g-Whitespace">    </span><span class="mi">910</span> <span class="n">poll_ui</span><span class="o">.</span><span class="n">show_progress</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;Timed out&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">911</span> <span class="k">raise</span> <span class="n">OidcDeviceCodePollTimeout</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Timeout (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_poll_time</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">s) while polling for access token.&quot;</span><span class="p">)</span>
-
-<span class="ne">OidcDeviceCodePollTimeout</span>: Timeout (300.0s) while polling for access token.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Authenticated using refresh token.
 </pre></div>
 </div>
 </div>
