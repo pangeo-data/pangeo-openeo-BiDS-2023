@@ -48,12 +48,12 @@ parts:
     title: Data chunking with zarr
   - file: part3/scaling_dask
     title: Scaling with Dask
-  - file: part3/scaling_openeo
-    title: Scaling with OpenEO
   - file: part3/advanced_udf
     title: Advanced OpenEO (UDF)
   - file: part3/advanced_ufunc
-    title: Advanced OpenEO (Ufunc)
+    title: Advanced OpenEO (Ufunc)    
+  - file: part3/scaling_openeo
+    title: Scaling with OpenEO
 
 - caption: Beyond the workshop
   chapters:
