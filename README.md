@@ -1,6 +1,6 @@
 # Unlocking the Power of Space Data with Pangeo & OpenEO
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This repository contains the documentation and jupyter notebooks used for delivering tutorial to BiDS'23.
@@ -83,6 +83,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://pratichhya.github.io/"><img src="https://avatars.githubusercontent.com/u/39898768?v=4?s=100" width="100px;" alt="Pratichhya "/><br /><sub><b>Pratichhya </b></sub></a><br /><a href="#ideas-Pratichhya" title="Ideas, Planning, & Feedback">🤔</a> <a href="#design-Pratichhya" title="Design">🎨</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=Pratichhya" title="Code">💻</a> <a href="#content-Pratichhya" title="Content">🖋</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=Pratichhya" title="Documentation">📖</a> <a href="#tutorial-Pratichhya" title="Tutorials">✅</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://stefaanlippens.net"><img src="https://avatars.githubusercontent.com/u/44946?v=4?s=100" width="100px;" alt="Stefaan Lippens"/><br /><sub><b>Stefaan Lippens</b></sub></a><br /><a href="#ideas-soxofaan" title="Ideas, Planning, & Feedback">🤔</a> <a href="#design-soxofaan" title="Design">🎨</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=soxofaan" title="Code">💻</a> <a href="#content-soxofaan" title="Content">🖋</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=soxofaan" title="Documentation">📖</a> <a href="#tutorial-soxofaan" title="Tutorials">✅</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/aminraz"><img src="https://avatars.githubusercontent.com/u/48209586?v=4?s=100" width="100px;" alt="Amin Razbani"/><br /><sub><b>Amin Razbani</b></sub></a><br /><a href="#ideas-aminraz" title="Ideas, Planning, & Feedback">🤔</a> <a href="#userTesting-aminraz" title="User Testing">📓</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/acocac"><img src="https://avatars.githubusercontent.com/u/13321552?v=4?s=100" width="100px;" alt="Alejandro ©"/><br /><sub><b>Alejandro ©</b></sub></a><br /><a href="#ideas-acocac" title="Ideas, Planning, & Feedback">🤔</a> <a href="#design-acocac" title="Design">🎨</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=acocac" title="Code">💻</a> <a href="#content-acocac" title="Content">🖋</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=acocac" title="Documentation">📖</a> <a href="#tutorial-acocac" title="Tutorials">✅</a></td>
     </tr>
   </tbody>
 </table>
