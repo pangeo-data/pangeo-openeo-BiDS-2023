@@ -176,6 +176,20 @@
         "doc",
         "tutorial"
       ]
+    },
+    {
+      "login": "ValentinaHutter",
+      "name": "ValentinaHutter",
+      "avatar_url": "https://avatars.githubusercontent.com/u/85164505?v=4",
+      "profile": "https://github.com/ValentinaHutter",
+      "contributions": [
+        "ideas",
+        "design",
+        "code",
+        "content",
+        "doc",
+        "tutorial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
