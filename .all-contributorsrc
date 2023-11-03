@@ -59,6 +59,20 @@
         "doc",
         "tutorial"
       ]
+    },
+    {
+      "login": "keewis",
+      "name": "Justus Magin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/14808389?v=4",
+      "profile": "https://github.com/keewis",
+      "contributions": [
+        "ideas",
+        "design",
+        "code",
+        "content",
+        "doc",
+        "tutorial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
