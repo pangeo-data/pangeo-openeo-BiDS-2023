@@ -41,7 +41,7 @@ parts:
   - file: part3/data_discovery
     title: Data discoverability and searchability
   - file: part3/data_exploitability_openEO
-    title: The Easy-peasy life with OpenEO
+    title: How to exploit data on openEO
   - file: part3/data_exploitability_pangeo
     title: How to exploit data on Pangeo
   - file: part3/chunking_introduction
