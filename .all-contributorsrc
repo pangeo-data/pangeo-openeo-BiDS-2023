@@ -31,6 +31,20 @@
         "platform",
         "eventOrganizing"
       ]
+    },
+    {
+      "login": "clausmichele",
+      "name": "Michele Claus",
+      "avatar_url": "https://avatars.githubusercontent.com/u/31700619?v=4",
+      "profile": "https://www.linkedin.com/in/micheleclaus/",
+      "contributions": [
+        "ideas",
+        "design",
+        "code",
+        "content",
+        "doc",
+        "tutorial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
