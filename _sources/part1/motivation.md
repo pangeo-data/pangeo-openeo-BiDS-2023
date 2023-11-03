@@ -23,9 +23,9 @@ Since August 2023, Pangeo is a [Numfocus](https://numfocus.org) sponsored projec
 - Easy to start and deployment on laptops, cloud and HPC;
 - “Reference” deployments on different cloud infrastructures; 
 - Team up with other initiatives. It can help to increase DEI (Diversity, Equity and Inclusion):
-      * Educational material and deliver trainings (Pythia, Galaxy);
-      * Training infrastructure as a Service (Pythia, Galaxy, EOSC);
-      * Use Pangeo from GUI (no programming skills required) on Galaxy Europe.
+  * Educational material and deliver trainings (Pythia, Galaxy);
+  * Training infrastructure as a Service (Pythia, Galaxy, EOSC);
+  * Use Pangeo from GUI (no programming skills required) on Galaxy Europe.
 - Contribute to easy creation of data in analysis-ready, cloud optimized (ARCO) format;
 - Promote the work done by the Pangeo Community and other Geosciences initiatives (Pangeo Show & Tell/Showcase/Pangeo discourse);
 - Pangeo heavily used in industry;
