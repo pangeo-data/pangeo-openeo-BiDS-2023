@@ -1,6 +1,6 @@
 # Unlocking the Power of Space Data with Pangeo & OpenEO
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This repository contains the documentation and jupyter notebooks used for delivering tutorial to BiDS'23.
@@ -93,6 +93,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ValentinaHutter"><img src="https://avatars.githubusercontent.com/u/85164505?v=4?s=100" width="100px;" alt="ValentinaHutter"/><br /><sub><b>ValentinaHutter</b></sub></a><br /><a href="#ideas-ValentinaHutter" title="Ideas, Planning, & Feedback">🤔</a> <a href="#design-ValentinaHutter" title="Design">🎨</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=ValentinaHutter" title="Code">💻</a> <a href="#content-ValentinaHutter" title="Content">🖋</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=ValentinaHutter" title="Documentation">📖</a> <a href="#tutorial-ValentinaHutter" title="Tutorials">✅</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sustr4"><img src="https://avatars.githubusercontent.com/u/1583737?v=4?s=100" width="100px;" alt="Zdeněk Šustr"/><br /><sub><b>Zdeněk Šustr</b></sub></a><br /><a href="#infra-sustr4" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#platform-sustr4" title="Packaging/porting to new platform">📦</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/bschumac"><img src="https://avatars.githubusercontent.com/u/10756379?v=4?s=100" width="100px;" alt="bschumac"/><br /><sub><b>bschumac</b></sub></a><br /><a href="#infra-bschumac" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#platform-bschumac" title="Packaging/porting to new platform">📦</a> <a href="#eventOrganizing-bschumac" title="Event Organizing">📋</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/j34ni"><img src="https://avatars.githubusercontent.com/u/44261743?v=4?s=100" width="100px;" alt="j34ni"/><br /><sub><b>j34ni</b></sub></a><br /><a href="#infra-j34ni" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#platform-j34ni" title="Packaging/porting to new platform">📦</a></td>
     </tr>
   </tbody>
 </table>
