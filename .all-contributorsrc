@@ -200,6 +200,16 @@
         "infra",
         "platform"
       ]
+    },
+    {
+      "login": "sebastian-luna-valero",
+      "name": "Sebastian Luna-Valero",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5345517?v=4",
+      "profile": "https://uk.linkedin.com/in/sebastianlunavalero/en",
+      "contributions": [
+        "infra",
+        "platform"
+      ]
     }
   ],
   "contributorsPerLine": 7,
