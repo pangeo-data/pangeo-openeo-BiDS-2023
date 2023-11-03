@@ -110,6 +110,20 @@
         "doc",
         "tutorial"
       ]
+    },
+    {
+      "login": "soxofaan",
+      "name": "Stefaan Lippens",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44946?v=4",
+      "profile": "http://stefaanlippens.net",
+      "contributions": [
+        "ideas",
+        "design",
+        "code",
+        "content",
+        "doc",
+        "tutorial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
