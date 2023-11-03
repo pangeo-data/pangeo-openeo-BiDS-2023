@@ -12,7 +12,7 @@ Since August 2023, Pangeo is a [Numfocus](https://numfocus.org) sponsored projec
 
 ## Important information about Pangeo
 
-- [Code of Conduct](https://github.com/pangeo-data/governance/blob/master/conduct/code_of_conduct.md 
+- [Code of Conduct](https://github.com/pangeo-data/governance/blob/master/conduct/code_of_conduct.md)
 - [Governance](https://github.com/pangeo-data/governance/blob/master/governance.md) 
 - [Roadmap](https://pangeo.io/roadmap.html)
 
