@@ -190,6 +190,16 @@
         "doc",
         "tutorial"
       ]
+    },
+    {
+      "login": "micafer",
+      "name": "Miguel Caballer Fernandez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4972699?v=4",
+      "profile": "https://github.com/micafer",
+      "contributions": [
+        "infra",
+        "platform"
+      ]
     }
   ],
   "contributorsPerLine": 7,
