@@ -1,6 +1,6 @@
 # Unlocking the Power of Space Data with Pangeo & OpenEO
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This repository contains the documentation and jupyter notebooks used for delivering tutorial to BiDS'23.
@@ -77,6 +77,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://remotesensing.vito.be/"><img src="https://avatars.githubusercontent.com/u/5937096?v=4?s=100" width="100px;" alt="Jeroen Dries"/><br /><sub><b>Jeroen Dries</b></sub></a><br /><a href="#ideas-jdries" title="Ideas, Planning, & Feedback">🤔</a> <a href="#design-jdries" title="Design">🎨</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=jdries" title="Code">💻</a> <a href="#content-jdries" title="Content">🖋</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=jdries" title="Documentation">📖</a> <a href="#tutorial-jdries" title="Tutorials">✅</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/keewis"><img src="https://avatars.githubusercontent.com/u/14808389?v=4?s=100" width="100px;" alt="Justus Magin"/><br /><sub><b>Justus Magin</b></sub></a><br /><a href="#ideas-keewis" title="Ideas, Planning, & Feedback">🤔</a> <a href="#design-keewis" title="Design">🎨</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=keewis" title="Code">💻</a> <a href="#content-keewis" title="Content">🖋</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=keewis" title="Documentation">📖</a> <a href="#tutorial-keewis" title="Tutorials">✅</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://mohr.ws"><img src="https://avatars.githubusercontent.com/u/8262166?v=4?s=100" width="100px;" alt="Matthias Mohr"/><br /><sub><b>Matthias Mohr</b></sub></a><br /><a href="#ideas-m-mohr" title="Ideas, Planning, & Feedback">🤔</a> <a href="#design-m-mohr" title="Design">🎨</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=m-mohr" title="Code">💻</a> <a href="#content-m-mohr" title="Content">🖋</a> <a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/commits?author=m-mohr" title="Documentation">📖</a> <a href="#tutorial-m-mohr" title="Tutorials">✅</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ofk123"><img src="https://avatars.githubusercontent.com/u/98769588?v=4?s=100" width="100px;" alt="Ola"/><br /><sub><b>Ola</b></sub></a><br /><a href="#ideas-ofk123" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>
