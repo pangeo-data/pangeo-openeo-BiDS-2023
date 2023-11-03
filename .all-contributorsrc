@@ -87,6 +87,15 @@
         "doc",
         "tutorial"
       ]
+    },
+    {
+      "login": "ofk123",
+      "name": "Ola",
+      "avatar_url": "https://avatars.githubusercontent.com/u/98769588?v=4",
+      "profile": "https://github.com/ofk123",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
