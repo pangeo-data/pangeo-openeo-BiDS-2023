@@ -52,10 +52,7 @@ parts:
     title: How to exploit data with openEO
   - file: part3/data_exploitability_pangeo
     title: How to exploit data on Pangeo
-  - file: part3/advanced_udf
-    title: Custom algorithms: UDF (OpenEO) and ufunc (Xarray)
-  - file: part3/scaling_openeo
-    title: Scaling with OpenEO
+
 
 - caption: Beyond the workshop
   chapters:
