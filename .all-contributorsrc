@@ -96,6 +96,20 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "Pratichhya",
+      "name": "Pratichhya ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39898768?v=4",
+      "profile": "https://pratichhya.github.io/",
+      "contributions": [
+        "ideas",
+        "design",
+        "code",
+        "content",
+        "doc",
+        "tutorial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
