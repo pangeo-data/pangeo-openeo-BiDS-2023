@@ -24,10 +24,10 @@ The content of this repository (folder `tutorial`) is rendered as an online docu
 
 **Part-2: OpenEO**
 
-- 11:00 Getting started with OpenEO (15 minutes)
-- 11:15 Accessing data with OpenEO (25 minutes)
-- 11:40 Processing data with OpenEO (30 minutes)
-- 12:10 Working with data cubes with OpenEO (20 minutes)
+- 11:00 Getting started with OpenEO 
+- 11:15 Finding Data, Running first graphs, difference to client-side processing
+- 11:45 Integrate custom code into your workflow using User Defined Functions 
+- 12:15 Feedback Block
 - 12:30 Lunch
 
 **Part-3: Unlocking the Power of Space Data with Pangeo & OpenEO**
