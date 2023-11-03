@@ -1,0 +1,637 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Scaling openEO &amp; under the hood &#8212; BiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'part3/scaling_openeo';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="OpenEO - User Defined Functions" href="advanced_udf.html" />
+    <link rel="prev" title="Parallel computing with Dask" href="scaling_dask.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pangeo_openeo.png" class="logo__image only-light" alt="BiDS'23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data - Home"/>
+    <script>document.write(`<img src="../_static/pangeo_openeo.png" class="logo__image only-dark" alt="BiDS'23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome 👋
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../about/timeline.html">Workshop timeline</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Before the workshop</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../before/setup.html">Setup</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../before/openeo.html">OpenEO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../before/EOSC.html">Pangeo@EOSC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../before/copernicus.html">Copernicus Data Space Ecosystem</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 1 - Pangeo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../part1/motivation.html">Introduction and Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/overview.html">Overview of the Pangeo ecosystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/xarray_pitfalls.html">Common pitfalls with xarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/visualization.html">Interactive Visualization with Hvplot</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2 - OpenEO</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../part2/agenda_and_links.html">Agenda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/advanced_workflows.html">Advanced workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/stac_metadata.html">STAC metadata generation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data_discovery.html">Data discoverability and searchability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_exploitability_openEO.html">How to exploit data on openEO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_exploitability_pangeo.html">How to exploit data on Pangeo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chunking_introduction.html">Data chunking with zarr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaling_dask.html">Scaling with Dask</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Scaling with OpenEO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_udf.html">OpenEO - User Defined Functions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_ufunc.html">Advanced OpenEO (Ufunc)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the workshop</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../afterword/resources.html">Join the community!</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../afterword/pythia.html">Project Pythia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../afterword/envds-book.html">Environmental Data Science Book</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pangeo-data/pangeo-openeo-BiDS-2023/issues/new?title=Issue%20on%20page%20%2Fpart3/scaling_openeo.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/part3/scaling_openeo.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Scaling openEO & under the hood</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#under-the-hood">Under the hood</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-architecture">Example architecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-logs">Understanding logs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-performance-tips">General performance tips</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keep-the-size-of-your-data-cube-in-mind">Keep the size of your data cube in mind</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-to-keep-the-graph-simple">Try to keep the graph simple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-collection-types">Data collection types</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continental-scale-processing">Continental scale processing</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="scaling-openeo-under-the-hood">
+<h1>Scaling openEO &amp; under the hood<a class="headerlink" href="#scaling-openeo-under-the-hood" title="Permalink to this heading">#</a></h1>
+<p>To understand how the design of openEO is linked to performance and scalability,
+<a class="reference external" href="https://openeo.org/documentation/1.0/developers/backends/performance.html">this page</a> is a good read.</p>
+<section id="under-the-hood">
+<h2>Under the hood<a class="headerlink" href="#under-the-hood" title="Permalink to this heading">#</a></h2>
+<p>openEO backends rely on the same principles as e.g. Dask and any other large scale parallel processing framework:</p>
+<ul class="simple">
+<li><p>The ‘map/reduce’ paradigm</p></li>
+<li><p>Data ‘partitioning’</p></li>
+</ul>
+<p>As openEO user, you don’t really need to fully understand these things, but it can be useful to better understand performance.
+We give some examples:</p>
+<p>An ‘apply’ process like 2*band_value is very efficient because each pixel can be processed independently.
+A process like ‘apply_dimension’ over time can require the data to be reshuffled so it can be quite cost intensive over long time series.
+Aggregate_spatial with a sum over pixels can be implemented as a ‘reduce’ style operation, making it again relatively efficient.</p>
+<p>Data partitioning is also something that a backend normally does for you, but it may happen that it is not ‘smart enough’ to understand your use case.This
+can lead for instance to ‘out of memory’ style errors.</p>
+<p>In a real world backend, these concepts result in a graph of processing steps (‘stages’ in Spark), and a number of tasks per step that can be executed in parallel.
+An example is shown below.</p>
+<p><img alt="Spark graph" src="../_images/openeo_spark.png" /></p>
+<section id="example-architecture">
+<h3>Example architecture<a class="headerlink" href="#example-architecture" title="Permalink to this heading">#</a></h3>
+<p>There is no single openEO architecture, as openEO is just an API that can be implemented on top of many technologies. That is also
+a key point which makes it technology independent.</p>
+<p>The image shown below shows a typical ‘cloud’ deployment in a Kubernetes environment. Cloud based environments tend to use automatic scaling techniques
+to grow or shrink the size of the openEO backend based on the requests from users.</p>
+<p><img alt="openEO architecture" src="https://github.com/Open-EO/openeo-geotrellis-kubernetes/blob/master/openEO_k8s.png?raw=true" /></p>
+</section>
+<section id="understanding-logs">
+<h3>Understanding logs<a class="headerlink" href="#understanding-logs" title="Permalink to this heading">#</a></h3>
+<p>An openEO backend provides logging, but it can be particularly hard to understand. This again has to do with the cloud based nature:
+when running your job on many machines in parallel, all kinds of ‘warnings’ and even ‘error’ messages can be generated. There
+is however a level of fault-tolerance, so there may be errors that are not actually an issue, or there may be errors caused later on, where
+the actual cause was logged earlier.</p>
+<p>So in general, it can help to look for those earliest errors if you see a lot of confusing messages. The log level filtering functionality can
+help you to do that.</p>
+</section>
+</section>
+<section id="general-performance-tips">
+<h2>General performance tips<a class="headerlink" href="#general-performance-tips" title="Permalink to this heading">#</a></h2>
+<section id="keep-the-size-of-your-data-cube-in-mind">
+<h3>Keep the size of your data cube in mind<a class="headerlink" href="#keep-the-size-of-your-data-cube-in-mind" title="Permalink to this heading">#</a></h3>
+<p>Backends are distributed, cloud based programs, but it is still possible to overload them easily due to the sheer size of earth observation datasets.
+If your algorithm at some point reduces dataset size, you may want to put this step early in the algorithm.</p>
+<p>Some typical examples:</p>
+<ul class="simple">
+<li><p>cloud filtering</p></li>
+<li><p>masking on a specific landcover type. (e.g. filtering on forest pixels only when you work on a forest app)</p></li>
+<li><p>reducing temporal resolution, e.g. 10-daily or monthly compositing</p></li>
+<li><p>reducing resolution</p></li>
+<li><p>fiter on bands, orbit direction, …</p></li>
+</ul>
+</section>
+<section id="try-to-keep-the-graph-simple">
+<h3>Try to keep the graph simple<a class="headerlink" href="#try-to-keep-the-graph-simple" title="Permalink to this heading">#</a></h3>
+<p>Backends may try to ‘understand’ your process graph, to choose the most optimal evaluation path.
+Sometimes people introduce an unneeded amount of ‘merge_cubes’ processes, and the graph starts to look quite complex.
+At this point, also the backend may have trouble understanding this, and your execution is also slow.</p>
+</section>
+<section id="data-collection-types">
+<h3>Data collection types<a class="headerlink" href="#data-collection-types" title="Permalink to this heading">#</a></h3>
+<p>While openEO offers access to many different collections, not all of them use optimal formats or are stored close to the processing center.
+The result is that there can be quite large difference in performance depending on which collection you use. Hence, it may be smart to check
+with your backend provider on the specifics of a given collection before trying to use it at scale.</p>
+</section>
+</section>
+<section id="continental-scale-processing">
+<h2>Continental scale processing<a class="headerlink" href="#continental-scale-processing" title="Permalink to this heading">#</a></h2>
+<p>Reference: <a class="reference external" href="https://docs.openeo.cloud/usecases/large-scale-processing/">https://docs.openeo.cloud/usecases/large-scale-processing/</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./part3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="scaling_dask.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Parallel computing with Dask</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="advanced_udf.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">OpenEO - User Defined Functions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#under-the-hood">Under the hood</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-architecture">Example architecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-logs">Understanding logs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-performance-tips">General performance tips</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keep-the-size-of-your-data-cube-in-mind">Keep the size of your data cube in mind</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-to-keep-the-graph-simple">Try to keep the graph simple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-collection-types">Data collection types</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continental-scale-processing">Continental scale processing</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pangeo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
