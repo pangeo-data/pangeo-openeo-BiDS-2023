@@ -258,6 +258,20 @@
         "doc",
         "tutorial"
       ]
+    },
+    {
+      "login": "dthiex",
+      "name": "Daniel Thiex",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60705209?v=4",
+      "profile": "https://github.com/dthiex",
+      "contributions": [
+        "ideas",
+        "design",
+        "code",
+        "content",
+        "doc",
+        "tutorial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
