@@ -23,7 +23,7 @@ execute:
 launch_buttons:
   notebook_interface: "jupyterlab"
   binderhub_url: "https://notebooks.gesis.org/binder/"  # The URL for your BinderHub (e.g., https://mybinder.org)
-  jupyterhub_url: "https://pangeo-foss4g.vm.fedcloud.eu/jupyterhub/"  # The URL for your JupyterHub. (e.g., https://datahub.berkeley.edu)
+  jupyterhub_url: "http://pangeo-eosc.vm.fedcloud.eu/jupyterhub/"  # The URL for your JupyterHub. (e.g., https://datahub.berkeley.edu)
 
 # Define the name of the latex output file for PDF builds
 latex:
