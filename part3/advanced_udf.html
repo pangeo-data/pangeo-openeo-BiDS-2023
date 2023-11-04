@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'part3/advanced_udf';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Scaling openEO &amp; under the hood" href="scaling_openeo.html" />
+    <link rel="next" title="FuseTS - Peak-Valley detection in S2 NDVI" href="peak_valley.html" />
     <link rel="prev" title="How to exploit data on Pangeo" href="data_exploitability_pangeo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -206,6 +206,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="data_exploitability_pangeo.html">How to exploit data on Pangeo</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">OpenEO - User Defined Functions</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="peak_valley.html">Advanced OpenEO - Peak Valley Case</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scaling_openeo.html">Scaling with OpenEO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the workshop</span></p>
@@ -481,7 +482,13 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="openeo-user-defined-functions">
 <h1>OpenEO - User Defined Functions<a class="headerlink" href="#openeo-user-defined-functions" title="Permalink to this heading">#</a></h1>
 <p>The openEO user defined functions (UDF’s), provide a way to run Pangeo code as part of a larger openEO workflow.
-This allows you to get the best of both worlds.</p>
+This allows you to get the best of both worlds:</p>
+<ul class="simple">
+<li><p>You can use openEO to get access to a wide variety and full archives of EO data.</p></li>
+<li><p>Preprocessing to ARD such as Sentinel-1 backscatter is easily done in openEO</p></li>
+<li><p>For very fast interactive debugging of the core of your algorithm, local testing based on Pangeo is faster than basically any cloud based service</p></li>
+<li><p>Once your algorithm is ready, you can run it in the cloud without worries thanks to openEO</p></li>
+</ul>
 <p>To understand user defined functions, it is recommended to start here:</p>
 <p><a class="reference external" href="https://open-eo.github.io/openeo-python-client/udf.html">https://open-eo.github.io/openeo-python-client/udf.html</a></p>
 <section id="when-not-to-use-udf-s">
@@ -513,6 +520,7 @@ become an openEO predefined process. Also note that your implementation in Pytho
 </section>
 <section id="udf-with-basic-xarray-code-peak-valley-detection">
 <h2>UDF with basic XArray code: peak-valley detection<a class="headerlink" href="#udf-with-basic-xarray-code-peak-valley-detection" title="Permalink to this heading">#</a></h2>
+<p>Algorithm type: single pixel timeseries analysis</p>
 <p>This example may require a <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">fusets</span></code></p>
 <p>The actual peak-valley algorithm can be found here:</p>
 <p><a class="github reference external" href="https://github.com/Open-EO/FuseTS/blob/main/src/fusets/peakvalley.py">Open-EO/FuseTS</a></p>
@@ -522,6 +530,7 @@ become an openEO predefined process. Also note that your implementation in Pytho
 </section>
 <section id="udf-with-machine-learning">
 <h2>UDF with machine learning<a class="headerlink" href="#udf-with-machine-learning" title="Permalink to this heading">#</a></h2>
+<p>Algorithm type: spatiotemporal data chunk</p>
 <p>Applying deep learning models is one of the most common reason to use UDF’s.</p>
 <p>This example relies on understanding ‘apply_neighborhood’, which is explained here:</p>
 <p><a class="reference external" href="https://open-eo.github.io/openeo-python-client/udf.html#example-apply-neighborhood-with-a-udf">https://open-eo.github.io/openeo-python-client/udf.html#example-apply-neighborhood-with-a-udf</a></p>
@@ -577,11 +586,11 @@ to calibrate a model.</p>
       </div>
     </a>
     <a class="right-next"
-       href="scaling_openeo.html"
+       href="peak_valley.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Scaling openEO &amp; under the hood</p>
+        <p class="prev-next-title">FuseTS - Peak-Valley detection in S2 NDVI</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

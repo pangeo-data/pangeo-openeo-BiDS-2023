@@ -206,6 +206,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../part3/data_exploitability_pangeo.html">How to exploit data on Pangeo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part3/advanced_udf.html">OpenEO - User Defined Functions</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="../part3/peak_valley.html">Advanced OpenEO - Peak Valley Case</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../part3/scaling_openeo.html">Scaling with OpenEO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Beyond the workshop</span></p>
@@ -411,6 +412,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authors-contributors">Authors &amp; Contributors</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-types">Algorithm types</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-rank-composites">Case 1 Rank composites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-machine-learning-training-and-inference">Case 2 Machine learning training and inference</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3-esa-worldwater">Case 3 ESA WorldWater</a></li>
@@ -442,6 +444,20 @@ document.write(`
 <li><p>Learn about metadata generation in openEO</p></li>
 </ul>
 </section>
+<section id="algorithm-types">
+<h2>Algorithm types<a class="headerlink" href="#algorithm-types" title="Permalink to this heading">#</a></h2>
+<p>When writing an algorithm in openEO or Pangeo, the first thing to do is to determine the type of algorithm.
+Once you know the type, you can fall back to well-known examples as a template to implement your algorithm.</p>
+<p>Using the right method for your type of algorithm also ensures that it can be parallellized and executed
+in the most efficient way. An algorithm that only requires a single observation for instance, does not need
+to bother with retrieving a full timeseries of observations.</p>
+<p>In part 2 of this tutorial, we’ll cover a few common types:</p>
+<ul class="simple">
+<li><p>single observation, single pixel</p></li>
+<li><p>temporal analysis over a single pixel</p></li>
+</ul>
+<p>In part 3, we have an example of an analysis that requires multiple values in both space and time.</p>
+</section>
 <section id="case-1-rank-composites">
 <h2>Case 1 Rank composites<a class="headerlink" href="#case-1-rank-composites" title="Permalink to this heading">#</a></h2>
 <p>Scientifically correct compositing is the foundation of many EO processing workflows.
@@ -450,6 +466,11 @@ This case shows a max-NDVI composite, which is also a template for more advanced
 <ul class="simple">
 <li><p>Use array_apply to ‘loop’ over data</p></li>
 <li><p>Create masks to selectively load data</p></li>
+</ul>
+<p>Algorithm type:</p>
+<ul class="simple">
+<li><p>Spatial neighborhood for cloud proximity score/masking</p></li>
+<li><p>Per pixel temporal analysis for scoring</p></li>
 </ul>
 <p><a class="github reference external" href="https://github.com/Open-EO/openeo-community-examples/blob/main/python/RankComposites/rank_composites.ipynb">Open-EO/openeo-community-examples</a></p>
 </section>
@@ -465,6 +486,7 @@ also based on random forest.</p>
 <li><p>Transform a timeseries datacube into features for learning</p></li>
 <li><p>Use ML processes directly from openEO</p></li>
 </ul>
+<p>Algorithm type: per-pixel timeseries analysis</p>
 <p>Dynamic landcover: <a class="reference external" href="https://docs.openeo.cloud/usecases/landcover/">https://docs.openeo.cloud/usecases/landcover/</a></p>
 </section>
 <section id="case-3-esa-worldwater">
@@ -474,6 +496,11 @@ by DHI-GRAS.</p>
 <p>Key takeaways:</p>
 <ul class="simple">
 <li><p>Use of complex, rule-based classification</p></li>
+</ul>
+<p>Algorithm type:</p>
+<ul class="simple">
+<li><p>temporal compositing into ARD</p></li>
+<li><p>single observation, single pixel, analysis</p></li>
 </ul>
 <p>Note: the most recent code of this example is still under review in a pull request, so we include the relevant bits inline.</p>
 <p><a class="github reference external" href="https://github.com/DHI-GRAS/worldwater-toolbox">DHI-GRAS/worldwater-toolbox</a>
@@ -600,6 +627,7 @@ Here we explain how to do exactly that.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authors-contributors">Authors &amp; Contributors</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-types">Algorithm types</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-rank-composites">Case 1 Rank composites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-machine-learning-training-and-inference">Case 2 Machine learning training and inference</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3-esa-worldwater">Case 3 ESA WorldWater</a></li>
