@@ -10,6 +10,21 @@
 - What are openEO platform 'credits'
 - Learn about metadata generation in openEO
 
+## Algorithm types
+
+When writing an algorithm in openEO or Pangeo, the first thing to do is to determine the type of algorithm.
+Once you know the type, you can fall back to well-known examples as a template to implement your algorithm.
+
+Using the right method for your type of algorithm also ensures that it can be parallellized and executed 
+in the most efficient way. An algorithm that only requires a single observation for instance, does not need
+to bother with retrieving a full timeseries of observations.
+
+In part 2 of this tutorial, we'll cover a few common types:
+- single observation, single pixel
+- temporal analysis over a single pixel
+
+In part 3, we have an example of an analysis that requires multiple values in both space and time.
+
 
 ## Case 1 Rank composites 
 
@@ -19,6 +34,10 @@ This case shows a max-NDVI composite, which is also a template for more advanced
 Key takeaways:
 - Use array_apply to 'loop' over data
 - Create masks to selectively load data
+
+Algorithm type: 
+- Spatial neighborhood for cloud proximity score/masking
+- Per pixel temporal analysis for scoring
 
 https://github.com/Open-EO/openeo-community-examples/blob/main/python/RankComposites/rank_composites.ipynb
 
@@ -35,6 +54,8 @@ Key takeaways:
 - Transform a timeseries datacube into features for learning
 - Use ML processes directly from openEO
 
+Algorithm type: per-pixel timeseries analysis
+
 Dynamic landcover: https://docs.openeo.cloud/usecases/landcover/
 
 ## Case 3 ESA WorldWater
@@ -44,6 +65,11 @@ by DHI-GRAS.
 
 Key takeaways:
 - Use of complex, rule-based classification
+
+Algorithm type: 
+
+- temporal compositing into ARD
+- single observation, single pixel, analysis
 
 Note: the most recent code of this example is still under review in a pull request, so we include the relevant bits inline. 
 
