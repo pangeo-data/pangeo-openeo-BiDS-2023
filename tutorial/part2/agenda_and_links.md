@@ -12,11 +12,12 @@ Benjamin (EODC)
 ## 11:15 Finding Data, Running first graphs, difference to client-side processing
 
 Daniel (Sinergise)
-- Logging in People and showing them around
-- Showing Different Clients (R, Python & Web editor)
-- Show viewing functionality in webeditor  
 
-Valentina/Sean (EODC)
+- How to get started
+- Client libraries (JavaScript, Python, R) & the creating a first process graph through the Web Editor 
+- (Pre-)viewing results using the Web Editor
+
+Valentina (EODC)
 
 - Notebook showing how to search data & find metadata
 - Aggregate temporal period, Corine Landcover - Change detection , Tone Mapping

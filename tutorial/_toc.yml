@@ -29,6 +29,8 @@ parts:
 
 - caption: Part 2 - OpenEO
   chapters:
+  - file: part2/openEO-getting_started
+    title: Getting started
   - file: part2/openEO-boa_sentinel_2
     title: Sentinel-2 Bottom Of Atmosphere (BOA)
   - file: part2/openEO-Corine_Land_Cover_Alps

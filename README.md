@@ -19,9 +19,9 @@ The programmes for each workshop are given below for your information. Each work
 | Time | Activity | 
 | ---- | -------- | 
 | 09:00  | 👋 Welcome  (5 minutes) | 
-| 9:05   | Introduction and Motivation (15 minutes) |
-| 9:20   | Overview of the Pangeo ecosystem (20 minutes) |
-| 9:40   | Understanding Xarray to avoid common pitfalls (30 minutes) |
+| 09:05   | Introduction and Motivation (15 minutes) |
+| 09:20   | Overview of the Pangeo ecosystem (20 minutes) |
+| 09:40   | Understanding Xarray to avoid common pitfalls (30 minutes) |
 | 10:10  | Interactive Visualization with Hvplot (15 minutes) |
 | 10:30  | Break (30 minutes)  | |
 
@@ -32,8 +32,8 @@ The programmes for each workshop are given below for your information. Each work
 | 11:00 | 👋 Introduction and motivation (5 minutes) | 
 | 11:05 | Getting started with OpenEO (10 minutes) | 
 | 11:15 | Accessing and processing data with OpenEO (30 minutes) | 
-| 11:45 | ntegrate custom code into your workflow using User Defined Functions (30 minutes) | 
-| 12:15 | Q&A session - feedbacks (20 minutes) | 
+| 11:45 | Integrate custom code into your workflow using User Defined Functions (30 minutes) | 
+| 12:15 | Q&A session - feedbacks (15 minutes) | 
 | 12:30 | 🍽️ Lunch | 
 
 ## Unlocking the Power of Space Data with Pangeo & OpenEO
