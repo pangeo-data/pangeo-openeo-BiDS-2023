@@ -66,9 +66,11 @@ def peak_valley_openeo(datacube :DataCube,
     }
 
     from openeo import UDF
-    return datacube.apply_dimension(process=UDF.from_file(__file__, runtime='Python', context=context),dimension = "t").rename_labels("bands",["peak_valley"])
+    return datacube.apply_dimension(process=UDF.from_file(__file__, runtime='Python', context=context),dimension = "t")#.rename_labels("bands",["peak_valley"])
+
 
 from openeo.udf import XarrayDataCube
+from openeo.udf.debug import inspect
 from typing import Dict
 def apply_datacube(cube: XarrayDataCube, context: Dict) -> XarrayDataCube:
     """
@@ -82,7 +84,10 @@ def apply_datacube(cube: XarrayDataCube, context: Dict) -> XarrayDataCube:
     rec_r = context.get('rec_r', 1.0)
     slope_thr = context.get('slope_thr', -0.007)
 
+    inspect(data=context,message="DEBUG UDF CONTEXT")
+    inspect(data=cube.get_array(), message="DEBUG UDF INPUT")
     result = peakvalley(cube.get_array(), drop_thr=drop_thr, rec_r=rec_r, slope_thr=slope_thr)
+    inspect(message="DEBUG UDF",data=result.isel(x=34, y=14))
     return XarrayDataCube(result)
 
 def peakvalley_f(
