@@ -56,10 +56,15 @@ parts:
     title: How to exploit data with openEO
   - file: part3/data_exploitability_pangeo
     title: How to exploit data on Pangeo
+  - file: part3/udf_intro_openeo
+    title: openEO UDF - Introduction
+  - file: part3/peak_valley
+    title: Advanced openEO UDF + ufunc (XArray) - Peak Valley Case
   - file: part3/advanced_udf
-    title: Custom algorithms - UDF (OpenEO) and ufunc (Xarray)
+    title: Advanced openEO UDF - Machine Learning
   - file: part3/scaling_openeo
     title: Scaling with OpenEO
+
 
 - caption: Beyond the workshop
   chapters:
