@@ -1,6 +1,10 @@
 # Copernicus Data Space Ecosystem
 
-[The Copernicus Data Space Ecosystem](https://dataspace.copernicus.eu) is a data infrastructure for accessing and analyzing Sentinel satellite imagery. Most of the Pangeo & OpenEO training materials can be executed using the Jupyter Notebooks in the Copernicus Dataspace ecosystem.
+[The Copernicus Data Space Ecosystem](https://dataspace.copernicus.eu) is the public service that provides access to the
+full archives of Copernicus Sentinel data. 
+Next to data access, it also offers services for analyzing satellite imagery.
+Most of the Pangeo & openEO training materials can be executed using the Jupyter Notebooks 
+in the Copernicus Dataspace ecosystem.
 
 ## Registration
 
@@ -23,4 +27,10 @@ Then you can choose among the 3 available flavors (as shown on the figure below)
 
 For the tutorial, we suggest you use the "Large Server".
 
+## Getting access to openEO in Copernicus data space
+
+The openEO endpoint for Copernicus is documented here:
+https://documentation.dataspace.copernicus.eu/APIs/openEO/openEO.html
+
+The endpoint you can use in your scripts is: `openeo.dataspace.copernicus.eu` .
 
