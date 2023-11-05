@@ -29,6 +29,8 @@ parts:
 
 - caption: Part 2 - OpenEO
   chapters:
+  - file: part2/openEO-getting_started
+    title: Getting started
   - file: part2/openEO-boa_sentinel_2
     title: Sentinel-2 Bottom Of Atmosphere (BOA)
   - file: part2/openEO-Corine_Land_Cover_Alps
@@ -54,15 +56,10 @@ parts:
     title: How to exploit data with openEO
   - file: part3/data_exploitability_pangeo
     title: How to exploit data on Pangeo
-  - file: part3/udf_intro_openeo
-    title: openEO UDF - Introduction
-  - file: part3/peak_valley
-    title: Advanced openEO UDF + ufunc (XArray) - Peak Valley Case
   - file: part3/advanced_udf
-    title: Advanced openEO UDF - Machine Learning
+    title: Custom algorithms - UDF (OpenEO) and ufunc (Xarray)
   - file: part3/scaling_openeo
     title: Scaling with OpenEO
-
 
 - caption: Beyond the workshop
   chapters:
