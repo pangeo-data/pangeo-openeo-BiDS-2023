@@ -4,11 +4,11 @@ The setup for the tutorials will be described below.
 
 # Setup: how to run the tutorial
 
-This tutorial's goal is to provide a wide introduction to the Open EO and Pangeo ecosystem. 
-While participants will see all the core libraries and possibilities offered by the OpenEO and Pangeo software ecosystem, it is also important that they get some insights about what a OpenEO and Pangeo platform is and how to use it. 
+This tutorial's goal is to provide a wide introduction to the openEO and Pangeo ecosystem. 
+While participants will see all the core libraries and possibilities offered by the openEO and Pangeo software ecosystem, it is also important that they get some insights about what a openEO and Pangeo platform is and how to use it. 
 
  
-We recommend running this tutorial using the OpenEO, CDEC and Pangeo-EOSC infrastructure.  We recommend users to create logins and try to connect them before the tutorial.   
+We recommend running this tutorial using the openEO, CDEC and Pangeo-EOSC infrastructure.  We recommend users to create logins and try to connect them before the tutorial.   
 Creating account and how to run the turorial no these infrastructure are detailed in next pages.  
 
 This page will describe the ways of running the tutorial:
