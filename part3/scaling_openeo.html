@@ -412,6 +412,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#under-the-hood">Under the hood</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-why-does-it-take-so-long-for-openeo-to-retrieve-a-simple-timeseries">Performance: why does it take so long for openEO to retrieve a simple timeseries?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-architecture">Example architecture</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-logs">Understanding logs</a></li>
 </ul>
@@ -455,6 +456,26 @@ can lead for instance to ‘out of memory’ style errors.</p>
 <p>In a real world backend, these concepts result in a graph of processing steps (‘stages’ in Spark), and a number of tasks per step that can be executed in parallel.
 An example is shown below.</p>
 <p><img alt="Spark graph" src="../_images/openeo_spark.png" /></p>
+<section id="performance-why-does-it-take-so-long-for-openeo-to-retrieve-a-simple-timeseries">
+<h3>Performance: why does it take so long for openEO to retrieve a simple timeseries?<a class="headerlink" href="#performance-why-does-it-take-so-long-for-openeo-to-retrieve-a-simple-timeseries" title="Permalink to this heading">#</a></h3>
+<p>What you may notice when working with an openEO backend, is that it can take up to a few minutes to retrieve a ‘simple’
+timeseries of for instance Sentinel-2 data. While when loading that timeseries from a netCDF file on your laptop, it’s
+instantaneous. For many, this is annoying when trying to work interactively, and openEO advices to use the ‘local processing’
+feature. So what is going on here?</p>
+<p>Warning: this answer is about a specific, but fairly common, backend setup. It does not reflect a general limitation in
+the openEO design!</p>
+<p>The problem is that large EO archives, like Copernicus Sentinel-2 and Sentinel-1, but also Landsat, are stored per ‘product’
+on large scale storage systems that are accessed over a network. The consequence is that in most EO-workflows, loading
+the data (IO) remains the big bottleneck. So while many algorithm writers focus on the processing performance, it is often
+reading data from 1000’s of files (e.g. 10 bands x 100 observations) over a network that takes most time.</p>
+<p>When your multiband timeseries is stored as a single netCDF file on the SSD of your laptop, most of the heavy lifting has
+in fact been done, because you then have something that can be read into memory at once in a second or less.</p>
+<p>So does this mean that you are better off downloading everything locally and processing on your own resources?
+In fact not, the graph below shows the reading speed of an openEO cluster that is processing a number of batch jobs.
+As you can see, in this case it was able to read from EO data at speeds between 4 GB/s and 10 GB/s, which will be hard
+to achieve when going over the internet.</p>
+<p><img alt="openEO IO" src="../_images/openeo_networkio.png" /></p>
+</section>
 <section id="example-architecture">
 <h3>Example architecture<a class="headerlink" href="#example-architecture" title="Permalink to this heading">#</a></h3>
 <p>There is no single openEO architecture, as openEO is just an API that can be implemented on top of many technologies. That is also
@@ -571,6 +592,7 @@ with your backend provider on the specifics of a given collection before trying 
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#under-the-hood">Under the hood</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-why-does-it-take-so-long-for-openeo-to-retrieve-a-simple-timeseries">Performance: why does it take so long for openEO to retrieve a simple timeseries?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-architecture">Example architecture</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-logs">Understanding logs</a></li>
 </ul>

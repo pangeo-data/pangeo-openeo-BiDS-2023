@@ -25,6 +25,31 @@ An example is shown below.
 
 ![Spark graph](../figures/openeo_spark.png)
 
+### Performance: why does it take so long for openEO to retrieve a simple timeseries?
+
+What you may notice when working with an openEO backend, is that it can take up to a few minutes to retrieve a 'simple' 
+timeseries of for instance Sentinel-2 data. While when loading that timeseries from a netCDF file on your laptop, it's 
+instantaneous. For many, this is annoying when trying to work interactively, and openEO advices to use the 'local processing' 
+feature. So what is going on here?
+
+Warning: this answer is about a specific, but fairly common, backend setup. It does not reflect a general limitation in
+the openEO design!
+
+The problem is that large EO archives, like Copernicus Sentinel-2 and Sentinel-1, but also Landsat, are stored per 'product'
+on large scale storage systems that are accessed over a network. The consequence is that in most EO-workflows, loading
+the data (IO) remains the big bottleneck. So while many algorithm writers focus on the processing performance, it is often
+reading data from 1000's of files (e.g. 10 bands x 100 observations) over a network that takes most time.
+
+When your multiband timeseries is stored as a single netCDF file on the SSD of your laptop, most of the heavy lifting has
+in fact been done, because you then have something that can be read into memory at once in a second or less.
+
+So does this mean that you are better off downloading everything locally and processing on your own resources?
+In fact not, the graph below shows the reading speed of an openEO cluster that is processing a number of batch jobs.
+As you can see, in this case it was able to read from EO data at speeds between 4 GB/s and 10 GB/s, which will be hard
+to achieve when going over the internet.
+
+![openEO IO](../figures/openeo_networkio.png)
+
 
 ### Example architecture
 
