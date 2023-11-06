@@ -1,0 +1,36 @@
+{
+  "process_graph": {
+    "load1": {
+      "process_id": "load_collection",
+      "arguments": {
+        "id": "SENTINEL2_L2A",
+        "spatial_extent": {
+          "west": 16.307225836233204,
+          "east": 16.491099787304275,
+          "south": 48.150014167126024,
+          "north": 48.275758933571645
+        },
+        "temporal_extent": [
+          "2023-11-01T00:00:00Z",
+          "2023-11-01T23:59:59Z"
+        ],
+        "bands": [
+          "B04",
+          "B03",
+          "B02"
+        ]
+      }
+    },
+    "save2": {
+      "process_id": "save_result",
+      "arguments": {
+        "format": "GTIFF",
+        "data": {
+          "from_node": "load1"
+        }
+      },
+      "result": true
+    }
+  },
+  "parameters": []
+}
