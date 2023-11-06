@@ -51,6 +51,7 @@ Operational products, like [Copernicus landcover 3.0](https://land.copernicus.eu
 also based on random forest.
 
 Key takeaways:
+- Merging Sentinel-1 and Sentinel-2 data cubes
 - Transform a timeseries datacube into features for learning
 - Use ML processes directly from openEO
 
