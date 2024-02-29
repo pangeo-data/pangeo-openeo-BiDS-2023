@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Pangeo@EOSC &#8212; BiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
   
@@ -19,52 +18,48 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'before/EOSC';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Copernicus Data Space Ecosystem" href="copernicus.html" />
@@ -78,10 +73,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -122,11 +116,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,6 +138,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -159,7 +157,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -372,6 +381,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -381,6 +391,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -435,15 +446,15 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="pangeo-eosc">
-<h1>Pangeo&#64;EOSC<a class="headerlink" href="#pangeo-eosc" title="Permalink to this heading">#</a></h1>
+<h1>Pangeo&#64;EOSC<a class="headerlink" href="#pangeo-eosc" title="Link to this heading">#</a></h1>
 <section id="users-how-to-get-access-to-pangeo-eosc-services">
-<h2>Users: How to get access to <code class="docutils literal notranslate"><span class="pre">pangeo-eosc</span></code> services?<a class="headerlink" href="#users-how-to-get-access-to-pangeo-eosc-services" title="Permalink to this heading">#</a></h2>
+<h2>Users: How to get access to <code class="docutils literal notranslate"><span class="pre">pangeo-eosc</span></code> services?<a class="headerlink" href="#users-how-to-get-access-to-pangeo-eosc-services" title="Link to this heading">#</a></h2>
 <p>In this section you will learn how to register and access <code class="docutils literal notranslate"><span class="pre">pangeo-eosc</span></code> services.</p>
 <section id="registration">
-<h3>Registration<a class="headerlink" href="#registration" title="Permalink to this heading">#</a></h3>
+<h3>Registration<a class="headerlink" href="#registration" title="Link to this heading">#</a></h3>
 <p>You need to create an <a class="reference external" href="https://www.egi.eu/service/check-in/">EGI Check-in account</a> and enroll to the <code class="docutils literal notranslate"><span class="pre">vo.pangeo.eu</span></code> Virtual Organisation. There are several steps to follow:</p>
 <ol class="arabic simple">
 <li><p>Sign up for an EGI account on the <strong>development instance</strong> of EGI Check-In, clicking on: <a class="reference external" href="https://aai-dev.egi.eu/registry/co_petitions/start/coef:2">https://aai-dev.egi.eu/registry/co_petitions/start/coef:2</a>. <strong>Use your <a class="reference external" href="https://orcid.org/">ORCID iD</a> account to authenticate.</strong></p></li>
@@ -452,7 +463,7 @@ document.write(`
 <p>Managers of the Virtual Organisations may <strong>take several days</strong> to approve your petitions to join and also get back to you via email to verify your identity.</p>
 </section>
 <section id="access-daskhub">
-<h3>Access DaskHub<a class="headerlink" href="#access-daskhub" title="Permalink to this heading">#</a></h3>
+<h3>Access DaskHub<a class="headerlink" href="#access-daskhub" title="Link to this heading">#</a></h3>
 <p>Access DaskHub via <a class="reference external" href="https://pangeo-eosc.vm.fedcloud.eu/">https://pangeo-eosc.vm.fedcloud.eu/</a> and choose among the 4 available flavors (as shown on the figure below):</p>
 <p><img alt="Cloud EGI JupyterHub flavors" src="../_images/flavors.png" /></p>
 <ul class="simple">
@@ -465,7 +476,7 @@ document.write(`
 <p>A <a class="reference external" href="https://gateway.dask.org/">Dask Gateway</a> is available for scaling your computation. For more details on this deployment, you may want to take a look at <a class="reference external" href="https://github.com/dask/helm-chart/tree/main/daskhub">Daskhub helm chart</a>.</p>
 </section>
 <section id="access-minio">
-<h3>Access MinIO<a class="headerlink" href="#access-minio" title="Permalink to this heading">#</a></h3>
+<h3>Access MinIO<a class="headerlink" href="#access-minio" title="Link to this heading">#</a></h3>
 <p>Each user has a very small amount of local storage when using the DaskHub as it is not meant to be used for storing large data.  Instead a dedicated <a class="reference external" href="https://min.io">MinIO Object storage</a> has been setup.</p>
 <p>The MinIO console endpoint is: <a class="reference external" href="https://pangeo-eosc-minio.vm.fedcloud.eu/">https://pangeo-eosc-minio.vm.fedcloud.eu/</a>. You can authenticate to the MinIO Object Storage in the same way you login to DaskHub. As shown on the Figure below, make sure you “Select Other Authentication Method” and “Login with SSO (checkin)” to access the MinIO console. Then use your ORCID iD to login.</p>
 <p><img alt="minIO Login" src="../_images/minIO_login.png" /></p>
@@ -475,29 +486,29 @@ document.write(`
 <p>Please check out this <a class="reference external" href="https://github.com/pangeo-data/pangeo-eosc/blob/main/users/how-to/object-storage-minio-test.ipynb">example</a> to get started.</p>
 </section>
 <section id="support">
-<h3>Support<a class="headerlink" href="#support" title="Permalink to this heading">#</a></h3>
+<h3>Support<a class="headerlink" href="#support" title="Link to this heading">#</a></h3>
 <p>If you need support, please open an <a class="reference external" href="https://github.com/pangeo-data/pangeo-eosc/issues">issue</a>.</p>
 </section>
 <section id="monitoring">
-<h3>Monitoring<a class="headerlink" href="#monitoring" title="Permalink to this heading">#</a></h3>
-<p>Check out the <a class="reference external" href="https://kuba-mon.cloud.e-infra.cz/d/vd9rFCL4z/c-scale?orgId=1&amp;refresh=30s">open grafana dashboard</a>. It is particularly useful to check that there are GPUs available before requesting an environment with GPU.</p>
+<h3>Monitoring<a class="headerlink" href="#monitoring" title="Link to this heading">#</a></h3>
+<p>Check out the <a class="reference external" href="https://kuba-mon.cloud.e-infra.cz/d/vd9rFCL4z/c-scale?orgId=1&amp;amp;refresh=30s">open grafana dashboard</a>. It is particularly useful to check that there are GPUs available before requesting an environment with GPU.</p>
 </section>
 </section>
 <section id="weekly-coffee-meetings">
-<h2>Weekly coffee meetings<a class="headerlink" href="#weekly-coffee-meetings" title="Permalink to this heading">#</a></h2>
+<h2>Weekly coffee meetings<a class="headerlink" href="#weekly-coffee-meetings" title="Link to this heading">#</a></h2>
 <p>Join the Pangeo community in Europe in a weekly call every Tuesday at 9.30am CET/CEST at: <a class="reference external" href="https://meet.jit.si/pangeo-europe">https://meet.jit.si/pangeo-europe</a></p>
 <p>Attend the meeting not only to get to know each other but also to ask questions about how to use the Pangeo ecosystem.</p>
 </section>
 <section id="background-information">
-<h2>Background information<a class="headerlink" href="#background-information" title="Permalink to this heading">#</a></h2>
+<h2>Background information<a class="headerlink" href="#background-information" title="Link to this heading">#</a></h2>
 <p>Let’s start with a bit of background information! The cloud resources for pangeo-eosc are provided through the collaboration between the <a class="reference external" href="https://pangeo.io">Pangeo community</a>, the <a class="reference external" href="https://www.egi.eu/project/egi-ace/">EGI-ACE project</a>, and the <a class="reference external" href="https://c-scale.eu">C-SCALE project</a> within the <a class="reference external" href="https://eosc-portal.eu/about/eosc">European Open Science Cloud</a> framework.</p>
 </section>
 <section id="the-european-open-science-cloud-eosc">
-<h2>The European Open Science Cloud (EOSC)<a class="headerlink" href="#the-european-open-science-cloud-eosc" title="Permalink to this heading">#</a></h2>
+<h2>The European Open Science Cloud (EOSC)<a class="headerlink" href="#the-european-open-science-cloud-eosc" title="Link to this heading">#</a></h2>
 <p><img alt="EOSC logo" src="../_images/EOSC_logo-small.png" /></p>
 <p>The <a class="reference external" href="https://eosc-portal.eu/about/eosc">European Open Science Cloud (EOSC)</a> aims at becoming the main environment for hosting and processing research data to support European Science.</p>
 <section id="pangeo-europe">
-<h3>Pangeo Europe<a class="headerlink" href="#pangeo-europe" title="Permalink to this heading">#</a></h3>
+<h3>Pangeo Europe<a class="headerlink" href="#pangeo-europe" title="Link to this heading">#</a></h3>
 <p><img alt="Pangeo logo" src="../_images/pangeo_name_logo.png" /></p>
 <p><a class="reference external" href="https://pangeo.io/">Pangeo</a> is a worldwide community for Big Data geoscience promoting open, reproducible, and scalable science.</p>
 <p><a class="reference external" href="https://pangeo.io/meeting-notes.html">Pangeo Europe</a> aims at highlighting European contributions to the Pangeo Community and at providing a reference deployment for Pangeo on EOSC. The Pangeo deployment on EOSC has been made possible thanks to <a class="reference external" href="https://www.cesnet.cz/?lang=en">CESNET</a> in the context of the the <a class="reference external" href="https://youtu.be/Vc9SZNa2-Os">EGI-ACE project</a> and the <a class="reference external" href="https://youtu.be/-jBkR_2_vg8">C-SCALE project</a>.</p>
@@ -533,7 +544,7 @@ document.write(`
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="openeo.html"
@@ -561,6 +572,7 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -603,6 +615,7 @@ By Pangeo
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2023.
@@ -629,8 +642,8 @@ By Pangeo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

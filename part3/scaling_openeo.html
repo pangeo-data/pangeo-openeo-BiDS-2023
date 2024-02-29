@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Scaling openEO &amp; under the hood &#8212; BiDS&#39;23 - Scaling Big Data Analysis with Pangeo and OpenEO - Unlocking the Power of Space Data</title>
   
@@ -19,52 +18,48 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'part3/scaling_openeo';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Join the community!" href="../afterword/resources.html" />
@@ -78,10 +73,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -122,11 +116,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,6 +138,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -159,7 +157,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -372,6 +381,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -381,6 +391,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -434,14 +445,14 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="scaling-openeo-under-the-hood">
-<h1>Scaling openEO &amp; under the hood<a class="headerlink" href="#scaling-openeo-under-the-hood" title="Permalink to this heading">#</a></h1>
+<h1>Scaling openEO &amp; under the hood<a class="headerlink" href="#scaling-openeo-under-the-hood" title="Link to this heading">#</a></h1>
 <p>To understand how the design of openEO is linked to performance and scalability,
 <a class="reference external" href="https://openeo.org/documentation/1.0/developers/backends/performance.html">this page</a> is a good read.</p>
 <section id="under-the-hood">
-<h2>Under the hood<a class="headerlink" href="#under-the-hood" title="Permalink to this heading">#</a></h2>
+<h2>Under the hood<a class="headerlink" href="#under-the-hood" title="Link to this heading">#</a></h2>
 <p>openEO backends rely on the same principles as e.g. Dask and any other large scale parallel processing framework:</p>
 <ul class="simple">
 <li><p>The ‘map/reduce’ paradigm</p></li>
@@ -458,7 +469,7 @@ can lead for instance to ‘out of memory’ style errors.</p>
 An example is shown below.</p>
 <p><img alt="Spark graph" src="../_images/openeo_spark.png" /></p>
 <section id="performance-why-does-it-take-so-long-for-openeo-to-retrieve-a-simple-timeseries">
-<h3>Performance: why does it take so long for openEO to retrieve a simple timeseries?<a class="headerlink" href="#performance-why-does-it-take-so-long-for-openeo-to-retrieve-a-simple-timeseries" title="Permalink to this heading">#</a></h3>
+<h3>Performance: why does it take so long for openEO to retrieve a simple timeseries?<a class="headerlink" href="#performance-why-does-it-take-so-long-for-openeo-to-retrieve-a-simple-timeseries" title="Link to this heading">#</a></h3>
 <p>What you may notice when working with an openEO backend, is that it can take up to a few minutes to retrieve a ‘simple’
 timeseries of for instance Sentinel-2 data. While when loading that timeseries from a netCDF file on your laptop, it’s
 instantaneous. For many, this is annoying when trying to work interactively, and openEO advices to use the ‘local processing’
@@ -478,7 +489,7 @@ to achieve when going over the internet.</p>
 <p><img alt="openEO IO" src="../_images/openeo_networkio.png" /></p>
 </section>
 <section id="example-architecture">
-<h3>Example architecture<a class="headerlink" href="#example-architecture" title="Permalink to this heading">#</a></h3>
+<h3>Example architecture<a class="headerlink" href="#example-architecture" title="Link to this heading">#</a></h3>
 <p>There is no single openEO architecture, as openEO is just an API that can be implemented on top of many technologies. That is also
 a key point which makes it technology independent.</p>
 <p>The image shown below shows a typical ‘cloud’ deployment in a Kubernetes environment. Cloud based environments tend to use automatic scaling techniques
@@ -486,7 +497,7 @@ to grow or shrink the size of the openEO backend based on the requests from user
 <p><img alt="openEO architecture" src="https://github.com/Open-EO/openeo-geotrellis-kubernetes/blob/master/openEO_k8s.png?raw=true" /></p>
 </section>
 <section id="understanding-logs">
-<h3>Understanding logs<a class="headerlink" href="#understanding-logs" title="Permalink to this heading">#</a></h3>
+<h3>Understanding logs<a class="headerlink" href="#understanding-logs" title="Link to this heading">#</a></h3>
 <p>An openEO backend provides logging, but it can be particularly hard to understand. This again has to do with the cloud based nature:
 when running your job on many machines in parallel, all kinds of ‘warnings’ and even ‘error’ messages can be generated. There
 is however a level of fault-tolerance, so there may be errors that are not actually an issue, or there may be errors caused later on, where
@@ -496,9 +507,9 @@ help you to do that.</p>
 </section>
 </section>
 <section id="general-performance-tips">
-<h2>General performance tips<a class="headerlink" href="#general-performance-tips" title="Permalink to this heading">#</a></h2>
+<h2>General performance tips<a class="headerlink" href="#general-performance-tips" title="Link to this heading">#</a></h2>
 <section id="keep-the-size-of-your-data-cube-in-mind">
-<h3>Keep the size of your data cube in mind<a class="headerlink" href="#keep-the-size-of-your-data-cube-in-mind" title="Permalink to this heading">#</a></h3>
+<h3>Keep the size of your data cube in mind<a class="headerlink" href="#keep-the-size-of-your-data-cube-in-mind" title="Link to this heading">#</a></h3>
 <p>Backends are distributed, cloud based programs, but it is still possible to overload them easily due to the sheer size of earth observation datasets.
 If your algorithm at some point reduces dataset size, you may want to put this step early in the algorithm.</p>
 <p>Some typical examples:</p>
@@ -511,20 +522,20 @@ If your algorithm at some point reduces dataset size, you may want to put this s
 </ul>
 </section>
 <section id="try-to-keep-the-graph-simple">
-<h3>Try to keep the graph simple<a class="headerlink" href="#try-to-keep-the-graph-simple" title="Permalink to this heading">#</a></h3>
+<h3>Try to keep the graph simple<a class="headerlink" href="#try-to-keep-the-graph-simple" title="Link to this heading">#</a></h3>
 <p>Backends may try to ‘understand’ your process graph, to choose the most optimal evaluation path.
 Sometimes people introduce an unneeded amount of ‘merge_cubes’ processes, and the graph starts to look quite complex.
 At this point, also the backend may have trouble understanding this, and your execution is also slow.</p>
 </section>
 <section id="data-collection-types">
-<h3>Data collection types<a class="headerlink" href="#data-collection-types" title="Permalink to this heading">#</a></h3>
+<h3>Data collection types<a class="headerlink" href="#data-collection-types" title="Link to this heading">#</a></h3>
 <p>While openEO offers access to many different collections, not all of them use optimal formats or are stored close to the processing center.
 The result is that there can be quite large difference in performance depending on which collection you use. Hence, it may be smart to check
 with your backend provider on the specifics of a given collection before trying to use it at scale.</p>
 </section>
 </section>
 <section id="continental-scale-processing">
-<h2>Continental scale processing<a class="headerlink" href="#continental-scale-processing" title="Permalink to this heading">#</a></h2>
+<h2>Continental scale processing<a class="headerlink" href="#continental-scale-processing" title="Link to this heading">#</a></h2>
 <p>Reference: <a class="reference external" href="https://docs.openeo.cloud/usecases/large-scale-processing/">https://docs.openeo.cloud/usecases/large-scale-processing/</a></p>
 </section>
 </section>
@@ -557,7 +568,7 @@ with your backend provider on the specifics of a given collection before trying 
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="advanced_udf.html"
@@ -585,6 +596,7 @@ with your backend provider on the specifics of a given collection before trying 
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -626,6 +638,7 @@ By Pangeo
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2023.
@@ -652,8 +665,8 @@ By Pangeo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

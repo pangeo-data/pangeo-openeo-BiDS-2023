@@ -4,10 +4,10 @@ Traceback (most recent call last):
   File "/home/runner/micromamba/envs/bids23/lib/python3.11/site-packages/nbclient/client.py", line 1305, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/micromamba/envs/bids23/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
+  File "/home/runner/micromamba/envs/bids23/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/micromamba/envs/bids23/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+  File "/home/runner/micromamba/envs/bids23/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
     return future.result()
            ^^^^^^^^^^^^^^^
   File "/home/runner/micromamba/envs/bids23/lib/python3.11/site-packages/nbclient/client.py", line 705, in async_execute
@@ -27,32 +27,32 @@ connection = openeo.connect("openeo.cloud").authenticate_oidc()
 Cell [0;32mIn[2], line 1[0m
 [0;32m----> 1[0m connection [38;5;241m=[39m [43mopeneo[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mopeneo.cloud[39;49m[38;5;124;43m"[39;49m[43m)[49m[38;5;241;43m.[39;49m[43mauthenticate_oidc[49m[43m([49m[43m)[49m
 
-File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/openeo/rest/connection.py:729[0m, in [0;36mConnection.authenticate_oidc[0;34m(self, provider_id, client_id, client_secret, store_refresh_token, use_pkce, display, max_poll_time)[0m
-[1;32m    725[0m _log[38;5;241m.[39minfo([38;5;124m"[39m[38;5;124mTrying device code flow.[39m[38;5;124m"[39m)
-[1;32m    726[0m authenticator [38;5;241m=[39m OidcDeviceAuthenticator(
-[1;32m    727[0m     client_info[38;5;241m=[39mclient_info, use_pkce[38;5;241m=[39muse_pkce, display[38;5;241m=[39mdisplay, max_poll_time[38;5;241m=[39mmax_poll_time
-[1;32m    728[0m )
-[0;32m--> 729[0m con [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_authenticate_oidc[49m[43m([49m
-[1;32m    730[0m [43m    [49m[43mauthenticator[49m[43m,[49m
-[1;32m    731[0m [43m    [49m[43mprovider_id[49m[38;5;241;43m=[39;49m[43mprovider_id[49m[43m,[49m
-[1;32m    732[0m [43m    [49m[43mstore_refresh_token[49m[38;5;241;43m=[39;49m[43mstore_refresh_token[49m[43m,[49m
-[1;32m    733[0m [43m[49m[43m)[49m
-[1;32m    734[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mAuthenticated using device code flow.[39m[38;5;124m"[39m)
-[1;32m    735[0m [38;5;28;01mreturn[39;00m con
+File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/openeo/rest/connection.py:742[0m, in [0;36mConnection.authenticate_oidc[0;34m(self, provider_id, client_id, client_secret, store_refresh_token, use_pkce, display, max_poll_time)[0m
+[1;32m    738[0m _log[38;5;241m.[39minfo([38;5;124m"[39m[38;5;124mTrying device code flow.[39m[38;5;124m"[39m)
+[1;32m    739[0m authenticator [38;5;241m=[39m OidcDeviceAuthenticator(
+[1;32m    740[0m     client_info[38;5;241m=[39mclient_info, use_pkce[38;5;241m=[39muse_pkce, display[38;5;241m=[39mdisplay, max_poll_time[38;5;241m=[39mmax_poll_time
+[1;32m    741[0m )
+[0;32m--> 742[0m con [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_authenticate_oidc[49m[43m([49m
+[1;32m    743[0m [43m    [49m[43mauthenticator[49m[43m,[49m
+[1;32m    744[0m [43m    [49m[43mprovider_id[49m[38;5;241;43m=[39;49m[43mprovider_id[49m[43m,[49m
+[1;32m    745[0m [43m    [49m[43mstore_refresh_token[49m[38;5;241;43m=[39;49m[43mstore_refresh_token[49m[43m,[49m
+[1;32m    746[0m [43m[49m[43m)[49m
+[1;32m    747[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mAuthenticated using device code flow.[39m[38;5;124m"[39m)
+[1;32m    748[0m [38;5;28;01mreturn[39;00m con
 
-File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/openeo/rest/connection.py:459[0m, in [0;36mConnection._authenticate_oidc[0;34m(self, authenticator, provider_id, store_refresh_token, fallback_refresh_token_to_store, oidc_auth_renewer)[0m
-[1;32m    447[0m [38;5;28;01mdef[39;00m [38;5;21m_authenticate_oidc[39m(
-[1;32m    448[0m     [38;5;28mself[39m,
-[1;32m    449[0m     authenticator: OidcAuthenticator,
+File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/openeo/rest/connection.py:472[0m, in [0;36mConnection._authenticate_oidc[0;34m(self, authenticator, provider_id, store_refresh_token, fallback_refresh_token_to_store, oidc_auth_renewer)[0m
+[1;32m    460[0m [38;5;28;01mdef[39;00m [38;5;21m_authenticate_oidc[39m(
+[1;32m    461[0m     [38;5;28mself[39m,
+[1;32m    462[0m     authenticator: OidcAuthenticator,
 [0;32m   (...)[0m
-[1;32m    454[0m     oidc_auth_renewer: Optional[OidcAuthenticator] [38;5;241m=[39m [38;5;28;01mNone[39;00m,
-[1;32m    455[0m ) [38;5;241m-[39m[38;5;241m>[39m Connection:
-[1;32m    456[0m [38;5;250m    [39m[38;5;124;03m"""[39;00m
-[1;32m    457[0m [38;5;124;03m    Authenticate through OIDC and set up bearer token (based on OIDC access_token) for further requests.[39;00m
-[1;32m    458[0m [38;5;124;03m    """[39;00m
-[0;32m--> 459[0m     tokens [38;5;241m=[39m [43mauthenticator[49m[38;5;241;43m.[39;49m[43mget_tokens[49m[43m([49m[43mrequest_refresh_token[49m[38;5;241;43m=[39;49m[43mstore_refresh_token[49m[43m)[49m
-[1;32m    460[0m     _log[38;5;241m.[39minfo([38;5;124m"[39m[38;5;124mObtained tokens: [39m[38;5;132;01m{t}[39;00m[38;5;124m"[39m[38;5;241m.[39mformat(t[38;5;241m=[39m[k [38;5;28;01mfor[39;00m k, v [38;5;129;01min[39;00m tokens[38;5;241m.[39m_asdict()[38;5;241m.[39mitems() [38;5;28;01mif[39;00m v]))
-[1;32m    461[0m     [38;5;28;01mif[39;00m store_refresh_token:
+[1;32m    467[0m     oidc_auth_renewer: Optional[OidcAuthenticator] [38;5;241m=[39m [38;5;28;01mNone[39;00m,
+[1;32m    468[0m ) [38;5;241m-[39m[38;5;241m>[39m Connection:
+[1;32m    469[0m [38;5;250m    [39m[38;5;124;03m"""[39;00m
+[1;32m    470[0m [38;5;124;03m    Authenticate through OIDC and set up bearer token (based on OIDC access_token) for further requests.[39;00m
+[1;32m    471[0m [38;5;124;03m    """[39;00m
+[0;32m--> 472[0m     tokens [38;5;241m=[39m [43mauthenticator[49m[38;5;241;43m.[39;49m[43mget_tokens[49m[43m([49m[43mrequest_refresh_token[49m[38;5;241;43m=[39;49m[43mstore_refresh_token[49m[43m)[49m
+[1;32m    473[0m     _log[38;5;241m.[39minfo([38;5;124m"[39m[38;5;124mObtained tokens: [39m[38;5;132;01m{t}[39;00m[38;5;124m"[39m[38;5;241m.[39mformat(t[38;5;241m=[39m[k [38;5;28;01mfor[39;00m k, v [38;5;129;01min[39;00m tokens[38;5;241m.[39m_asdict()[38;5;241m.[39mitems() [38;5;28;01mif[39;00m v]))
+[1;32m    474[0m     [38;5;28;01mif[39;00m store_refresh_token:
 
 File [0;32m~/micromamba/envs/bids23/lib/python3.11/site-packages/openeo/rest/auth/oidc.py:911[0m, in [0;36mOidcDeviceAuthenticator.get_tokens[0;34m(self, request_refresh_token)[0m
 [1;32m    908[0m         next_poll [38;5;241m=[39m elapsed() [38;5;241m+[39m poll_interval
